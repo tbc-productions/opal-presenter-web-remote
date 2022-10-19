@@ -12,26 +12,67 @@ import { StageViewComponent } from '../stage-view/stage-view.component';
 
 })
 export class ChordViewComponent extends StageViewComponent {
-  transpose = 0;
+  // Map with the song id and transpose value so the chord-view remembers the value for each song
+  songTransposeMap = new Map();
+  // current songs transpose level
+  transposeLevel = 0;
+
+
+  setNewSlides(slides: Slide[]): void {
+    super.setNewSlides(slides);
+    // if this song is already known
+    if (this.songTransposeMap.has(this.serviceItem.id)) {
+      if (this.songTransposeMap.get(this.serviceItem.id) !== 0) {
+        this.transposeChords();
+      } else {
+        this.transposeLevel = this.songTransposeMap.get(this.serviceItem.id);
+      }
+    } else {
+      this.songTransposeMap.set(this.serviceItem.id, 0);
+      this.transposeLevel = 0;
+    }
+  }
+
 
   transposeUp(): void {
-    this.transpose++;
+    if (this.songTransposeMap.has(this.serviceItem.id)) {
+      const tmpTranspose = this.songTransposeMap.get(this.serviceItem.id) + 1;
+      this.songTransposeMap.set(this.serviceItem.id, tmpTranspose);
+    } else {
+      this.songTransposeMap.set(this.serviceItem.id, 1);
+    }
+    this.transposeChords();
   }
 
   transposeDown(): void {
-    this.transpose--;
+    if (this.songTransposeMap.has(this.serviceItem.id)) {
+      const tmpTranspose = this.songTransposeMap.get(this.serviceItem.id) - 1;
+      this.songTransposeMap.set(this.serviceItem.id, tmpTranspose);
+    } else {
+      this.songTransposeMap.set(this.serviceItem.id, -1);
+    }
+    this.transposeChords();
   }
+
+  transposeChords(): void {
+    const tmpTranspose = this.songTransposeMap.get(this.serviceItem.id);
+    this.transposeLevel = tmpTranspose;
+    this.openlpService.transposeSong(tmpTranspose).subscribe(transposedLyrics => {
+    // Replace the chords in the currentSlides with the returned transposed chords
+    if (transposedLyrics instanceof Array) {
+      for (let i = 0; i < transposedLyrics.length; ++i) {
+        this.currentSlides[i].chords = transposedLyrics[i].chords;
+      }
+    }
+    });
+  }
+
 
   chordproFormatted(slide: Slide): string {
     if (!slide) {
       return '';
     }
     let chordpro: string = slide.chords;
-    chordpro = chordpro.replace(/<span class="\w*\s*\w*">/g, '');
-    chordpro = chordpro.replace(/<span>/g, '');
-    chordpro = chordpro.replace(/<\/span>/g, '');
-    chordpro = chordpro.replace(/<strong>/g, '[');
-    chordpro = chordpro.replace(/<\/strong>/g, ']');
     chordpro = chordpro.replace(/<br>/g, '\n');
 
     return chordpro;

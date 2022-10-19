@@ -183,6 +183,10 @@ export class OpenLPService {
     return this.http.post(`${this.apiURL}/plugins/${plugin}/add`, {'id': id}, httpOptions);
   }
 
+  transposeSong(transpose_value): Observable<any> {
+    return this.http.get(`${this.apiURL}/plugins/songs/transpose-live-item/${transpose_value}`, httpOptions);
+  }
+
   login(credentials: Credentials): Observable<AuthToken> {
     return this.http.post<AuthToken>(`${this.apiURL}/core/login`, credentials, httpOptions);
   }

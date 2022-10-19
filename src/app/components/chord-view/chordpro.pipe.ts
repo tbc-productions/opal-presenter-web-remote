@@ -64,7 +64,9 @@ export class ChordProPipe implements PipeTransform {
      * @param {number} nHalfSteps
      * @returns {string}
      */
-    transform(song: string, nHalfSteps: number): string|SafeHtml {
+    transform(song: string/*, nHalfSteps: number*/): string|SafeHtml {
+        // we hardcode nHalfSteps to 0, since the transposing is not used in OpenLP web
+        const nHalfSteps = 0;
         try {
             if (song !== undefined && song) {
                 return this.sanitizer.bypassSecurityTrustHtml(this.parseToHTML(song, nHalfSteps));

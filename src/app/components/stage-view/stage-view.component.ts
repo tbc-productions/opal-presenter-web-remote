@@ -31,6 +31,7 @@ export class StageViewComponent implements OnInit {
 
   updateCurrentSlides(): void {
     this.openlpService.getServiceItem().subscribe(serviceItem => {
+      this.serviceItem = serviceItem;
       if (serviceItem instanceof Array) {
         this.setNewSlides(serviceItem);
       }
