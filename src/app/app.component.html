@@ -3,6 +3,15 @@
     <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
     <span class="page-title">{{pageTitle}}</span>
     <span class="spacer"></span>
+    <button
+      mat-icon-button
+      (click)="forceWebSocketReconnection()"
+      class="connection-status"
+      [matTooltip]="webSocketOpen ? 'Connected to OpenLP' : 'Disconnected'"
+    >
+      <mat-icon *ngIf="webSocketOpen">link</mat-icon>
+      <mat-icon *ngIf="!webSocketOpen">link_off</mat-icon>
+    </button>
     <span class="app-version">v{{appVersion}}</span>
   </mat-toolbar-row>
 </mat-toolbar>

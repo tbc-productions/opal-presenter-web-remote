@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import { State } from './responses';
-import { OpenLPService } from './openlp.service';
+import { OpenLPService, WebSocketStatus } from './openlp.service';
 import { WindowRef } from './window-ref.service';
 import { PageTitleService } from './page-title.service';
 import { LoginComponent } from './components/login/login.component';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 // import { version } from '../../package.json';
 
 @Component({
@@ -20,12 +22,20 @@ export class AppComponent implements OnInit {
   showLogin = false;
   pageTitle = 'OpenLP Remote';
   appVersion = '0.0';
+  webSocketOpen = false;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
               private dialog: MatDialog, private windowRef: WindowRef) {
     pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     openlpService.stateChanged$.subscribe(item => this.state = item);
+    openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
     this.appVersion = windowRef.nativeWindow.appVersion || '0.0';
+    this.webSocketOpen = openlpService.webSocketStatus === WebSocketStatus.Open;
+    // Try to force websocket reconnection as user is now focused on window and will try to interact soon
+    // Adding a debounce to avoid event flooding
+    fromEvent(window, 'focus')
+      .pipe(debounceTime(300))
+      .subscribe(() => this.forceWebSocketReconnection());
   }
 
   ngOnInit(): void {
@@ -91,5 +101,9 @@ export class AppComponent implements OnInit {
 
   sliderChanged(event: MatSlideToggleChange) {
     this.fastSwitching = event.checked;
+  }
+
+  forceWebSocketReconnection() {
+    this.openlpService.reconnectWebSocketIfNeeded();
   }
 }
