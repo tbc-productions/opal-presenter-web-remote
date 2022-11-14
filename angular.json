@@ -27,7 +27,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/material-icons/iconfont/filled.css",
               "node_modules/@fontsource/roboto/400.css"
             ],
             "scripts": []
