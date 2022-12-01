@@ -1,3 +1,10 @@
+mat-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
 mat-divider {
   border-color: rgb(175, 175, 175);
 }
