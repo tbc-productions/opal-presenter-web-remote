@@ -1,3 +1,10 @@
+// To allow the inner overlay (and other items) to use z-indexes greater than 1
+.mat-sidenav {
+  &-container, &-content {
+    z-index: auto;
+  }
+}
+
 mat-toolbar {
   position: -webkit-sticky;
   position: sticky;
