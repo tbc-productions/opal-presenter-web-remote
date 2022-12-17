@@ -1,3 +1,5 @@
+@import "./overlay-common";
+
 .overlay {
   background: black;
   width: 100%;
@@ -9,71 +11,158 @@
   overflow: hidden;
   color: white;
   display: flex;
+  justify-content: flex-start;
   flex-direction: row;
-  justify-content: space-between;
+
+  &-content {
+    width: 100%;
+    max-width: 100%;
+    flex: 1;
+
+    @media (orientation: portrait) {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .tags {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      color: green;
+      align-items: center;
+      @include slide-font-size(1);
+
+      @media screen and (min-width: $mobile-breakpoint) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 3rem;
+      }
+
+      span {
+        margin-left: 1rem;
+        &.active {
+          color: lightgreen;
+          font-weight: bold;
+        }
+      }
+    }
+
+  }
+
+  .sidebar {
+    padding: 0.8rem;
+    max-width: 30%;
+    margin-top: 1em;
+    overflow-y: auto;
+
+    .notes {
+      @include slide-font-size(0.9);
+      line-height: 1;
+
+      color: salmon;
+      text-align: right;
+    }
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      margin-top: 4rem;
+    }
+
+    @media (orientation: portrait) {
+      max-width: none;
+      max-height: 20%;
+      margin-bottom: 3.75rem;
+      background-color: rgb(64, 64, 64);
+
+      .notes {
+        text-align: left;
+      }
+    }
+  }
+
+  @media (orientation: portrait) {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .slide {
+    line-height: 1.2;
+    white-space: pre-line;
+    margin: 0;
+
+    &.first {
+      margin-top: 1rem;
+    }
+
+    @include slide-font-size();
+  }
+
 }
 
-.sidebar {
-  margin: 1rem;
+.toolbar {
+  padding: 0.8rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30%;
-}
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  gap: 1.5rem;
 
-.time {
-  font-size: 3rem;
-  color: yellow;
-  text-align: right;
-}
+  .back-button {
+    background: #fff;
+  }
 
-.notes {
-  margin-top: 1em;
-  font-size: 3rem;
-  line-height: 3rem;
-  color: salmon;
-  text-align: right;
+  @media screen and (max-width: ($mobile-breakpoint - 0.125px)){
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(64, 64, 64, 0.5);
+    backdrop-filter: blur(2px);
+    padding: 0.6rem;
+  }
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  @media screen and (max-width: ($mobile-breakpoint - 0.125px)) and (orientation: landscape) {
+    left: auto;
+    border-top-left-radius: 0.5rem;
+  }
 }
 
 .close {
   text-align: right;
 }
 
-.tags {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.time {
+  color: yellow;
+  text-align: right;
+  white-space: nowrap;
+  flex: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  color: green;
-  font-size: 4rem;
-  span {
-    margin-left: 1rem;
-    &.active {
-      color: lightgreen;
-      font-weight: bold;
-    }
-  }
-}
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0.8rem;
+  font-size: 2rem;
 
-.slide {
-  font-size: 3rem;
-  white-space: pre-line;
-  margin: 0;
-  &.first {
-    margin-top: 1rem;
+  @media screen and (min-width: $mobile-breakpoint) {
+    font-size: 3rem;
   }
 }
 
 .container {
-  margin-left: 1rem;
+  margin: 0 1rem;
 }
 
 .nextSlides {
-  font-size: 2rem;
   margin-top: 1rem;
   color: grey;
+
   .slide {
-    font-size: 2rem;
+    @include slide-font-size(0.75);
   }
 }

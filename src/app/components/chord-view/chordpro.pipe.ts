@@ -52,6 +52,8 @@ export class ChordProPipe implements PipeTransform {
     notesSharpNotation = {};
     notesFlatNotation = {};
 
+    private fillHtml = `<span class="fill"><span class="fill-inner"></span></span>`;
+
     decodeHTML(value: string) {
         const tempElement = document.createElement('div');
         tempElement.innerHTML = value;
@@ -146,40 +148,103 @@ export class ChordProPipe implements PipeTransform {
         // becuase it gets messed up when a chord is placed on it..
         // shouldn't be relevant if we actually get chordpro format
         song = this.decodeHTML(song);
-        const comp = this;
         if (!song) {
             return '';
         }
         let chordText = '';
-        let lastChord = '';
-        if (!song.match(comp.chordRegex)) {
+        if (!song.match(this.chordRegex)) {
             return `<div class="no-chords">${song}</div>`;
         }
-        song.split(comp.chordRegex).forEach((part, index) => {
-            if (index % 2 === 0) {
-                // text
-                if (lastChord) {
-                    chordText += `<span data-chord="${lastChord}">${part.substring(0, 1)}</span>${part.substring(1)}`;
-                    lastChord = '';
-                } else {
-                    chordText += part;
+        // Processing backwards so we can better identify where chords should overlap lyric letters
+        // or insert a space in lyrics
+        song.split(/\n/).reverse().forEach((row, index) => {
+
+            chordText = `</div>${index > 0 ? '<br>' : ''}` + chordText;
+            const rowParts = row.split(this.chordRegex);
+            let lastPart;
+
+            for (let i = rowParts.length - 1, r = 0, isFirst = true; i >= -1; i--, r++ ) {
+                if (!isFirst) {
+                    chordText = this._processChordRow(nHalfSteps, rowParts[i], i, lastPart, r) + chordText;
                 }
-            } else {
+
+                lastPart = rowParts[i];
+                isFirst = false;
+            }
+
+            chordText = '<div class="song-row">' + chordText;
+        });
+        return `<div class="with-chords">${chordText}</div>`;
+    }
+
+    protected _processChordRow(nHalfSteps, part, index, lastPart, reverseIndex) {
+        if (index % 2 !== 0) {
+            if (index > 0) {
                 // chord
-                lastChord = part.replace(/[[]]/, '');
+                let chord = part.replace(/[[]]/, '');
                 if (nHalfSteps !== 0) {
-                    lastChord = lastChord.split('/').map(chord => {
-                        const chordRoot = comp.chordRoot(chord);
-                        const newRoot = comp.transposeChord(chordRoot, nHalfSteps);
-                        return newRoot + comp.restOfChord(chord);
+                    chord = chord.split('/').map(chordPart => {
+                        const chordRoot = this.chordRoot(chordPart);
+                        const newRoot = this.transposeChord(chordRoot, nHalfSteps);
+                        return newRoot + this.restOfChord(chordPart);
                     }).join('/');
                 }
 
                 // use proper symbols
-                lastChord = lastChord.replace(/b/g, '♭');
-                lastChord = lastChord.replace(/#/g, '♯');
+                chord = chord.replace(/b/g, '♭');
+                chord = chord.replace(/#/g, '♯');
+                const textFirstLetter = `${lastPart.substring(0, 1)}`;
+                const textRest = lastPart.substring(1);
+                const isChordMusicKey = chord.startsWith('=');
+                const chordLength = chord.length;
+                const isFirstChordAfterRealWord = (lastPart.length && (reverseIndex === 1));
+                const shouldOverlapChord = (!isChordMusicKey) && (isFirstChordAfterRealWord || (lastPart.length > chord.length));
+                const isChordOnly = !lastPart.trim().length;
+
+                const chordClass = (shouldOverlapChord && 'overlap-chord' || '') + (isChordOnly && ' chord-only' || '');
+
+                const textLength = 1 + textRest.length;
+                const fillHtmlNeededLength = (!shouldOverlapChord && (textLength < chordLength)) ? chordLength - 1 : (chordLength - 1);
+                let fillHtml = !shouldOverlapChord && !isChordMusicKey ? this._makeFillHtml(fillHtmlNeededLength || 1) : '';
+                let fillHtmlLength = fillHtml?.length ?? 0;
+                const finalTextLength = 1 + textRest.length + fillHtmlLength;
+                const needExtraFill = (!shouldOverlapChord && (finalTextLength <= chordLength));
+
+                if (needExtraFill) {
+                    fillHtml = this._makeFillHtml(fillHtmlLength + 1);
+                    fillHtmlLength++;
+                    chord += ' ';
+                }
+
+                if (!lastPart || (textFirstLetter === ' ')) {
+                    fillHtml = ' '.repeat(fillHtmlLength);
+                }
+
+                if ((fillHtmlLength === 1 && chordLength < 2)) {
+                    // To match text separator
+                    chord += ' ';
+                }
+
+                return `<span data-chord="${chord}" class="${chordClass}"><span class="chord">${chord}</span><span class="text ${fillHtml ? 'with-fill' : ''}"><span class="first-letter">${textFirstLetter}</span>${fillHtml}</span></span>${textRest}`;
+            } else {
+                return `${lastPart}`;
             }
-        });
-        return `<div class="with-chords">${chordText}</div>`;
+        }
+        return '';
+    }
+
+    protected _makeFillHtml(length) {
+        if (length >= 3) {
+            let text = '';
+            const middle = Math.floor(length / 2);
+
+            for (let i = 0; i < length; i++) {
+                text += (i === middle) ? '\u2014' : ' ';
+            }
+
+            return text;
+        } else {
+            return '\u00B7' + (length === 2 ? ' ' : '');
+        }
     }
 }

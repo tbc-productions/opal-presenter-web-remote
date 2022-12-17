@@ -1,0 +1,19 @@
+$mobile-breakpoint: 1024px;
+
+@mixin slide-font-size($scale: 1, $desktop-scale: $scale) {
+  font-size: calc(#{4vw * $scale} + #{1.5vh * $scale});
+
+  @media (orientation: landscape) {
+    font-size: #{6vmin * $scale};
+  }
+
+  @media (orientation: landscape) and (max-aspect-ratio: 16/9) {
+    font-size: #{3vw * $scale};
+  }
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    font-size: calc(#{3.1vw * $desktop-scale} + #{1.5vh * $desktop-scale});
+    //font-size: #{4vw * $scale};
+    //font-size: #{5.6vmin * $scale};
+  }
+}

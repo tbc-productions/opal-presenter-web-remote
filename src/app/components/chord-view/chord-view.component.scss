@@ -1,12 +1,19 @@
+@import '../overlay-common';
+
 .transpose {
-    margin-left: 25px;
     display: flex;
-    flex-direction: column;
-    font-size: 3rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    
     mat-icon {
-        font-size: 3rem;
+        transform: scale(1.5);
     }
-    span {
-        margin-left: 17px;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+        font-size: 3rem;
+        mat-icon {
+            transform: scale(2);
+        }
     }
 }

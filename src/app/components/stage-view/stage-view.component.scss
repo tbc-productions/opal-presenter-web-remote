@@ -18,3 +18,11 @@
 .next-slides-text {
   font-size: 1.4rem;
 }
+
+.toolbar {
+  .show-notes {
+    &-disabled {
+      background: white;
+    }
+  }
+}

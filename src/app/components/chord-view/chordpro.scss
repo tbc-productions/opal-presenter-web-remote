@@ -1,23 +1,93 @@
+@import '../overlay-common';
+
 .song {
     white-space: pre-wrap;
+
     .with-chords {
-        line-height: 2;
+        line-height: 1;
+        font-family: monospace;
+        padding-top: 0.45em; // To avoid chord overlapping top bar
+        @include slide-font-size(0.85, 0.725);
+
+        > span {
+            vertical-align: bottom;
+        }
     }
-    
-    span[data-chord]:before {
-        position: relative;
-        top: -1em;
+
+    &-row {
         display: inline-block;
-        content: attr(data-chord);
-        width: 0;
-        color: yellow;
+    }
+
+    span[data-chord]{
+        display: inline;
+        position: relative;
+        white-space: nowrap;
+
+        .text, .chord {
+            line-height: 1em;
+            height: 1em;
+            line-height: 2.4em;
+        }
+
+        .first-letter {
+            white-space: pre-wrap;
+        }
+
+        .chord {
+            color: yellow;
+            display: inline-block;
+            transform: translateY(-100%);
+            white-space: pre;
+        }
+
+        // Chords that invades next text
+        &.overlap-chord {
+            position: relative;
+
+            .chord {
+                width: 0;
+            }
+        }
+
+        &:not(.overlap-chord) {
+            display: inline-flex;
+            flex-direction: column;
+
+            .text {
+                position: absolute;
+                left: 0;
+            }
+        }
+
+        // Chords without text
+        &.chord-only {
+            display: inline-flex;
+            flex-direction: column;
+            margin-right: 0.3em;
+
+            .chord {
+                position: static;
+            }
+        }
+
     }
 }
 
 .nextSlides {
     .song {
-        span[data-chord]:before {
-            color: gray;
+        span[data-chord] {
+            .chord {
+                color: gray;
+            }
+
+            .fill .fill-inner {
+                background-color: gray;
+            }
         }
+
+    }
+
+    .slide .with-chords {
+        @include slide-font-size(0.75, 0.65);
     }
 }
