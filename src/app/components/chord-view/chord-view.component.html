@@ -1,26 +1,33 @@
 <div class="overlay">
-  <div>
+  <div class="overlay-content">
     <div class="tags">
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
     </div>
     <div class="container">
       <div class="slide currentSlide song mat-display-3" [innerHTML]="chordproFormatted(currentSlides[activeSlide])|chordpro"></div>
       <div class="nextSlides">
-        <div class="slide song" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides" [innerHTML]="chordproFormatted(slide)|chordpro"></div>
+        <div
+          class="slide song"
+          [class.first]="slide.first_slide_of_tag"
+          *ngFor="let slide of nextSlides"
+          [innerHTML]="chordproFormatted(slide)|chordpro">
+        </div>
       </div>
     </div>
   </div>
-  <div class="sidebar">
-    <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
+  <div class="toolbar">
+    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
     <div class="transpose">
-      <button mat-icon-button (click)="transposeUp()">
-        <mat-icon>keyboard_arrow_up</mat-icon>
-      </button>
-      <span>{{ transposeLevel }}</span>
       <button mat-icon-button (click)="transposeDown()">
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
+      <span>{{ transposeLevel }}</span>
+      <button mat-icon-button (click)="transposeUp()">
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </button>
     </div>
-    <button mat-raised-button routerLink="/">Close</button>
+    <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
   </div>
 </div>

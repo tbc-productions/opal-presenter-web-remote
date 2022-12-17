@@ -19,6 +19,7 @@ export class StageViewComponent implements OnInit {
   activeSlide = 0;
   tags: Tag[] = [];
   time = new Date();
+  showNotes = true;
 
   constructor(public openlpService: OpenLPService) {
     setInterval(() => this.time = new Date(), 1000);

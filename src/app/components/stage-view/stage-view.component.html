@@ -1,5 +1,5 @@
 <div class="overlay">
-  <div>
+  <div class="overlay-content">
     <div class="tags">
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
     </div>
@@ -26,11 +26,23 @@
       </div>
     </div>
   </div>
-  <div class="sidebar">
-    <div class="top">
-      <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
-      <div class="notes" [innerHTML]="notes|nl2br"></div>
-    </div>
-    <div class="close"><button mat-raised-button class="closeButton" routerLink="/">Close</button></div>
+  <div class="toolbar">
+    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <button
+      mat-mini-fab
+      class="show-notes"
+      [matTooltip]="'Show/hide notes'"
+      [color]="showNotes ? 'primary' : ''"
+      [class.show-notes-disabled]="!showNotes"
+      (click)="showNotes = !showNotes"
+    >
+      <mat-icon>sticky_note_2</mat-icon>
+    </button>
+    <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
+  </div>
+  <div class="sidebar" *ngIf="showNotes && notes">
+    <div class="notes" [innerHTML]="notes|nl2br"></div>
   </div>
 </div>
