@@ -98,7 +98,7 @@ export class OpenLPService {
   }
 
   setSearchOption(plugin, option, value): Observable<any> {
-    return this.doPost(`${this.apiURL}/plugins/${plugin}/search-options`, {'option': option, 'value': value});
+    return this.doPost(`${this.apiURL}/plugins/${plugin}/search-options`, {option, value});
   }
 
   getServiceItems(): Observable<ServiceItem[]> {
@@ -106,15 +106,15 @@ export class OpenLPService {
   }
 
   setServiceItem(id: any): Observable<any> {
-    return this.doPost(`${this.apiURL}/service/show`, {'id': id});
+    return this.doPost(`${this.apiURL}/service/show`, {id});
   }
 
   nextItem(): Observable<any> {
-    return this.doPost(`${this.apiURL}/service/progress`, {'action': 'next'});
+    return this.doPost(`${this.apiURL}/service/progress`, {action: 'next'});
   }
 
   previousItem(): Observable<any> {
-    return this.doPost(`${this.apiURL}/service/progress`, {'action': 'previous'});
+    return this.doPost(`${this.apiURL}/service/progress`, {action: 'previous'});
   }
 
   getServiceItem(): Observable<any> {
@@ -126,15 +126,15 @@ export class OpenLPService {
   }
 
   setSlide(id: any): Observable<any> {
-    return this.doPost(`${this.apiURL}/controller/show`, {'id': id});
+    return this.doPost(`${this.apiURL}/controller/show`, {id});
   }
 
   nextSlide(): Observable<any> {
-    return this.doPost(`${this.apiURL}/controller/progress`, {'action': 'next'});
+    return this.doPost(`${this.apiURL}/controller/progress`, {action: 'next'});
   }
 
   previousSlide(): Observable<any> {
-    return this.doPost(`${this.apiURL}/controller/progress`, {'action': 'previous'});
+    return this.doPost(`${this.apiURL}/controller/progress`, {action: 'previous'});
   }
 
   getThemeLevel(): Observable<any> {
@@ -146,7 +146,7 @@ export class OpenLPService {
   }
 
   setThemeLevel(level): Observable<any> {
-    return this.doPost(`${this.apiURL}/controller/theme-level`, {'level': level});
+    return this.doPost(`${this.apiURL}/controller/theme-level`, {level});
   }
 
   getTheme(): Observable<any> {
@@ -154,35 +154,35 @@ export class OpenLPService {
   }
 
   setTheme(theme: string): Observable<any> {
-    return this.doPost(`${this.apiURL}/controller/theme`, {'theme': theme});
+    return this.doPost(`${this.apiURL}/controller/theme`, {theme});
   }
 
   blankDisplay(): Observable<any> {
-    return this.doPost(`${this.apiURL}/core/display`, {'display': 'blank'});
+    return this.doPost(`${this.apiURL}/core/display`, {display: 'blank'});
   }
 
   themeDisplay(): Observable<any> {
-    return this.doPost(`${this.apiURL}/core/display`, {'display': 'theme'});
+    return this.doPost(`${this.apiURL}/core/display`, {display: 'theme'});
   }
 
   desktopDisplay(): Observable<any> {
-    return this.doPost(`${this.apiURL}/core/display`, {'display': 'desktop'});
+    return this.doPost(`${this.apiURL}/core/display`, {display: 'desktop'});
   }
 
   showDisplay(): Observable<any> {
-    return this.doPost(`${this.apiURL}/core/display`, {'display': 'show'});
+    return this.doPost(`${this.apiURL}/core/display`, {display: 'show'});
   }
 
   showAlert(text): Observable<any> {
-    return this.doPost(`${this.apiURL}/plugins/alerts`, {'text': text});
+    return this.doPost(`${this.apiURL}/plugins/alerts`, {text});
   }
 
   sendItemLive(plugin, id): Observable<any> {
-    return this.doPost(`${this.apiURL}/plugins/${plugin}/live`, {'id': id});
+    return this.doPost(`${this.apiURL}/plugins/${plugin}/live`, {id});
   }
 
   addItemToService(plugin, id): Observable<any> {
-    return this.doPost(`${this.apiURL}/plugins/${plugin}/add`, {'id': id});
+    return this.doPost(`${this.apiURL}/plugins/${plugin}/add`, {id});
   }
 
   transposeSong(transpose_value): Observable<any> {
@@ -257,7 +257,7 @@ export class OpenLPService {
     this.webSocketTimeoutHandle = setTimeout(() => {
       this.createWebSocket();
     }, WEBSOCKET_RECONNECT_TIMEOUT);
-  }
+  };
 
   private clearWebSocketTimeoutHandle() {
     if (this.webSocketTimeoutHandle) {
@@ -272,7 +272,7 @@ export class OpenLPService {
       this.handleStateChange(state);
     };
     reader.readAsText(event.data);
-  }
+  };
 
   handleStateChange(state: State) {
     this.isTwelveHourTime = state.twelve;

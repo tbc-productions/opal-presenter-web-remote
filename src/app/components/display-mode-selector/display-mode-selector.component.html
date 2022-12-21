@@ -1,0 +1,19 @@
+<mat-action-list>
+  <button mat-list-item (click)="setMode(DisplayMode.Blank)" class="display-button" [disabled]="displayMode === DisplayMode.Blank">
+    <mat-icon>videocam_off</mat-icon>
+    Show black
+  </button>
+  <button mat-list-item (click)="setMode(DisplayMode.Theme)" class="display-button" [disabled]="displayMode === DisplayMode.Theme">
+    <mat-icon>wallpaper</mat-icon>
+    Show background
+  </button>
+  <button mat-list-item (click)="setMode(DisplayMode.Desktop)" class="display-button" [disabled]="displayMode === DisplayMode.Desktop">
+    <mat-icon>desktop_windows</mat-icon>
+    Show Desktop
+  </button>
+  <button mat-list-item (click)="setMode(DisplayMode.Presentation)" class="display-button" [disabled]="displayMode === DisplayMode.Presentation">
+    <mat-icon>videocam</mat-icon>
+    Show Presentation
+  </button>
+</mat-action-list>
+  

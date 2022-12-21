@@ -1,13 +1,15 @@
 <mat-card class="slide no-select" mat-list-item (click)="onSlideSelected(slide)" [class.selected]="selected">
-  <div class="verse-tag">{{ slide?.tag }}</div>
-  <div *ngIf="slide?.img; else onlySlideText" class="verse-img-container">
-    <img src="{{ slide?.img }}" />
-    <div class="img-verse-text">
-      {{ slide?.text }}
+  <mat-card-content>
+    <div class="verse-tag">{{ slide?.tag }}</div>
+    <div *ngIf="slide?.img; else onlySlideText" class="verse-img-container">
+      <img src="{{ slide?.img }}" />
+      <div class="img-verse-text">
+        {{ slide?.text }}
+      </div>
     </div>
-  </div>
-  <ng-template #onlySlideText>
-    <div class="verse-text">{{ slide?.text }}</div>
-  </ng-template>
+    <ng-template #onlySlideText>
+      <div class="verse-text">{{ slide?.text }}</div>
+    </ng-template>
+  </mat-card-content>
 </mat-card>
 

@@ -1,17 +1,4 @@
-mat-card {
-    cursor: pointer;
-    justify-content: center;
-}
-mat-divider {
-    border-color: #afafaf;
-}
-mat-button-toggle-group {
-    margin-left: 10px;
-}
-mat-slide-toggle {
-    margin-left: auto;
-    padding: 0 40px;
-}
+
 img {
     width: 100%;
 }
@@ -29,7 +16,8 @@ img {
 }
 
 .theme-card {
-
+    cursor: pointer;
+    justify-content: center;
 }
 
 .theme-title {

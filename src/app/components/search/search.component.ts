@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public searchResults = null;
   public selectedPlugin: string;
   public currentPlugin: string;
-  public displaySearchOptions: Boolean = false;
+  public displaySearchOptions = false;
   @ViewChild(SearchOptionsComponent, {static: false}) searchOptions: SearchOptionsComponent;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
