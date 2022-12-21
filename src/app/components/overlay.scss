@@ -14,6 +14,27 @@
   justify-content: flex-start;
   flex-direction: row;
 
+  .active-slide-img {
+    /* properly size current slide thumbnail */
+    /* relative sizes might not work in real world */
+    /* If we get larger thumbnail sizes, we want to limit their size */
+    max-height: 75%;
+    min-height: 250px;
+  }
+  .active-slide-img-text {
+    font-size: 1.8rem;
+  }
+  .next-slides-img {
+    /* properly size thumbnail displayed in 2nd and subsequent slides */
+    /* If we get larger thumbnail sizes, we want to limit their size */
+    max-height: 20%;
+    min-height: 100px;
+  }
+
+  .next-slides-text {
+    font-size: 1.4rem;
+  }
+
   &-content {
     width: 100%;
     max-width: 100%;

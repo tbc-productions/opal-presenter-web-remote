@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OpenLPService } from '../../openlp.service';
 import { ServiceItem, Slide } from '../../responses';
 
@@ -10,7 +10,8 @@ interface Tag {
 @Component({
   selector: 'app-stage-view',
   templateUrl: './stage-view.component.html',
-  styleUrls: ['./stage-view.component.scss', '../overlay.scss']
+  styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StageViewComponent implements OnInit {
   serviceItem: ServiceItem = null;

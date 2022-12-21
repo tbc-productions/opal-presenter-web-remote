@@ -1,0 +1,15 @@
+<div
+    class="slide"
+    [class.mat-headline-2]="active"
+    [class.currentSlide]="active"
+    [class.mat-headline-4]="!active"
+    [class.first]="!active && slide.first_slide_of_tag" 
+>
+    <ng-container *ngIf="!(slide?.img); else elseImage">
+        {{slide?.text}}
+    </ng-container>
+    <ng-template #elseImage>
+        <img src="{{slide?.img}}" [class.active-slide-img]="active" [class.next-slides-img]="!active"/>
+        <div [class.active-slide-img-text]="active" [class.next-slides-text]="!active">{{ slide?.text }}</div>
+    </ng-template>
+</div>
