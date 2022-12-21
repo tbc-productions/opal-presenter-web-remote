@@ -62,6 +62,7 @@ export class ChordProPipe implements PipeTransform {
 
     /**
      * Pipe transformation for ChordPro-formatted song texts.
+     *
      * @param {string} song
      * @param {number} nHalfSteps
      * @returns {string}
@@ -108,15 +109,16 @@ export class ChordProPipe implements PipeTransform {
 
     /**
      * Transpose the given chord the given (positive or negative) number of half steps.
+     *
      * @param {string} chordRoot
      * @param {number} nHalfSteps
      * @returns {string}
      */
     transposeChord(chordRoot, nHalfSteps) {
         let pos = -1;
-        for (let i = 0; i < this.keys.length; i++) {
-            if (this.keys[i].name === chordRoot) {
-                pos = this.keys[i].value;
+        for (const key of this.keys) {
+            if (key.name === chordRoot) {
+                pos = key.value;
                 break;
             }
         }
@@ -128,9 +130,9 @@ export class ChordProPipe implements PipeTransform {
             else if (pos > this.MAX_HALF_STEPS) {
                 pos -= this.MAX_HALF_STEPS + 1;
             }
-            for (let i = 0; i < this.keys.length; i++) {
-                if (this.keys[i].value === pos) {
-                    return this.keys[i].name;
+            for (const key of this.keys) {
+                if (key.value === pos) {
+                    return key.name;
                 }
             }
         }
@@ -225,7 +227,13 @@ export class ChordProPipe implements PipeTransform {
                     chord += ' ';
                 }
 
-                return `<span data-chord="${chord}" class="${chordClass}"><span class="chord">${chord}</span><span class="text ${fillHtml ? 'with-fill' : ''}"><span class="first-letter">${textFirstLetter}</span>${fillHtml}</span></span>${textRest}`;
+                return `<span data-chord="${chord}" class="${chordClass}">` +
+                            `<span class="chord">${chord}</span>` +
+                            `<span class="text ${fillHtml ? 'with-fill' : ''}">` +
+                                `<span class="first-letter">${textFirstLetter}</span>` +
+                                `${fillHtml}` +
+                            `</span>` +
+                        `</span>${textRest}`;
             } else {
                 return `${lastPart}`;
             }

@@ -1,3 +1,5 @@
+$small-toolbar-breakpoint: 500px;
+
 // To allow the inner overlay (and other items) to use z-indexes greater than 1
 .mat-sidenav {
   &-container, &-content {
@@ -10,6 +12,11 @@ mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1020;
+
+  /* Fix icon button alignment on some firefox configurations */
+  [mat-icon-button] {
+    line-height: 1;
+  }
 }
 
 mat-divider {
@@ -32,7 +39,12 @@ mat-sidenav-container {
   flex: 1;
 }
 
-mat-slide-toggle {
+/* Align icons with text */
+mat-sidenav-container .mat-icon {
+  vertical-align: text-top;
+}
+
+.mat-mdc-slide-toggle {
   margin-top: 0.8rem;
   margin-left: 1rem;
   font-size: 80%;
@@ -50,7 +62,7 @@ mat-slide-toggle {
   background-color: whitesmoke;
 }
 
-.fast-switcher a.mat-tab-link > span.text {
+.fast-switcher a.mat-mdc-tab-link > span.text {
   margin-left: 0.3rem;
 }
 
@@ -58,6 +70,19 @@ mat-slide-toggle {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.displayButton {
+  display: none;
+}
+
+@media screen and (min-width: $small-toolbar-breakpoint) {
+  .squashed-display-button {
+    display: none;
+  }
+  .displayButton {
+    display: block;
+  }
 }
 
 /*

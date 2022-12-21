@@ -1,14 +1,16 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
-import { State } from './responses';
+import { State, DisplayMode } from './responses';
 import { OpenLPService, WebSocketStatus } from './openlp.service';
 import { WindowRef } from './window-ref.service';
 import { PageTitleService } from './page-title.service';
 import { LoginComponent } from './components/login/login.component';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
 // import { version } from '../../package.json';
 
 @Component({
@@ -17,6 +19,9 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  // Make DisplayMode enum visible to html code
+  DisplayMode = DisplayMode;
+
   private _fastSwitching = false;
   state = new State();
   showLogin = false;
@@ -25,7 +30,7 @@ export class AppComponent implements OnInit {
   webSocketOpen = false;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private dialog: MatDialog, private windowRef: WindowRef) {
+              private dialog: MatDialog, private bottomSheet: MatBottomSheet, private windowRef: WindowRef) {
     pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     openlpService.stateChanged$.subscribe(item => this.state = item);
     openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
@@ -52,6 +57,16 @@ export class AppComponent implements OnInit {
   set fastSwitching(value: boolean) {
     this._fastSwitching = value;
     localStorage.setItem('OpenLP-fastSwitching', JSON.stringify(value));
+  }
+
+  openDisplayModeSelector(): void {
+    const selectorRef = this.bottomSheet.open(DisplayModeSelectorComponent, {data: this.state.displayMode});
+    selectorRef.afterDismissed().subscribe(result => {
+      if (result === DisplayMode.Blank) {this.blankDisplay();}
+      else if (result === DisplayMode.Desktop) {this.desktopDisplay();}
+      else if (result === DisplayMode.Theme) {this.themeDisplay();}
+      else if (result === DisplayMode.Presentation) {this.showDisplay();}
+    });
   }
 
   login() {

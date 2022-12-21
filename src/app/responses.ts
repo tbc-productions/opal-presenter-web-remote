@@ -14,6 +14,25 @@ export class State {
   theme: boolean;
 
   live = () => !(this.blank || this.display || this.theme);
+
+  get displayMode() {
+    if (this.blank) {
+      return DisplayMode.Blank;
+    } else if (this.display) {
+      return DisplayMode.Desktop;
+    } else if (this.theme) {
+      return DisplayMode.Theme;
+    } else {
+      return DisplayMode.Presentation;
+    }
+  }
+}
+
+export enum DisplayMode {
+  Blank,
+  Theme,
+  Desktop,
+  Presentation
 }
 
 export interface Slide {

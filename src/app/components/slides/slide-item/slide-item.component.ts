@@ -11,10 +11,10 @@ import { Slide } from '../../../responses';
 export class SlideItemComponent {
   @Input() slide: Slide;
   @Input() selected = false;
-  @Output() select = new EventEmitter<Slide>();
+  @Output() selectSlide = new EventEmitter<Slide>();
 
   onSlideSelected(slide: Slide) {
-    this.select.emit(slide);
+    this.selectSlide.emit(slide);
   }
 }
 

@@ -12,10 +12,10 @@ import { ServiceItem } from '../../../responses';
 export class ServiceItemComponent {
   @Input() item: ServiceItem;
   @Input() selected = false;
-  @Output() select = new EventEmitter<ServiceItem>();
+  @Output() selectItem = new EventEmitter<ServiceItem>();
 
   onItemSelected(item: ServiceItem) {
-    this.select.emit(item);
+    this.selectItem.emit(item);
   }
 
   getIcon(item: ServiceItem): string {

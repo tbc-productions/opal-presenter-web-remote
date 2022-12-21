@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,6 +20,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
@@ -43,6 +43,7 @@ import { SlideListComponent } from './components/slides/slide-list/slide-list.co
 import { SlideItemComponent } from './components/slides/slide-item/slide-item.component';
 import { ServiceItemComponent } from './components/service/service-item/service-item.component';
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
+import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ServiceListComponent } from './components/service/service-list/service-
     SlidesComponent,
     SlideListComponent,
     SlideItemComponent,
-    ThemesComponent
+    ThemesComponent,
+    DisplayModeSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { ServiceListComponent } from './components/service/service-list/service-
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    FlexLayoutModule
+    MatBottomSheetModule
   ],
   providers: [
     PageTitleService,

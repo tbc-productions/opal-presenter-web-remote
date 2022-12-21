@@ -15,10 +15,12 @@
   <div class="theme-container content" *ngIf="isThemeLevelSupported()">
     <div *ngFor="let theme of themeList;">
       <mat-card class="theme-card" (click)='setTheme(theme.name)' [class.selected]="theme.selected">
-        <img [src]="theme.thumbnail"/>
-        <div class="theme-title">{{ theme.name }}</div>
+        <mat-card-content>
+          <img [src]="theme.thumbnail"/>
+          <div class="theme-title">{{ theme.name }}</div>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>
-  <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not yet supported. Change your theme level to Global or Service</mat-error>
+  <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not supported. Change your theme level to Global or Service</mat-error>
 </form>

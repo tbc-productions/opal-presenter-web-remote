@@ -4,7 +4,7 @@
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
     </div>
     <div class="container">
-      <div class="slide currentSlide mat-display-3">
+      <div class="slide currentSlide mat-headline-2">
         <div *ngIf="currentSlides[activeSlide]?.img; else elseActiveSlideText">
           <img src="{{currentSlides[activeSlide]?.img}}" class="active-slide-img" />
           <div class="active-slide-img-text">{{ currentSlides[activeSlide]?.text }}</div>
@@ -14,7 +14,7 @@
         </ng-template>
       </div>
       <div class="nextSlides">
-        <div class="slide mat-display-1" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides">
+        <div class="slide mat-headline-4" [class.first]="slide.first_slide_of_tag" *ngFor="let slide of nextSlides">
           <div *ngIf="slide.img; else elseNextSlidesText">
             <img src="{{slide.img}}" class="next-slides-img" />
             <div class="next-slides-text">{{ slide.text }}</div>

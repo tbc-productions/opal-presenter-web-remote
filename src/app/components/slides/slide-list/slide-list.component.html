@@ -1,1 +1,1 @@
-<openlp-slide-item *ngFor="let slide of slides; let index = index" [slide]="slide" [tabindex]="counter" [selected]="slide.selected" (select)="onSlideSelected($event, index)"></openlp-slide-item>
+<openlp-slide-item *ngFor="let slide of slides; let index = index" [slide]="slide" [tabindex]="counter" [selected]="slide.selected" (selectSlide)="onSlideSelected($event, index)"></openlp-slide-item>

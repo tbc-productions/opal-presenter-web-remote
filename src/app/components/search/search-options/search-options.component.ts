@@ -12,7 +12,7 @@ export class SearchOptionsComponent {
   public selectedPlugin: string;
   public searchOptions: Array<string>;
   public selectedSearchOption: string;
-  public searchOptionsTitle: String = '';
+  public searchOptionsTitle = '';
 
   constructor(private openlpService: OpenLPService) {}
 
