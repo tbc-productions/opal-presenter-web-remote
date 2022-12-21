@@ -58,23 +58,12 @@ export class ChordViewComponent extends StageViewComponent {
     const tmpTranspose = this.songTransposeMap.get(this.serviceItem.id);
     this.transposeLevel = tmpTranspose;
     this.openlpService.transposeSong(tmpTranspose).subscribe(transposedLyrics => {
-    // Replace the chords in the currentSlides with the returned transposed chords
-    if (transposedLyrics instanceof Array) {
-      for (let i = 0; i < transposedLyrics.length; ++i) {
-        this.currentSlides[i].chords = transposedLyrics[i].chords;
+      // Replace the chords in the currentSlides with the returned transposed chords
+      if (transposedLyrics instanceof Array) {
+        for (let i = 0; i < transposedLyrics.length; ++i) {
+          this.currentSlides[i] = {...this.currentSlides[i], chords: transposedLyrics[i].chords};
+        }
       }
-    }
     });
-  }
-
-
-  chordproFormatted(slide: Slide): string {
-    if (!slide) {
-      return '';
-    }
-    let chordpro: string = slide.chords;
-    chordpro = chordpro.replace(/<br>/g, '\n');
-
-    return chordpro;
   }
 }

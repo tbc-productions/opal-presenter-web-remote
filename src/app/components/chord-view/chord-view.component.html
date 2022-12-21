@@ -4,14 +4,21 @@
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
     </div>
     <div class="container">
-      <div class="slide currentSlide song mat-headline-2" [innerHTML]="chordproFormatted(currentSlides[activeSlide])|chordpro"></div>
+      <app-chord-view-item
+        [slide]="currentSlides[activeSlide]"
+        [active]="true"
+        *ngIf="currentSlides[activeSlide]?.chords; else elseSlideNoChords"
+      ></app-chord-view-item>
+      <ng-template #elseSlideNoChords>
+        <app-stage-view-item [slide]="currentSlides[activeSlide]" [active]="true"></app-stage-view-item>
+      </ng-template>
       <div class="nextSlides">
-        <div
-          class="slide song"
-          [class.first]="slide.first_slide_of_tag"
-          *ngFor="let slide of nextSlides"
-          [innerHTML]="chordproFormatted(slide)|chordpro">
-        </div>
+        <ng-container *ngFor="let slide of nextSlides">
+          <app-chord-view-item [slide]="slide" *ngIf="slide?.chords; else elseNextSlideNoChords"></app-chord-view-item>
+          <ng-template #elseNextSlideNoChords>
+            <app-stage-view-item [slide]="slide"></app-stage-view-item>
+          </ng-template>
+        </ng-container>
       </div>
     </div>
   </div>

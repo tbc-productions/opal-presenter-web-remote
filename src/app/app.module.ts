@@ -43,6 +43,8 @@ import { SlideListComponent } from './components/slides/slide-list/slide-list.co
 import { SlideItemComponent } from './components/slides/slide-item/slide-item.component';
 import { ServiceItemComponent } from './components/service/service-item/service-item.component';
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
+import { ChordViewItemComponent } from './components/chord-view/chord-view-item/chord-view-item.component';
+import { StageViewItemComponent } from './components/stage-view/stage-view-item/stage-view-item.component';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
 
 
@@ -51,6 +53,8 @@ import { DisplayModeSelectorComponent } from './components/display-mode-selector
     AppComponent,
     ChordViewComponent,
     StageViewComponent,
+    StageViewItemComponent,
+    ChordViewItemComponent,
     Nl2BrPipe,
     MainViewComponent,
     ChordProPipe,
