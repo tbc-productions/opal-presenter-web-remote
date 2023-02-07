@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
+import { HotKeysService } from './hotkeys.service';
 // import { version } from '../../package.json';
 
 @Component({
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit {
   webSocketOpen = false;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private dialog: MatDialog, private bottomSheet: MatBottomSheet, private windowRef: WindowRef) {
+              private dialog: MatDialog, private bottomSheet: MatBottomSheet, private windowRef: WindowRef,
+              private hotKeysService: HotKeysService) {
     pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     openlpService.stateChanged$.subscribe(item => this.state = item);
     openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
@@ -45,6 +47,44 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.openlpService.retrieveSystemInformation().subscribe(res => this.showLogin = res.login_required);
+    this.addHotKeys();
+  }
+
+  addHotKeys(): void {
+    this.hotKeysService.addShortcut({ keys: 'ArrowUp' }).subscribe(_ =>
+      this.previousSlide()
+    );
+    this.hotKeysService.addShortcut({ keys: 'ArrowDown' }).subscribe(_ =>
+      this.nextSlide()
+    );
+    this.hotKeysService.addShortcut({ keys: 'PageUp' }).subscribe(_ =>
+      this.previousSlide()
+    );
+    this.hotKeysService.addShortcut({ keys: 'PageDown' }).subscribe(_ =>
+      this.nextSlide()
+    );
+    this.hotKeysService.addShortcut({ keys: 'ArrowLeft' }).subscribe(_ =>
+      this.previousItem()
+    );
+    this.hotKeysService.addShortcut({ keys: 'ArrowRight' }).subscribe(_ =>
+      this.nextItem()
+    );
+    this.hotKeysService.addShortcut({ keys: 'Space' }).subscribe(_ =>
+      {
+        if (this.state.displayMode != DisplayMode.Presentation) {
+          this.showDisplay();
+        }
+      }
+    );
+    this.hotKeysService.addShortcut({ keys: 't' }).subscribe(_ =>
+      this.state.displayMode == DisplayMode.Theme ? this.showDisplay() : this.themeDisplay()
+    );
+    this.hotKeysService.addShortcut({ keys: 'code.Period' }).subscribe(_ =>
+      this.state.displayMode == DisplayMode.Blank ? this.showDisplay() : this.blankDisplay()
+    );
+    this.hotKeysService.addShortcut({ keys: 'd' }).subscribe(_ =>
+      this.state.displayMode == DisplayMode.Desktop ? this.showDisplay() : this.desktopDisplay()
+    );
   }
 
   get fastSwitching(): boolean {
