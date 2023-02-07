@@ -1,18 +1,18 @@
-import { DOCUMENT } from "@angular/common";
-import { Inject, Injectable } from "@angular/core";
-import { EventManager } from "@angular/platform-browser";
-import { Observable } from "rxjs";
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+import { EventManager } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
-type Options = {
+interface Options {
   element: any;
   keys: string;
-}
+};
 
 @Injectable({ providedIn: 'root' })
 export class HotKeysService {
   defaults: Partial<Options> = {
     element: this.document
-  }
+  };
 
   constructor(private eventManager: EventManager, @Inject(DOCUMENT) private document: Document) {
   }
@@ -25,7 +25,7 @@ export class HotKeysService {
       const handler = (e: KeyboardEvent) => {
         if (document.URL.endsWith('/slides'))
         {
-          e.preventDefault()
+          e.preventDefault();
           observer.next(e);
         }
       };
@@ -37,6 +37,6 @@ export class HotKeysService {
       return () => {
         dispose();
       };
-    })
+    });
   }
 }
