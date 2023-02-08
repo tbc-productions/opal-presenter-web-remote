@@ -76,7 +76,7 @@ export class OpenLPService {
   }
 
   assertApiVersionMinimum(version: number, revision: number) {
-    return version >= this.apiVersion && revision >= this.apiRevision;
+    return this.apiVersion >= version && this.apiRevision >= revision;
   }
 
   setAuthToken(token: string): void {

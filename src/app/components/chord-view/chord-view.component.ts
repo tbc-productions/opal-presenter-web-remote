@@ -48,7 +48,6 @@ export class ChordViewComponent extends StageViewComponent {
   }
 
   setNewSlides(slides: Slide[], currentSlide: number): void {
-    super.setNewSlides(slides, currentSlide);
     if (this.openlpService.assertApiVersionExact(2, 2)) {
       // API Version 2.2 released on OpenLP 3.0.2 contains a bug on which 'selected' is not set correctly
       // on Transponse Service Item response.
@@ -56,6 +55,7 @@ export class ChordViewComponent extends StageViewComponent {
         slides[currentSlide].selected = true;
       }
     }
+    super.setNewSlides(slides, currentSlide);
     // if this song is already known
     if (this.songTransposeMap.has(this.serviceItem.id)) {
       const transposeLevel = this.songTransposeMap.get(this.serviceItem.id);
