@@ -71,19 +71,19 @@ export class AppComponent implements OnInit {
     );
     this.hotKeysService.addShortcut({ keys: 'Space' }).subscribe(_ =>
       {
-        if (this.state.displayMode != DisplayMode.Presentation) {
+        if (this.state.displayMode !== DisplayMode.Presentation) {
           this.showDisplay();
         }
       }
     );
     this.hotKeysService.addShortcut({ keys: 't' }).subscribe(_ =>
-      this.state.displayMode == DisplayMode.Theme ? this.showDisplay() : this.themeDisplay()
+      this.state.displayMode === DisplayMode.Theme ? this.showDisplay() : this.themeDisplay()
     );
     this.hotKeysService.addShortcut({ keys: 'code.Period' }).subscribe(_ =>
-      this.state.displayMode == DisplayMode.Blank ? this.showDisplay() : this.blankDisplay()
+      this.state.displayMode === DisplayMode.Blank ? this.showDisplay() : this.blankDisplay()
     );
     this.hotKeysService.addShortcut({ keys: 'd' }).subscribe(_ =>
-      this.state.displayMode == DisplayMode.Desktop ? this.showDisplay() : this.desktopDisplay()
+      this.state.displayMode === DisplayMode.Desktop ? this.showDisplay() : this.desktopDisplay()
     );
   }
 
