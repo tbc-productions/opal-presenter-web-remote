@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { OpenLPService } from '../../openlp.service';
 import { ServiceItem, Slide } from '../../responses';
 
@@ -21,24 +22,26 @@ export class StageViewComponent implements OnInit {
   tags: Tag[] = [];
   time = new Date();
   showNotes = true;
+  serviceItemSubscription$: Subscription = null;
 
   constructor(public openlpService: OpenLPService) {
     setInterval(() => this.time = new Date(), 1000);
   }
 
   ngOnInit() {
-    this.updateCurrentSlides();
-    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides());
+    this.updateCurrentSlides(null, null);
+    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides(item.item, item.slide));
   }
 
-  updateCurrentSlides(): void {
-    this.openlpService.getServiceItem().subscribe(serviceItem => {
+  updateCurrentSlides(serviceItemId: string, currentSlide: number): void {
+    this.serviceItemSubscription$?.unsubscribe();
+    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(serviceItem => {
       this.serviceItem = serviceItem;
       if (serviceItem instanceof Array) {
-        this.setNewSlides(serviceItem);
+        this.setNewSlides(serviceItem, currentSlide);
       }
       else {
-        this.setNewSlides(serviceItem.slides);
+        this.setNewSlides(serviceItem.slides, currentSlide);
         this.setNotes(serviceItem.notes);
       }
     });
@@ -48,7 +51,7 @@ export class StageViewComponent implements OnInit {
     return this.currentSlides.slice(this.activeSlide + 1);
   }
 
-  setNewSlides(slides: Slide[]): void {
+  setNewSlides(slides: Slide[], currentSlide: number): void {
     if (slides.length === 0) {
       return;
     }
