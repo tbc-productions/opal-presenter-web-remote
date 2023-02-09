@@ -12,6 +12,7 @@ export class State {
   blank: boolean;
   twelve: boolean;
   theme: boolean;
+  item: string;
 
   live = () => !(this.blank || this.display || this.theme);
 
@@ -68,6 +69,8 @@ export interface MainView {
 export interface SystemInformation {
   websocket_port: number;
   login_required: boolean;
+  api_version?: number;
+  api_revision?: number;
 }
 
 export interface Credentials {

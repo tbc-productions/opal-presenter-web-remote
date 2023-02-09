@@ -26,7 +26,8 @@ export class StageViewComponent implements OnInit, OnDestroy {
   time = new Date();
   showNotes = true;
   fontScale: number;
-
+  
+  serviceItemSubscription$: Subscription = null;
   fontScaleSubscription$: Subscription;
 
   stageProperty = 'stage';
@@ -41,8 +42,8 @@ export class StageViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.updateCurrentSlides();
-    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides());
+    this.updateCurrentSlides(null, null);
+    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides(item.item, item.slide));
     this.fontScale = this.settingsService.get(
       this.stageProperty + 'FontScale' as keyof SettingsProperties
     ) as number / 100;
@@ -59,14 +60,15 @@ export class StageViewComponent implements OnInit, OnDestroy {
     this.fontScaleSubscription$?.unsubscribe();
   }
 
-  updateCurrentSlides(): void {
-    this.openlpService.getServiceItem().subscribe(serviceItem => {
+  updateCurrentSlides(serviceItemId: string, currentSlide: number): void {
+    this.serviceItemSubscription$?.unsubscribe();
+    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(serviceItem => {
       this.serviceItem = serviceItem;
       if (serviceItem instanceof Array) {
-        this.setNewSlides(serviceItem);
+        this.setNewSlides(serviceItem, currentSlide);
       }
       else {
-        this.setNewSlides(serviceItem.slides);
+        this.setNewSlides(serviceItem.slides, currentSlide);
         this.setNotes(serviceItem.notes);
       }
     });
@@ -76,7 +78,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
     return this.currentSlides.slice(this.activeSlide + 1);
   }
 
-  setNewSlides(slides: Slide[]): void {
+  setNewSlides(slides: Slide[], currentSlide: number): void {
     if (slides.length === 0) {
       return;
     }

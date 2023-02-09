@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
-import { finalize, shareReplay } from 'rxjs/operators';
+import { finalize, shareReplay, tap } from 'rxjs/operators';
 
 import {
   PluginDescription,
@@ -44,6 +44,8 @@ export enum WebSocketStatus {
 @Injectable()
 export class OpenLPService {
   private apiURL: string;
+  public apiVersion: number | null;
+  public apiRevision: number | null;
   private host: string;
   public stateChanged$: EventEmitter<State>;
   public webSocketStateChanged$: EventEmitter<WebSocketStatus>;
@@ -69,6 +71,14 @@ export class OpenLPService {
     this.createWebSocket();
   }
 
+  assertApiVersionExact(version: number, revision: number) {
+    return version === this.apiVersion && revision === this.apiRevision;
+  }
+
+  assertApiVersionMinimum(version: number, revision: number) {
+    return this.apiVersion >= version && this.apiRevision >= revision;
+  }
+
   setAuthToken(token: string): void {
     httpOptions.headers = httpOptions.headers.set('Authorization', token);
   }
@@ -78,7 +88,13 @@ export class OpenLPService {
   }
 
   retrieveSystemInformation(): Observable<SystemInformation> {
-    return this.doGet<SystemInformation>(`${this.apiURL}/core/system`);
+    return this.doGet<SystemInformation>(`${this.apiURL}/core/system`)
+      .pipe(tap(systemInfo => {
+        if (systemInfo.api_version) {
+          this.apiVersion = systemInfo.api_version;
+          this.apiRevision = systemInfo.api_revision;
+        }
+      }));
   }
 
   getMainImage(): Observable<MainView> {
@@ -185,8 +201,8 @@ export class OpenLPService {
     return this.doPost(`${this.apiURL}/plugins/${plugin}/add`, {id});
   }
 
-  transposeSong(transpose_value): Observable<any> {
-    return this.doGet(`${this.apiURL}/plugins/songs/transpose-live-item/${transpose_value}`);
+  transposeSong(transpose_value, return_format = 'default'): Observable<any> {
+    return this.doGet(`${this.apiURL}/plugins/songs/transpose-live-item/${transpose_value}?response_format=${return_format}`);
   }
 
   login(credentials: Credentials): Observable<AuthToken> {
