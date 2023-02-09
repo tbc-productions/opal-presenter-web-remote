@@ -26,7 +26,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
   time = new Date();
   showNotes = true;
   fontScale: number;
-  
+
   serviceItemSubscription$: Subscription = null;
   fontScaleSubscription$: Subscription;
 
