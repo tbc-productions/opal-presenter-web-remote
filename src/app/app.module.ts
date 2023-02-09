@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
@@ -46,6 +47,8 @@ import { ServiceListComponent } from './components/service/service-list/service-
 import { ChordViewItemComponent } from './components/chord-view/chord-view-item/chord-view-item.component';
 import { StageViewItemComponent } from './components/stage-view/stage-view-item/stage-view-item.component';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { StageChordPreviewComponent } from './components/settings/stage-chord-preview/stage-chord-preview.component';
 
 
 @NgModule({
@@ -69,7 +72,9 @@ import { DisplayModeSelectorComponent } from './components/display-mode-selector
     SlideListComponent,
     SlideItemComponent,
     ThemesComponent,
-    DisplayModeSelectorComponent
+    DisplayModeSelectorComponent,
+    SettingsComponent,
+    StageChordPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,8 @@ import { DisplayModeSelectorComponent } from './components/display-mode-selector
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatSliderModule
   ],
   providers: [
     PageTitleService,

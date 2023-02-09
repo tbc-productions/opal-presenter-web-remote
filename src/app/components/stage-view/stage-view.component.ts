@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SettingsProperties, SettingsService } from 'src/app/settings.service';
 import { OpenLPService } from '../../openlp.service';
 import { ServiceItem, Slide } from '../../responses';
 
@@ -13,7 +16,8 @@ interface Tag {
   styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StageViewComponent implements OnInit {
+export class StageViewComponent implements OnInit, OnDestroy {
+  @Input() embedded = false;
   serviceItem: ServiceItem = null;
   notes = '';
   currentSlides: Slide[] = [];
@@ -21,14 +25,38 @@ export class StageViewComponent implements OnInit {
   tags: Tag[] = [];
   time = new Date();
   showNotes = true;
+  fontScale: number;
 
-  constructor(public openlpService: OpenLPService) {
+  fontScaleSubscription$: Subscription;
+
+  stageProperty = 'stage';
+
+  constructor(
+    public openlpService: OpenLPService,
+    protected route: ActivatedRoute,
+    protected settingsService: SettingsService,
+    protected ref: ChangeDetectorRef
+  ) {
     setInterval(() => this.time = new Date(), 1000);
   }
 
   ngOnInit() {
     this.updateCurrentSlides();
     this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides());
+    this.fontScale = this.settingsService.get(
+      this.stageProperty + 'FontScale' as keyof SettingsProperties
+    ) as number / 100;
+
+    this.fontScaleSubscription$ = this.settingsService
+      .onPropertyChanged(this.stageProperty + 'FontScale' as keyof SettingsProperties)
+      .subscribe(value => {
+        this.fontScale = value as number / 100;
+        this.ref.detectChanges();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.fontScaleSubscription$?.unsubscribe();
   }
 
   updateCurrentSlides(): void {

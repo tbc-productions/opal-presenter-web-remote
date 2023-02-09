@@ -1,18 +1,19 @@
 $mobile-breakpoint: 1024px;
 
-@mixin slide-font-size($scale: 1, $desktop-scale: $scale) {
-  font-size: calc(#{4vw * $scale} + #{1.5vh * $scale});
+@mixin slide-font-size($scale: 1, $desktop-scale: $scale, $stage-var-name: stage) {
+  $var-sentence: var(--openlp-#{$stage-var-name}-font-scale);
+  font-size: calc((#{4vw * $scale} * #{$var-sentence}) + (#{1.5vh * $scale} * #{$var-sentence}));
 
   @media (orientation: landscape) {
-    font-size: #{6vmin * $scale};
+    font-size: calc(#{6vmin * $scale} * #{$var-sentence});
   }
 
   @media (orientation: landscape) and (max-aspect-ratio: 16/9) {
-    font-size: #{3vw * $scale};
+    font-size: calc(#{3vw * $scale} * #{$var-sentence});
   }
 
   @media screen and (min-width: $mobile-breakpoint) {
-    font-size: calc(#{3.1vw * $desktop-scale} + #{1.5vh * $desktop-scale});
+    font-size: calc((#{3.1vw * $desktop-scale} * #{$var-sentence}) + (#{1.5vh * $desktop-scale} * #{$var-sentence}));
     //font-size: #{4vw * $scale};
     //font-size: #{5.6vmin * $scale};
   }

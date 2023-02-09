@@ -1,4 +1,8 @@
-<div class="overlay">
+<div
+  class="overlay"
+  [class.embedded]="embedded"
+  [style.--openlp-stage-font-scale]="fontScale"
+>
   <div class="overlay-content">
     <div class="tags">
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
@@ -23,7 +27,7 @@
     </div>
   </div>
   <div class="toolbar">
-    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'">
+    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'" *ngIf="!embedded">
       <mat-icon>arrow_back</mat-icon>
     </a>
     <div class="transpose">

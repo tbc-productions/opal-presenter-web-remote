@@ -1,0 +1,26 @@
+.settings-panel {
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media screen and (min-height: 836px) {
+        max-width: 768px;
+    }
+}
+
+.settings-item {
+    font-size: 1rem;
+    
+    &:first-child {
+        margin-top: 1em;
+    }
+
+    label {
+        width: 100%;
+        display: block;
+        margin-bottom: -1em;
+    }
+    mat-slider {
+        width: calc(100% - 3rem);
+        margin: 0 auto;
+    }
+}

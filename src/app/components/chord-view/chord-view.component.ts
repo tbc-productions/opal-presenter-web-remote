@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { OpenLPService } from '../../openlp.service';
 import { Slide } from '../../responses';
-import { Observable } from 'rxjs';
 import { StageViewComponent } from '../stage-view/stage-view.component';
 
 @Component({
@@ -16,6 +14,7 @@ export class ChordViewComponent extends StageViewComponent {
   songTransposeMap = new Map();
   // current songs transpose level
   transposeLevel = 0;
+  stageProperty = 'chords';
 
 
   setNewSlides(slides: Slide[]): void {
