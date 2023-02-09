@@ -26,6 +26,7 @@ export class ChordViewComponent extends StageViewComponent {
     const newServiceItemTransposeLevel = this.songTransposeMap.get(serviceItemId);
 
     if (this.useNewTransposeEndpoint && newServiceItemTransposeLevel && (newServiceItemTransposeLevel !== 0)) {
+      this.transposeLevel = newServiceItemTransposeLevel;
       this.serviceItemSubscription$ = this.openlpService
           .transposeSong(newServiceItemTransposeLevel, 'service_item')
           .subscribe(serviceItem => {
