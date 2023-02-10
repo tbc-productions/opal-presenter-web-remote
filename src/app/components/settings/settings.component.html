@@ -1,0 +1,59 @@
+<div class="settings-panel">
+    <mat-card>
+        <mat-card-header>
+        User Interface
+        </mat-card-header>
+        <mat-card-content>
+            <div class="settings-item">
+                <mat-slide-toggle
+                    color="primary"
+                    [checked]="settings.fastSwitching"
+                    (change)="setSetting('fastSwitching', $event.checked)"
+                >
+                    Enable Fast Switching panel
+                </mat-slide-toggle>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+        Stage and Chords Appearance
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group>
+                <mat-tab label="Stage">
+                    <ng-template matTabContent>
+                        <ng-container>
+                            <openlp-stage-chord-preview stageType="stage"></openlp-stage-chord-preview>
+                            <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'stage'}"></ng-container>
+                        </ng-container>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Chords">
+                    <ng-template matTabContent>
+                        <openlp-stage-chord-preview stageType="chords"></openlp-stage-chord-preview>
+                            <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'chords'}"></ng-container>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>
+<ng-template #stageSettings let-prefix="prefix">
+    <div class="stage-settings">
+        <div class="settings-item">
+            <label>Font Scale: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
+            <mat-slider
+                min="25"
+                max="200"
+                step="6.25"
+            >
+                <input
+                    matSliderThumb
+                    [value]="settings[prefix + 'FontScale']"
+                    (valueChange)="setSetting(prefix + 'FontScale', $event)"
+                >
+            </mat-slider>
+        </div>
+    </div>
+</ng-template>

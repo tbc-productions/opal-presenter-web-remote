@@ -28,7 +28,7 @@
       <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
       <a mat-list-item (click)="menu.close()" routerLink="/chords">Chord View</a>
       <mat-divider></mat-divider>
-      <mat-slide-toggle color="primary" [checked]="fastSwitching" (change)="sliderChanged($event)">Fast switching</mat-slide-toggle>
+      <a mat-list-item (click)="menu.close()" routerLink="/settings"><mat-icon>settings</mat-icon>  Settings</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

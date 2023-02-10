@@ -1,28 +1,35 @@
 @import "./overlay-common";
 
+:root {
+  --openlp-stage-font-scale: 1;
+  --openlp-stage-image-scale: 1;
+}
+
 .overlay {
   background: black;
   width: 100%;
   height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1200;
   overflow: hidden;
   color: white;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
+  &:not(.embedded) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1200;
+  }
 
   .active-slide-img {
     /* properly size current slide thumbnail */
     /* relative sizes might not work in real world */
     /* If we get larger thumbnail sizes, we want to limit their size */
-    max-height: 75%;
-    min-height: 250px;
+    max-height: calc(75% * var(--openlp-stage-image-scale));
+    min-height: calc(250px * var(--openlp-stage-image-scale));
   }
   .active-slide-img-text {
-    font-size: 1.8rem;
+    @include slide-font-size(0.75);
   }
   .next-slides-img {
     /* properly size thumbnail displayed in 2nd and subsequent slides */
@@ -32,7 +39,7 @@
   }
 
   .next-slides-text {
-    font-size: 1.4rem;
+    @include slide-font-size(0.5);
   }
 
   &-content {
