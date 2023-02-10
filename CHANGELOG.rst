@@ -1,0 +1,90 @@
+Changes in OpenLP Web Remote
+============================
+
+Version 0.9.9
+-------------
+
+* Create a Settings page and service
+* Move Fast Switching to Settings page
+* Add CSS, Component support, and a Setting to allow Stage and Chords font scaling
+* Fix API version check
+* Add a workaround for a bug in new chord transposition endpoint in OpenLP 3.0.2 (API version 2.2)
+* Using the new response_format=service_item on Transpose API Endpoint while preserving old behavior
+* Add keyboard shortcuts (AKA hot keys) for most actions
+* Fix presentation image width
+
+Version 0.9.8
+-------------
+
+* Fix media and images on Chord and Stage views
+* Refactoring individual slides of Chord and Stage views
+* Update dependencies
+* Refactor the ChordPro routines and the Chord and Stage views
+* Fix the new sticky navbar overlapping Stage, Chord and Main views
+* Make top bar sticky so that it is easier to access the menu
+* Add WebSocket reconnection routines
+* Add WebSocket UI indicator
+* Upgrade to the latest Material icons
+* Use the new transpose API endpoint
+* Maintain the version number in assets/version.js
+
+Version 0.9.7
+-------------
+
+* Refactor some internal components
+* Fix theme icon in side-bar and footer
+* Add thumbnails to Stage and Slides views
+* Add Material icons and Roboto font for local resources (closes #19)
+* Update some styling
+
+Version 0.9.6
+-------------
+
+* Lint fix
+* Make stage views use the 12 hour time setting
+* Fix API calls for new search option API
+* Remove theme name and column controllers
+* Make themes into a fixed sized and the column responsive
+* Update Angular
+
+Version 0.9.5
+-------------
+
+* Store last selected search plugin and retrieve it after loading.
+* Change a method signature
+* Themes thumbnails
+* Added retrieval and set of search options for the Bibles plugin, allowing to change the Bible version from the remote
+* Use a ServiceItem object rather than just slides to transfer more information at one time
+* Add notes to stage view
+* Fix a CORS issue
+
+Version 0.9.4
+-------------
+
+* Fix chord view
+* Update the State Management code
+* Block requesting invalid Service items from UI
+
+Version 0.9.3
+-------------
+
+No official release
+
+
+Version 0.9.2
+-------------
+
+* Resolve: "Cut off bottom of slides"
+* Make live use correct websocket
+* Remove the hash from the URLs. I'm not sure why it was added.
+* Allow searching other plugins besides songs
+
+Version 0.9.1
+-------------
+
+Initial development release:
+
+- Re-implemented in Angular
+- Uses web sockets instead of polling
+- Material design
+- Includes stage views
