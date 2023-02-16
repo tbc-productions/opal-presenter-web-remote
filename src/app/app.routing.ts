@@ -9,6 +9,7 @@ import { ChordViewComponent } from './components/chord-view/chord-view.component
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { StageViewComponent } from './components/stage-view/stage-view.component';
 import { ThemesComponent } from './components/themes/themes.component';
+import { LowerThirdComponent } from './components/lower-third/lower-third.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'main', component: MainViewComponent },
     { path: 'stage', component: StageViewComponent },
     { path: 'themes', component: ThemesComponent},
+    { path: 'lower-third', component: LowerThirdComponent},
     { path: 'settings', component: SettingsComponent}
 ];
 @NgModule({
