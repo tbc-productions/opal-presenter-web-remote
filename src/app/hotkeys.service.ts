@@ -23,10 +23,13 @@ export class HotKeysService {
 
     return new Observable(observer => {
       const handler = (e: KeyboardEvent) => {
-        if (document.URL.endsWith('/slides'))
-        {
-          e.preventDefault();
-          observer.next(e);
+        const activeElement = this.document.activeElement;
+        const notOnInput = activeElement?.tagName !== 'INPUT' && activeElement?.tagName !== 'TEXTAREA';
+        if (notOnInput) {
+          if (document.URL.endsWith('/slides')) {
+            e.preventDefault();
+            observer.next(e);
+          }
         }
       };
 
