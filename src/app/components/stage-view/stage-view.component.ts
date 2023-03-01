@@ -41,6 +41,8 @@ export class StageViewComponent implements OnInit, OnDestroy {
     setInterval(() => this.time = new Date(), 1000);
   }
 
+  nextSlides: Slide[] = [];
+
   ngOnInit() {
     this.updateCurrentSlides(null, null);
     this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides(item.item, item.slide));
@@ -74,16 +76,13 @@ export class StageViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  get nextSlides(): Slide[] {
-    return this.currentSlides.slice(this.activeSlide + 1);
-  }
-
   setNewSlides(slides: Slide[], currentSlide: number): void {
     if (slides.length === 0) {
       return;
     }
     this.currentSlides = slides;
     this.activeSlide = slides.findIndex(s => s.selected);
+    this.nextSlides = this.currentSlides.slice(this.activeSlide + 1);
     this.updateTags();
   }
 
@@ -128,5 +127,9 @@ export class StageViewComponent implements OnInit, OnDestroy {
       this.currentSlides[index].first_slide_of_tag = true;
       lastIndex = index;
     }
+  }
+
+  trackByIndex(index: number, el: any) {
+    return index;
   }
 }

@@ -7,12 +7,13 @@ import { ServiceItem } from '../../../responses';
 @Component({
   selector: 'openlp-service-list',
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.scss'],
+  styleUrls: ['./service-list.component.scss', '../../no-items.scss'],
 })
 
 export class ServiceListComponent implements OnInit, OnDestroy {
   items: ServiceItem[] = [];
   _subscription: Subscription;
+  loading = false;
 
   @Output() itemSelected = new EventEmitter<ServiceItem>();
 
@@ -25,7 +26,11 @@ export class ServiceListComponent implements OnInit, OnDestroy {
   }
 
   fetchServiceItems() {
-    this.openlpService.getServiceItems().subscribe(items => this.items = items);
+    this.loading = true;
+    this.openlpService.getServiceItems().subscribe(items => {
+      this.items = items;
+      this.loading = false;
+    });
   }
 
   constructor(private openlpService: OpenLPService) {

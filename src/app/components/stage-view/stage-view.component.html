@@ -10,7 +10,7 @@
     <div class="container">
       <app-stage-view-item [slide]="currentSlides[activeSlide]" [active]="true"></app-stage-view-item>
       <div class="nextSlides">
-        <app-stage-view-item [slide]="slide" *ngFor="let slide of nextSlides"></app-stage-view-item>
+        <app-stage-view-item [slide]="slide" *ngFor="let slide of nextSlides; trackBy: trackByIndex"></app-stage-view-item>
       </div>
     </div>
   </div>

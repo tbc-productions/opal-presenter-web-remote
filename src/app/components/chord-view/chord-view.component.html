@@ -17,7 +17,7 @@
         <app-stage-view-item [slide]="currentSlides[activeSlide]" [active]="true"></app-stage-view-item>
       </ng-template>
       <div class="nextSlides">
-        <ng-container *ngFor="let slide of nextSlides">
+        <ng-container *ngFor="let slide of nextSlides; trackBy: trackByIndex">
           <app-chord-view-item [slide]="slide" *ngIf="slide?.chords; else elseNextSlideNoChords"></app-chord-view-item>
           <ng-template #elseNextSlideNoChords>
             <app-stage-view-item [slide]="slide"></app-stage-view-item>
