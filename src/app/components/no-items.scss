@@ -1,0 +1,29 @@
+.no-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &-title {
+        display: flex;
+        align-items: center;
+        color: gray;
+
+        .icon {
+            margin-right: 0.25em;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-top: 0.25em;
+
+        button, a {
+            text-decoration: none;
+            font-size: 0.813rem;
+            height: 28px;
+        }
+    }
+}

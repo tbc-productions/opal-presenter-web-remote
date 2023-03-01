@@ -1,1 +1,23 @@
-<openlp-slide-item *ngFor="let slide of slides; let index = index" [slide]="slide" [tabindex]="counter" [selected]="slide.selected" (selectSlide)="onSlideSelected($event, index)"></openlp-slide-item>
+<ng-container *ngIf="slides?.length; else noSlideItems">
+    <openlp-slide-item
+        *ngFor="let slide of slides; let index = index"
+        [slide]="slide"
+        [tabindex]="counter"
+        [selected]="slide.selected"
+        (selectSlide)="onSlideSelected($event, index)"
+    ></openlp-slide-item>
+</ng-container>
+<ng-template #noSlideItems>
+  <div class="no-items" *ngIf="!loading">
+    <div class="no-items-title">
+      <span class="material-icons icon">info</span>
+      No slide items.
+    </div>
+    <div class="no-items-actions">
+      <a routerLink="/search" mat-stroked-button color="primary" size="small">
+        <span class="material-icons">add</span>
+        Add Item to Service
+      </a>
+    </div>
+  </div>
+</ng-template>

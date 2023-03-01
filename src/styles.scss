@@ -1,11 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 @import '@angular/material/theming';
 
-@include mat-core();
-$primary: mat-palette($mat-indigo);
-$accent: mat-palette($mat-light-blue, A200, A100, A400);
-$theme: mat-light-theme($primary, $accent);
-@include angular-material-theme($theme);
+@include mat.core();
+$olp-primary: mat.define-palette(mat.$indigo-palette, 500);
+$olp-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$olp-warn: mat.define-palette(mat.$red-palette);
+
+$olp-theme: mat.define-light-theme((
+  color: (
+    primary: $olp-primary,
+    accent: $olp-accent,
+    warn: $olp-warn,
+  ),
+  density: 0,
+));
+
+// Including only used components
+@include mat.all-component-themes($olp-theme);
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -110,4 +124,14 @@ footer {
 
 footer {
   z-index: 1;
+}
+
+// This rule is to avoid the left menu scrolling with the page itself.
+.mat-drawer.mat-sidenav {
+  position: fixed;
+  padding-top: $mat-toolbar-height-desktop; 
+
+  @media ($mat-xsmall) {
+    padding-top: $mat-toolbar-height-mobile; 
+  }
 }

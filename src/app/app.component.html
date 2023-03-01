@@ -19,17 +19,29 @@
 <mat-sidenav-container>
   <mat-sidenav #menu mode="over">
     <mat-nav-list>
-      <a mat-list-item (click)="menu.close()" routerLink="/service"><mat-icon>list</mat-icon>  Service</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/slides"><mat-icon>collections</mat-icon>  Slides</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/alerts"><mat-icon>error</mat-icon>  Alerts</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/search"><mat-icon>search</mat-icon>  Search</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/themes"><mat-icon>image</mat-icon>  Themes</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/service" routerLinkActive #serviceRoute="routerLinkActive" [activated]="serviceRoute.isActive">
+        <mat-icon>list</mat-icon>  Service
+      </a>
+      <a mat-list-item (click)="menu.close()" routerLink="/slides" routerLinkActive #slidesRoute="routerLinkActive" [activated]="slidesRoute.isActive">
+        <mat-icon>collections</mat-icon>  Slides
+      </a>
+      <a mat-list-item (click)="menu.close()" routerLink="/alerts" routerLinkActive #alertsRoute="routerLinkActive" [activated]="alertsRoute.isActive">
+        <mat-icon>error</mat-icon>  Alerts
+      </a>
+      <a mat-list-item (click)="menu.close()" routerLink="/search" routerLinkActive #searchRoute="routerLinkActive" [activated]="searchRoute.isActive">
+        <mat-icon>search</mat-icon>  Search
+      </a>
+      <a mat-list-item (click)="menu.close()" routerLink="/themes" routerLinkActive #themesRoute="routerLinkActive" [activated]="themesRoute.isActive">
+        <mat-icon>image</mat-icon>  Themes
+      </a>
       <mat-divider></mat-divider>
       <a mat-list-item (click)="menu.close()" routerLink="/main">Main View</a>
       <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
       <a mat-list-item (click)="menu.close()" routerLink="/chords">Chord View</a>
       <mat-divider></mat-divider>
-      <a mat-list-item (click)="menu.close()" routerLink="/settings"><mat-icon>settings</mat-icon>  Settings</a>
+      <a mat-list-item (click)="menu.close()" routerLink="/settings" routerLinkActive #settingsRoute="routerLinkActive" [activated]="settingsRoute.isActive">
+        <mat-icon>settings</mat-icon>  Settings
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

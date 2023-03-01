@@ -7,13 +7,14 @@ import { OpenLPService } from '../../../openlp.service';
 @Component({
   selector: 'openlp-slide-list',
   templateUrl: './slide-list.component.html',
-  styleUrls: ['./slide-list.component.scss'],
+  styleUrls: ['./slide-list.component.scss', '../../no-items.scss'],
 })
 
 export class SlideListComponent implements OnInit, OnDestroy {
   slides: Slide[] = null;
   @Output() slideSelected = new EventEmitter<SlideListItem>();
   _subscription: Subscription;
+  loading = false;
 
   constructor(private openlpService: OpenLPService) {
     this._subscription = openlpService.stateChanged$.subscribe(item => this.fetchSlides());
@@ -32,7 +33,9 @@ export class SlideListComponent implements OnInit, OnDestroy {
   }
 
   fetchSlides() {
+    this.loading = true;
     this.openlpService.getServiceItem().subscribe(serviceItem => {
+      this.loading = false;
       if (serviceItem instanceof Array) {
         this.slides = serviceItem;
       }
