@@ -122,11 +122,15 @@ export class AppComponent implements OnInit {
   }
 
   nextSlide() {
-    this.openlpService.nextSlide().subscribe();
+    this.openlpService.nextSlide().subscribe( _ =>
+      this.hotKeysService.scrollToCurrentItem('slide', 'start')
+    );
   }
 
   previousSlide() {
-    this.openlpService.previousSlide().subscribe();
+    this.openlpService.previousSlide().subscribe(_ =>
+      this.hotKeysService.scrollToCurrentItem('slide', 'end')
+    );
   }
 
   blankDisplay() {
