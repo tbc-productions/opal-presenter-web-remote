@@ -122,6 +122,13 @@ footer {
   font-size: 1rem;
 }
 
+// Make sure the Material tool tips stay visible when Stage View is active.
+.cdk-overlay-container {
+  &:not(.embedded) {
+    z-index: 1200;
+  }
+}
+
 footer {
   z-index: 1;
 }
