@@ -1,11 +1,20 @@
 image: openlp/angular
 
 stages:
+  - audit
   - test
   - build
   - deploy
 
-lint:
+audit:
+  stage: audit
+  script:
+    - yarn install
+    - yarn audit
+  except:
+    - tags
+
+lint:  
   stage: test
   script:
     - yarn install
