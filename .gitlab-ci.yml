@@ -1,13 +1,12 @@
 image: openlp/angular
 
 stages:
-  - audit
   - test
   - build
   - deploy
 
 audit:
-  stage: audit
+  stage: test
   script:
     - yarn install
     - yarn audit || true
