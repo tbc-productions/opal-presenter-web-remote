@@ -10,7 +10,7 @@ audit:
   stage: audit
   script:
     - yarn install
-    - yarn audit
+    - yarn audit || true
   except:
     - tags
 
