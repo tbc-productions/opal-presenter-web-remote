@@ -9,11 +9,12 @@ audit:
   stage: test
   script:
     - yarn install
-    - yarn audit || true
+    - yarn audit
   except:
     - tags
+  allow_failure: true
 
-lint:  
+lint:
   stage: test
   script:
     - yarn install
