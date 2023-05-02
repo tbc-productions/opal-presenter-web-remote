@@ -39,6 +39,9 @@
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
+    <div class="next-service-item" [matTooltip]="'Next item'" *ngIf="!embedded && activeSlide+1 === currentSlides.length">
+      {{ nextServiceItemTitle }}
+    </div>
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
   </div>
 </div>

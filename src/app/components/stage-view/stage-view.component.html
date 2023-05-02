@@ -28,6 +28,9 @@
     >
       <mat-icon>sticky_note_2</mat-icon>
     </button>
+    <div class="next-service-item" [matTooltip]="'Next item'" *ngIf="!embedded && activeSlide+1 === currentSlides.length">
+      {{ nextServiceItemTitle }}
+    </div>
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
   </div>
   <div class="sidebar" *ngIf="(showNotes || embedded) && notes">
