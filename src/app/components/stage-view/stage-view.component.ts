@@ -19,6 +19,7 @@ interface Tag {
 export class StageViewComponent implements OnInit, OnDestroy {
   @Input() embedded = false;
   serviceItem: ServiceItem = null;
+  nextServiceItemTitle = '';
   notes = '';
   currentSlides: Slide[] = [];
   activeSlide = 0;
@@ -45,7 +46,9 @@ export class StageViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateCurrentSlides(null, null);
-    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides(item.item, item.slide));
+    this.openlpService.stateChanged$.subscribe((item: { item: string; slide: number }) =>
+      this.updateCurrentSlides(item.item, item.slide)
+    );
     this.fontScale = this.settingsService.get(
       this.stageProperty + 'FontScale' as keyof SettingsProperties
     ) as number / 100;
@@ -62,21 +65,38 @@ export class StageViewComponent implements OnInit, OnDestroy {
     this.fontScaleSubscription$?.unsubscribe();
   }
 
-  updateCurrentSlides(serviceItemId: string, currentSlide: number): void {
+  updateCurrentSlides(_serviceItemId: string, currentSlide: number): void {
     this.serviceItemSubscription$?.unsubscribe();
-    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(serviceItem => {
-      this.serviceItem = serviceItem;
-      if (serviceItem instanceof Array) {
-        this.setNewSlides(serviceItem, currentSlide);
+    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(currentServiceItem => {
+      this.serviceItem = currentServiceItem;
+      if (currentServiceItem instanceof Array) {
+        this.setNewSlides(currentServiceItem, currentSlide);
       }
       else {
-        this.setNewSlides(serviceItem.slides, currentSlide);
-        this.setNotes(serviceItem.notes);
+        this.setNewSlides(currentServiceItem.slides, currentSlide);
+        this.setNotes(currentServiceItem.notes);
       }
+      this.getNextServiceItemTitle();
     });
   }
 
-  setNewSlides(slides: Slide[], currentSlide: number): void {
+  getNextServiceItemTitle(): void {
+    this.nextServiceItemTitle = '';
+    let doStoreServiceItemTitle = false;
+    this.openlpService.getServiceItems().subscribe(serviceItems => {
+      serviceItems.forEach((serviceItem, _index) => {
+        if (doStoreServiceItemTitle) {
+          this.nextServiceItemTitle = serviceItem.title;
+          doStoreServiceItemTitle = false;
+        }
+        if (serviceItem.id === this.serviceItem.id) {
+          doStoreServiceItemTitle = true;
+        }
+      });
+    });
+  }
+
+  setNewSlides(slides: Slide[], _currentSlide: number): void {
     if (slides.length === 0) {
       return;
     }
@@ -129,7 +149,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackByIndex(index: number, el: any) {
+  trackByIndex(index: number) {
     return index;
   }
 }
