@@ -1,6 +1,19 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.10
+--------------
+
+* Add a login button.
+* Add lower thirds / green screen view.
+* Use auto scroll when moving to next or previous slide.
+* Add a "No items" placeholder on Slides and Service.
+* Implement some small optimizations.
+* Let the menu preserve it's position when opened.
+* Make sure tooltips are visible in Stage View.
+* Display the next service item in Stage View and Chord View.
+* Remove package "Protractor".
+
 Version 0.9.9
 -------------
 
