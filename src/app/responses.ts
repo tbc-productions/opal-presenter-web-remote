@@ -81,3 +81,15 @@ export interface Credentials {
 export interface AuthToken {
   token: string;
 }
+
+export class Message<T extends MessageType> {
+  plugin: T['plugin'];
+  key: T['key'];
+  value: T['value'];
+}
+
+export interface MessageType {
+  plugin: string;
+  key: string;
+  value: any;
+}
