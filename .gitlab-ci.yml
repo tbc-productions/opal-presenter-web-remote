@@ -1,4 +1,4 @@
-image: openlp/angular
+image: $CI_REGISTRY/openlp/runners/angular
 
 stages:
   - test
