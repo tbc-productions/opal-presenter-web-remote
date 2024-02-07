@@ -46,7 +46,9 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <main class="content">
-      <router-outlet></router-outlet>
+      <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+      </mat-tab-nav-panel>
     </main>
     <!-- These two toolbars are for padding the content so the real toolbars do not block content when scrolled down -->
     <mat-toolbar class="toolbar-padding"></mat-toolbar>
@@ -84,7 +86,7 @@
           <mat-icon>videocam</mat-icon>
         </button>
       </mat-toolbar>
-      <nav mat-tab-nav-bar mat-stretch-tabs class="fast-switcher" *ngIf="fastSwitching">
+      <nav mat-tab-nav-bar mat-stretch-tabs class="fast-switcher" [tabPanel]="tabPanel" *ngIf="fastSwitching">
         <a mat-tab-link
           routerLink="/service"
           routerLinkActive #serviceRoute="routerLinkActive"
