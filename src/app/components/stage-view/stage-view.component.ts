@@ -84,7 +84,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
     this.nextServiceItemTitle = '';
     let doStoreServiceItemTitle = false;
     this.openlpService.getServiceItems().subscribe(serviceItems => {
-      serviceItems.forEach((serviceItem, _index) => {
+      serviceItems.forEach((serviceItem) => {
         if (doStoreServiceItemTitle) {
           this.nextServiceItemTitle = serviceItem.title;
           doStoreServiceItemTitle = false;
@@ -96,7 +96,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
     });
   }
 
-  setNewSlides(slides: Slide[], _currentSlide: number): void {
+  setNewSlides(slides: Slide[], _currentSlide: number): void { /* eslint-disable-line @typescript-eslint/no-unused-vars */
     if (slides.length === 0) {
       return;
     }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';

@@ -5,7 +5,7 @@ export class SettingsProperties {
     fastSwitching = false;
     stageFontScale = 100;
     chordsFontScale = 100;
-};
+}
 
 export interface SettingsPropertiesItem<SP extends keyof SettingsProperties, SV = SettingsProperties[SP]> {
     property: SP;

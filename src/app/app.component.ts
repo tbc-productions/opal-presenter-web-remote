@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { State, DisplayMode } from './responses';
@@ -54,38 +53,38 @@ export class AppComponent implements OnInit {
   }
 
   addHotKeys(): void {
-    this.hotKeysService.addShortcut({ keys: 'ArrowUp' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'ArrowUp' }).subscribe(() =>
       this.previousSlide()
     );
-    this.hotKeysService.addShortcut({ keys: 'ArrowDown' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'ArrowDown' }).subscribe(() =>
       this.nextSlide()
     );
-    this.hotKeysService.addShortcut({ keys: 'PageUp' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'PageUp' }).subscribe(() =>
       this.previousSlide()
     );
-    this.hotKeysService.addShortcut({ keys: 'PageDown' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'PageDown' }).subscribe(() =>
       this.nextSlide()
     );
-    this.hotKeysService.addShortcut({ keys: 'ArrowLeft' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'ArrowLeft' }).subscribe(() =>
       this.previousItem()
     );
-    this.hotKeysService.addShortcut({ keys: 'ArrowRight' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'ArrowRight' }).subscribe(() =>
       this.nextItem()
     );
-    this.hotKeysService.addShortcut({ keys: 'Space' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'Space' }).subscribe(() =>
       {
         if (this.state.displayMode !== DisplayMode.Presentation) {
           this.showDisplay();
         }
       }
     );
-    this.hotKeysService.addShortcut({ keys: 't' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 't' }).subscribe(() =>
       this.state.displayMode === DisplayMode.Theme ? this.showDisplay() : this.themeDisplay()
     );
-    this.hotKeysService.addShortcut({ keys: 'code.Period' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'code.Period' }).subscribe(() =>
       this.state.displayMode === DisplayMode.Blank ? this.showDisplay() : this.blankDisplay()
     );
-    this.hotKeysService.addShortcut({ keys: 'd' }).subscribe(_ =>
+    this.hotKeysService.addShortcut({ keys: 'd' }).subscribe(() =>
       this.state.displayMode === DisplayMode.Desktop ? this.showDisplay() : this.desktopDisplay()
     );
   }
@@ -122,13 +121,13 @@ export class AppComponent implements OnInit {
   }
 
   nextSlide() {
-    this.openlpService.nextSlide().subscribe( _ =>
+    this.openlpService.nextSlide().subscribe(() =>
       this.hotKeysService.scrollToCurrentItem('slide', 'start')
     );
   }
 
   previousSlide() {
-    this.openlpService.previousSlide().subscribe(_ =>
+    this.openlpService.previousSlide().subscribe(() =>
       this.hotKeysService.scrollToCurrentItem('slide', 'end')
     );
   }

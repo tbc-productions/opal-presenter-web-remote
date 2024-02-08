@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Credentials } from '../../responses';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OpenLPService } from '../../openlp.service';
@@ -16,6 +15,7 @@ export class LoginComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    // Do nothing
   }
 
   performLogin() {
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         this.snackBar.open('Successfully logged in', '', {duration: 2000});
         this.dialogRef.close(result);
       },
-      err => this.snackBar.open('Login failed', '', {duration: 2000})
+      () => this.snackBar.open('Login failed', '', {duration: 2000})
     );
   }
 }

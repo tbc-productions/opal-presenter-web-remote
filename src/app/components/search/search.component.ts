@@ -45,11 +45,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   sendLive(id) {
-    this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(res => {});
+    this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(() => {});
   }
 
   addToService(id) {
-    this.openlpService.addItemToService(this.currentPlugin, id).subscribe(res => {});
+    this.openlpService.addItemToService(this.currentPlugin, id).subscribe(() => {});
   }
 
   ngOnInit() {

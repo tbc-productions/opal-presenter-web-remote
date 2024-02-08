@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SettingsProperties, SettingsService } from 'src/app/settings.service';
+import { SettingsService } from 'src/app/settings.service';
 import { OpenLPService } from '../../openlp.service';
 import { ServiceItem, Slide } from '../../responses';
 
@@ -34,27 +34,27 @@ export class LowerThirdComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.updateCurrentSlides(null, null);
-    this.openlpService.stateChanged$.subscribe(item => this.updateCurrentSlides(item.item, item.slide));
+    this.updateCurrentSlides();
+    this.openlpService.stateChanged$.subscribe(() => this.updateCurrentSlides());
   }
 
   ngOnDestroy(): void {
   }
 
-  updateCurrentSlides(serviceItemId: string, currentSlide: number): void {
+  updateCurrentSlides(): void {
     this.serviceItemSubscription$?.unsubscribe();
     this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(serviceItem => {
       this.serviceItem = serviceItem;
       if (serviceItem instanceof Array) {
-        this.setNewSlides(serviceItem, currentSlide);
+        this.setNewSlides(serviceItem);
       }
       else {
-        this.setNewSlides(serviceItem.slides, currentSlide);
+        this.setNewSlides(serviceItem.slides);
        }
     });
   }
 
-  setNewSlides(slides: Slide[], currentSlide: number): void {
+  setNewSlides(slides: Slide[]): void {
     if (slides.length === 0) {
       return;
     }

@@ -21,6 +21,6 @@ export class AlertComponent {
   }
 
   onSubmit() {
-    this.openlpService.showAlert(this.alert).subscribe(res => this.snackBar.open('Alert submitted', '', {duration: 2000}));
+    this.openlpService.showAlert(this.alert).subscribe(() => this.snackBar.open('Alert submitted', '', {duration: 2000}));
   }
 }

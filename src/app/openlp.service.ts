@@ -246,7 +246,7 @@ export class OpenLPService {
             this.createMessageWebsocketConnection(info.websocket_port);
           }
         },
-        error: _ => this.reconnectWebSocket()
+        error: () => this.reconnectWebSocket()
       });
   }
 
@@ -269,7 +269,7 @@ export class OpenLPService {
         }
         this.handleStateChange(state);
       },
-      error: (e) => {
+      error: () => {
         this.webSocketStateChanged$.emit(WebSocketStatus.Closed);
         this.reconnectWebSocket();
       },
@@ -292,7 +292,7 @@ export class OpenLPService {
       'messages',
     ).subscribe({
       next: (message) => this.handleMessage(message),
-      error: (e) => this.reconnectWebSocket(),
+      error: () => this.reconnectWebSocket(),
       complete: () => this.reconnectWebSocket()
     });
   }
