@@ -34,7 +34,7 @@ export class ServiceListComponent implements OnInit, OnDestroy {
   }
 
   constructor(private openlpService: OpenLPService) {
-    this._subscription = openlpService.stateChanged$.subscribe(state => {
+    this._subscription = openlpService.stateChanged$.subscribe(() => {
       this.fetchServiceItems();
     });
   }

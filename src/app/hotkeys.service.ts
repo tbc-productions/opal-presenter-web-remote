@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 interface Options {
   element: any;
   keys: string;
-};
+}
 
 @Injectable({ providedIn: 'root' })
 export class HotKeysService {

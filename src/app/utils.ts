@@ -9,4 +9,4 @@ export function deserialize<T>(json: any, cls: Type<T>): T {
     inst[p] = json[p];
   }
   return inst;
-};
+}

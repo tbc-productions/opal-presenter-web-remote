@@ -16,8 +16,8 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
@@ -56,6 +56,7 @@
             "style": "camelCase"
           }
         ],
+        "@angular-eslint/no-empty-lifecycle-method": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {
@@ -64,6 +65,8 @@
             "format": ["UPPER_CASE"]
           }
         ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "jsdoc/no-types": [
           "off"
         ],

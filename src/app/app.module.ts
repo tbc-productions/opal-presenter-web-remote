@@ -107,9 +107,6 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
     Title,
     WindowRef
   ],
-  entryComponents: [
-    LoginComponent
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

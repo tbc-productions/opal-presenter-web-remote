@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Slide } from '../../responses';
 import { StageViewComponent } from '../stage-view/stage-view.component';
 

@@ -12,7 +12,7 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit() {
     this.updateImage();
-    this.openlpService.stateChanged$.subscribe(item => this.updateImage());
+    this.openlpService.stateChanged$.subscribe(() => this.updateImage());
   }
 
   updateImage(): void {

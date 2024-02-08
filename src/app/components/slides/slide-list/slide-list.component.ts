@@ -20,7 +20,7 @@ export class SlideListComponent implements OnInit, OnDestroy {
   isServiceItemChanged: boolean;
 
   constructor(private openlpService: OpenLPService, private hotKeysService: HotKeysService) {
-    this._subscription = openlpService.stateChanged$.subscribe(_ =>
+    this._subscription = openlpService.stateChanged$.subscribe(() =>
       this.fetchSlides()
     );
   }

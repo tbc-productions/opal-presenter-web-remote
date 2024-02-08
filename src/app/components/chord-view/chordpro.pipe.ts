@@ -10,7 +10,6 @@
  * @licence Use this in any way you like, with no constraints.
  */
 import { Pipe, PipeTransform } from '@angular/core';
-import { MAT_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY } from '@angular/material/autocomplete';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({ name: 'chordpro' })

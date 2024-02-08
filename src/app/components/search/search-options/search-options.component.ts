@@ -40,7 +40,7 @@ export class SearchOptionsComponent {
   }
 
   setSearchOption(target) {
-    this.openlpService.setSearchOption(this.selectedPlugin, 'primary bible', target.value).subscribe(res => {});
+    this.openlpService.setSearchOption(this.selectedPlugin, 'primary bible', target.value).subscribe(() => {});
     this.selectedSearchOption = target.value;
   }
 }

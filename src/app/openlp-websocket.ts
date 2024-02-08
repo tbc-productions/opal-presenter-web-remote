@@ -1,5 +1,3 @@
-
-import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export function createWebSocket<T>(
