@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "target": "es2022",
+    "target": "ES2022",
     "useDefineForClassFields": false,
     "typeRoots": [
       "node_modules/@types"

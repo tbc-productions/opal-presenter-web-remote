@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-@import '@angular/material/theming';
 
 @include mat.core();
 $olp-primary: mat.define-palette(mat.$indigo-palette, 500);
@@ -136,9 +135,8 @@ footer {
 // This rule is to avoid the left menu scrolling with the page itself.
 .mat-drawer.mat-sidenav {
   position: fixed;
-  padding-top: $mat-toolbar-height-desktop; 
-
-  @media ($mat-xsmall) {
-    padding-top: $mat-toolbar-height-mobile; 
+  padding-top: 64px;
+  @media screen and (max-width: 600px) {
+    padding-top: 56px; 
   }
 }
