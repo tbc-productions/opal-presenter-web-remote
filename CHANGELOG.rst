@@ -1,6 +1,11 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.11
+--------------
+
+* Updated dependencies including Angular.
+
 Version 0.9.10
 --------------
 
