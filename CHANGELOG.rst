@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.12
+--------------
+
+* Display a download link for previous releases instead of crashing when the browser is not supported.
+* Minor update of Angular.
+
 Version 0.9.11
 --------------
 
