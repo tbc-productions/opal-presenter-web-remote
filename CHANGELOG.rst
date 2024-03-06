@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.13
+--------------
+
+* Change detection of unsupported browser version.
+* Display the instructions how to downgrade to a previous version when the browser is not supported.
+
 Version 0.9.12
 --------------
 
