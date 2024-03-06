@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script nomodule>
+      window.location.replace("/assets/notsupported.html");
+    </script>
     <meta charset="utf-8">
     <title>OpenLP Remote</title>
     <base href="/">
@@ -10,11 +13,6 @@
   </head>
 
   <body>
-    <script type="text/javascript">
-      if (!(/Edge?\/(1{2}[2-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[3-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(1{2}[2-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(16\.\d+|(1[7-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(16[._]\d+|(1[7-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)/.test(navigator.userAgent))) {
-        window.location.replace("/assets/notsupported.html");
-      }
-    </script>
     <app-root>
       <div style="margin-top: 80px;">
         <div class="preloader">
