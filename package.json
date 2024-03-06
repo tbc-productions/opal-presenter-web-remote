@@ -20,7 +20,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "supportedBrowsers": "(echo module.exports = && browserslist-useragent-regexp --allowHigherVersions) > src/assets/supportedBrowsers.js"
   },
   "dependencies": {
     "@angular/animations": "^17.2.1",
@@ -56,6 +57,8 @@
     "@types/node": "~20.11.17",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
+    "browserslist": "^4.23.0",
+    "browserslist-useragent-regexp": "^4.1.1",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "~2.29.1",
     "eslint-plugin-jsdoc": "~48.0.6",

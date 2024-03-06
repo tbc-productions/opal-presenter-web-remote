@@ -12,7 +12,7 @@ import { debounceTime } from 'rxjs/operators';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
 import { HotKeysService } from './hotkeys.service';
 import { SettingsService } from './settings.service';
-// import { version } from '../../package.json';
+import * as supportedBrowsers from '../assets/supportedBrowsers';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +46,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!(supportedBrowsers.test(navigator.userAgent))) {
+      window.location.replace("/assets/notsupported.html");
+    }
     this.openlpService.retrieveSystemInformation().subscribe(res => this.showLogin = res.login_required);
     this.addHotKeys();
     this.fastSwitching = this.settingsService.get('fastSwitching');
