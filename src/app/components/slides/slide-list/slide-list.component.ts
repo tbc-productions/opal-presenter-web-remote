@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 
 import { Slide } from '../../../responses';
 import { OpenLPService } from '../../../openlp.service';
-import { HotKeysService } from '../../../hotkeys.service';
 
 @Component({
   selector: 'openlp-slide-list',
@@ -16,10 +15,8 @@ export class SlideListComponent implements OnInit, OnDestroy {
   @Output() slideSelected = new EventEmitter<SlideListItem>();
   _subscription: Subscription;
   loading = false;
-  previousServiceItemId: string;
-  isServiceItemChanged: boolean;
 
-  constructor(private openlpService: OpenLPService, private hotKeysService: HotKeysService) {
+  constructor(private openlpService: OpenLPService) {
     this._subscription = openlpService.stateChanged$.subscribe(() =>
       this.fetchSlides()
     );
@@ -44,21 +41,20 @@ export class SlideListComponent implements OnInit, OnDestroy {
         this.loading = false;
         if (serviceItem instanceof Array) {
           this.slides = serviceItem;
-        }
-        else {
+        } else {
           this.slides = serviceItem.slides;
-          if (this.previousServiceItemId !== serviceItem.id) {
-            this.isServiceItemChanged = true;
-            this.previousServiceItemId = serviceItem.id;
-          }
         }
       },
       complete: () => {
-        if (this.isServiceItemChanged) {
-          setTimeout(() => this.hotKeysService.scrollToCurrentItem('slide', window.scrollY === 0 ? 'center' : 'end'), 25);
-          this.isServiceItemChanged = false;
-        }
+        setTimeout(() => this.scrollToCurrentItem(), 25);
       }
+    });
+  }
+
+  scrollToCurrentItem() {
+    document.querySelectorAll('openlp-slide-item .selected')[0]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
     });
   }
 }
@@ -67,4 +63,3 @@ export interface SlideListItem {
   slide: Slide;
   index: number;
 }
-
