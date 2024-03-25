@@ -42,11 +42,4 @@ export class HotKeysService {
       };
     });
   }
-
-  scrollToCurrentItem(type: 'slide'|'service', block: 'start'|'center'|'end'|'nearest') {
-    document.querySelectorAll(`openlp-${type}-item .selected`)[0]?.scrollIntoView({
-        behavior: 'smooth',
-        block
-    });
-  }
 }
