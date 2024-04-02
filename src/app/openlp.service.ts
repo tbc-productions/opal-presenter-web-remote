@@ -10,6 +10,7 @@ import {
   ServiceItem,
   Theme,
   MainView,
+  Shortcut,
   SystemInformation,
   Credentials,
   AuthToken,
@@ -94,6 +95,10 @@ export class OpenLPService {
 
   getMainImage(): Observable<MainView> {
     return this.doGet<MainView>(`${this.apiURL}/core/live-image`);
+  }
+
+  getShortcuts(): Observable<Shortcut[]> {
+    return this.doGet(`${this.apiURL}/core/shortcuts`);
   }
 
   getSearchablePlugins(): Observable<PluginDescription[]> {

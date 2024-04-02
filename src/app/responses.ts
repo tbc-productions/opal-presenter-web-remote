@@ -66,6 +66,11 @@ export interface MainView {
   binary_image: string;
 }
 
+export interface Shortcut {
+  action: string;
+  shortcut: string[];
+}
+
 export interface SystemInformation {
   websocket_port: number;
   login_required: boolean;
