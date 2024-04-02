@@ -1,6 +1,13 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.14
+--------------
+
+* Make sure that all the clients auto scroll to the selected slide.
+* Make use of the configured shortcuts in OpenLP when version 3.1.2 or newer is installed.
+* Updated dependencies including Angular.
+
 Version 0.9.13
 --------------
 
