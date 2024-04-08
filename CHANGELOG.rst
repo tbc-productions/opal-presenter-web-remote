@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.15
+--------------
+
+* Added a Web Remote setting to switch larger display buttons on or off (off by default).
+* Updated dependencies including Angular.
+
 Version 0.9.14
 --------------
 
