@@ -55,34 +55,64 @@
     <mat-toolbar *ngIf="fastSwitching" class="toolbar-padding"></mat-toolbar>
     <footer>
       <mat-toolbar class="footer">
-        <button mat-icon-button (click)="previousItem()" matTooltip="Previous item" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="previousItem()" matTooltip="Previous item" matTooltipPosition="above">
           <mat-icon>first_page</mat-icon>
         </button>
-        <button mat-icon-button (click)="nextItem()" matTooltip="Next item" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="previousItem()" matTooltip="Previous item" matTooltipPosition="above">
+          <mat-icon>first_page</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="nextItem()" matTooltip="Next item" matTooltipPosition="above">
           <mat-icon>last_page</mat-icon>
         </button>
-        <button mat-icon-button (click)="previousSlide()" matTooltip="Previous slide" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="nextItem()" matTooltip="Next item" matTooltipPosition="above">
+          <mat-icon>last_page</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="previousSlide()" matTooltip="Previous slide" matTooltipPosition="above">
           <mat-icon>navigate_before</mat-icon>
         </button>
-        <button mat-icon-button (click)="nextSlide()" matTooltip="Next slide" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="previousSlide()" matTooltip="Previous slide" matTooltipPosition="above">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="nextSlide()" matTooltip="Next slide" matTooltipPosition="above">
           <mat-icon>navigate_next</mat-icon>
         </button>
-        <button mat-icon-button #squashedDisplayButton (click)="openDisplayModeSelector()" class="squashed-display-button" matTooltip="Change Display Mode" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="nextSlide()" matTooltip="Next slide" matTooltipPosition="above">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" #squashedDisplayButton (click)="openDisplayModeSelector()" class="squashed-display-button" matTooltip="Change Display Mode" matTooltipPosition="above">
           <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
           <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
           <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
           <mat-icon *ngIf="state.live()">videocam</mat-icon>
         </button>
-        <button mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button #squashedDisplayButton (click)="openDisplayModeSelector()" class="squashed-display-button" matTooltip="Change Display Mode" matTooltipPosition="above">
+          <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
+          <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
+          <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
+          <mat-icon *ngIf="state.live()">videocam</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black" matTooltipPosition="above">
           <mat-icon>videocam_off</mat-icon>
         </button>
-        <button mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black" matTooltipPosition="above">
+          <mat-icon>videocam_off</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background" matTooltipPosition="above">
           <mat-icon>wallpaper</mat-icon>
         </button>
-        <button mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background" matTooltipPosition="above">
+          <mat-icon>wallpaper</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop" matTooltipPosition="above">
           <mat-icon>desktop_windows</mat-icon>
         </button>
-        <button mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop" matTooltipPosition="above">
+          <mat-icon>desktop_windows</mat-icon>
+        </button>
+        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation" matTooltipPosition="above">
+          <mat-icon>videocam</mat-icon>
+        </button>
+        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation" matTooltipPosition="above">
           <mat-icon>videocam</mat-icon>
         </button>
       </mat-toolbar>

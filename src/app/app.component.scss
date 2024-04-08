@@ -13,7 +13,7 @@ mat-toolbar {
   top: 0;
   z-index: 1020;
 
-  /* Fix icon button alignment on some firefox configurations */
+  /* Fix icon button alignment on some Firefox configurations */
   [mat-icon-button] {
     line-height: 1;
   }

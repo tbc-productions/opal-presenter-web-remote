@@ -1,19 +1,84 @@
-<mat-action-list>
-  <button mat-list-item (click)="setMode(DisplayMode.Blank)" class="display-button" [disabled]="displayMode === DisplayMode.Blank">
-    <mat-icon>videocam_off</mat-icon>
-    Show black
+<mat-action-list *ngIf="!display.bigDisplayButtons">
+  <button mat-list-item
+    aria-labelledby="caption-blank"
+    class="display-button"
+    (click)="setMode(DisplayMode.Blank)"
+    [disabled]="displayMode === DisplayMode.Blank">
+    <mat-icon class="small-icon">videocam_off</mat-icon>
+    <span id="caption-blank" class="caption">Show Black</span>
   </button>
-  <button mat-list-item (click)="setMode(DisplayMode.Theme)" class="display-button" [disabled]="displayMode === DisplayMode.Theme">
-    <mat-icon>wallpaper</mat-icon>
-    Show background
+  <button mat-list-item
+    aria-labelledby="caption-theme"
+    class="display-button"
+    (click)="setMode(DisplayMode.Theme)"
+    [disabled]="displayMode === DisplayMode.Theme">
+    <mat-icon class="small-icon">wallpaper</mat-icon>
+    <span id="caption-theme" class="caption">Show Background</span>
   </button>
-  <button mat-list-item (click)="setMode(DisplayMode.Desktop)" class="display-button" [disabled]="displayMode === DisplayMode.Desktop">
-    <mat-icon>desktop_windows</mat-icon>
-    Show Desktop
+  <button mat-list-item
+    aria-labelledby="caption-desktop"
+    class="display-button"
+    (click)="setMode(DisplayMode.Desktop)"
+    [disabled]="displayMode === DisplayMode.Desktop">
+    <mat-icon class="small-icon">desktop_windows</mat-icon>
+    <span id="caption-desktop" class="caption">Show Desktop</span>
   </button>
-  <button mat-list-item (click)="setMode(DisplayMode.Presentation)" class="display-button" [disabled]="displayMode === DisplayMode.Presentation">
-    <mat-icon>videocam</mat-icon>
-    Show Presentation
+  <button mat-list-item
+    aria-labelledby="caption-presentation"
+    class="display-button"
+    (click)="setMode(DisplayMode.Presentation)"
+    [disabled]="displayMode === DisplayMode.Presentation">
+    <mat-icon class="small-icon">videocam</mat-icon>
+    <span id="caption-presentation" class="caption">Show Presentation</span>
   </button>
 </mat-action-list>
-  
+<mat-grid-list *ngIf="display.bigDisplayButtons" cols="2" rowHeight="2:1">
+  <mat-grid-tile>
+    <button mat-fab color="primary"
+      aria-labelledby="caption-blank"
+      class="display-button"
+      (click)="setMode(DisplayMode.Blank)"
+      [disabled]="displayMode === DisplayMode.Blank">
+      <mat-icon class="big-icon">videocam_off</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div id="caption-blank" class="caption">Show Black</div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-fab color="primary"
+      aria-labelledby="caption-theme"
+      class="display-button"
+      (click)="setMode(DisplayMode.Theme)"
+      [disabled]="displayMode === DisplayMode.Theme">
+      <mat-icon class="big-icon">wallpaper</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div id="caption-theme" class="caption">Show Background</div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-fab color="primary"
+      aria-labelledby="caption-desktop"
+      class="display-button"
+      (click)="setMode(DisplayMode.Desktop)"
+      [disabled]="displayMode === DisplayMode.Desktop">
+      <mat-icon class="big-icon">desktop_windows</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div id="caption-desktop" class="caption">Show Desktop</div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button mat-fab color="primary"
+      aria-labelledby="caption-presentation"
+      class="display-button"
+      (click)="setMode(DisplayMode.Presentation)"
+      [disabled]="displayMode === DisplayMode.Presentation">
+      <mat-icon class="big-icon">videocam</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div id="caption-presentation" class="caption">Show Presentation</div>
+  </mat-grid-tile>
+</mat-grid-list>

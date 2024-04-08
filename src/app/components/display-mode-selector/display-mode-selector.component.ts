@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { DisplayMode } from 'src/app/responses';
-
+import { Display, DisplayMode } from 'src/app/responses';
 
 @Component({
     selector: 'openlp-display-mode-sheet',
@@ -9,14 +8,14 @@ import { DisplayMode } from 'src/app/responses';
     styleUrls: ['./display-mode-selector.component.scss']
   })
   export class DisplayModeSelectorComponent {
-    // Make DisplayMode enum visible to html code
+    // Make DisplayMode enum visible in HTML template.
     DisplayMode = DisplayMode;
 
-    constructor(private bottomSheetRef: MatBottomSheetRef<DisplayModeSelectorComponent>,
-        @Inject(MAT_BOTTOM_SHEET_DATA) public displayMode: DisplayMode) {}
+    constructor(
+      private bottomSheetRef: MatBottomSheetRef<DisplayModeSelectorComponent>,
+      @Inject(MAT_BOTTOM_SHEET_DATA) public display: Display) {}
 
     setMode(mode: DisplayMode): void {
       this.bottomSheetRef.dismiss(mode);
-      event.preventDefault();
     }
   }
