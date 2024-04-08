@@ -29,6 +29,11 @@ export class State {
   }
 }
 
+export class Display {
+  displayMode: DisplayMode;
+  bigDisplayButtons: boolean;
+}
+
 export enum DisplayMode {
   Blank,
   Theme,

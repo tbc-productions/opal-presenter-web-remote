@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
-import { State, DisplayMode } from './responses';
+import { State, Display, DisplayMode } from './responses';
 import { OpenLPService, WebSocketStatus } from './openlp.service';
 import { WindowRef } from './window-ref.service';
 import { PageTitleService } from './page-title.service';
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   appVersion = '0.0';
   webSocketOpen = false;
   fastSwitching = false;
+  bigDisplayButtons = false;
   useShortcutsFromOpenlp = false;
 
   constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
@@ -60,6 +61,8 @@ export class AppComponent implements OnInit {
     );
     this.fastSwitching = this.settingsService.get('fastSwitching');
     this.settingsService.onPropertyChanged('fastSwitching').subscribe(value => this.fastSwitching = value);
+    this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons');
+    this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe(value => this.bigDisplayButtons = value);
   }
 
   addShortcuts(shortcuts: Shortcuts): void {
@@ -109,7 +112,10 @@ export class AppComponent implements OnInit {
   }
 
   openDisplayModeSelector(): void {
-    const selectorRef = this.bottomSheet.open(DisplayModeSelectorComponent, {data: this.state.displayMode});
+    const display = new Display();
+    display.displayMode = this.state.displayMode;
+    display.bigDisplayButtons = this.bigDisplayButtons;
+    const selectorRef = this.bottomSheet.open(DisplayModeSelectorComponent, {data: display});
     selectorRef.afterDismissed().subscribe(result => {
       if (result === DisplayMode.Blank) {this.blankDisplay();}
       else if (result === DisplayMode.Desktop) {this.desktopDisplay();}

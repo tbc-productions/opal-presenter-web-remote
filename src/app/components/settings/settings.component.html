@@ -10,7 +10,16 @@
                     [checked]="settings.fastSwitching"
                     (change)="setSetting('fastSwitching', $event.checked)"
                 >
-                    Enable Fast Switching panel
+                    Enable Fast Switching Panel
+                </mat-slide-toggle>
+            </div>
+            <div class="settings-item">
+                <mat-slide-toggle
+                    color="primary"
+                    [checked]="settings.bigDisplayButtons"
+                    (change)="setSetting('bigDisplayButtons', $event.checked)"
+                >
+                    Enable Big Display Buttons
                 </mat-slide-toggle>
             </div>
         </mat-card-content>
