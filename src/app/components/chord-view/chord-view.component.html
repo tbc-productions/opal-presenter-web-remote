@@ -27,7 +27,11 @@
     </div>
   </div>
   <div class="toolbar">
-    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'" *ngIf="!embedded">
+    <a *ngIf="!embedded"
+      mat-mini-fab color=""
+      class="back-button"
+      routerLink="/"
+      matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
       <mat-icon>arrow_back</mat-icon>
     </a>
     <div class="transpose">
@@ -39,7 +43,9 @@
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
-    <div class="next-service-item" [matTooltip]="'Next item'" *ngIf="!embedded && activeSlide+1 === currentSlides.length">
+    <div *ngIf="!embedded && activeSlide+1 === currentSlides.length"
+      class="next-service-item"
+      matTooltip="{{ 'NEXT_ITEM' | translate }}">
       {{ nextServiceItemTitle }}
     </div>
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>

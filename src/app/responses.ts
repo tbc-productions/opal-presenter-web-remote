@@ -67,6 +67,10 @@ export interface Theme {
   name: string;
 }
 
+export interface Language {
+  language: string;
+}
+
 export interface MainView {
   binary_image: string;
 }

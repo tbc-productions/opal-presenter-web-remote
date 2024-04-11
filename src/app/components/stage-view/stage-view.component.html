@@ -1,8 +1,7 @@
 <div
   class="overlay"
   [class.embedded]="embedded"
-  [style.--openlp-stage-font-scale]="fontScale"
->
+  [style.--openlp-stage-font-scale]="fontScale">
   <div class="overlay-content">
     <div class="tags">
       <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
@@ -15,20 +14,34 @@
     </div>
   </div>
   <div class="toolbar">
-    <a class="back-button" mat-mini-fab color="" routerLink="/" [matTooltip]="'Go back to controller'" *ngIf="!embedded">
+    <a *ngIf="!embedded"
+      class="back-button"
+      mat-mini-fab color=""
+      routerLink="/"
+      matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
       <mat-icon>arrow_back</mat-icon>
     </a>
-    <button
+    <button *ngIf="showNotes"
       mat-mini-fab
       class="show-notes"
-      [matTooltip]="'Show/hide notes'"
-      [color]="showNotes ? 'primary' : ''"
-      [class.show-notes-disabled]="!showNotes"
-      (click)="showNotes = !showNotes"
-    >
+      matTooltip="{{ 'HIDE_NOTES' | translate }}"
+      [color]="primary"
+      [class.show-notes-disabled]="false"
+      (click)="showNotes = false">
       <mat-icon>sticky_note_2</mat-icon>
     </button>
-    <div class="next-service-item" [matTooltip]="'Next item'" *ngIf="!embedded && activeSlide+1 === currentSlides.length">
+    <button *ngIf="!showNotes"
+      mat-mini-fab
+      class="show-notes"
+      matTooltip="{{ 'SHOW_NOTES' | translate }}"
+      [color]=""
+      [class.show-notes-disabled]="true"
+      (click)="showNotes = true">
+      <mat-icon>sticky_note_2</mat-icon>
+    </button>
+    <div *ngIf="!embedded && activeSlide+1 === currentSlides.length"
+      class="next-service-item"
+      matTooltip="{{ 'NEXT_ITEM' | translate }}">
       {{ nextServiceItemTitle }}
     </div>
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>

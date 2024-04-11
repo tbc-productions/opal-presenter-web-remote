@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { State, Display, DisplayMode } from './responses';
 import { OpenLPService, WebSocketStatus } from './openlp.service';
 import { WindowRef } from './window-ref.service';
@@ -32,15 +34,20 @@ export class AppComponent implements OnInit {
   fastSwitching = false;
   bigDisplayButtons = false;
   useShortcutsFromOpenlp = false;
+  useLanguageFromOpenlp = false;
 
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private dialog: MatDialog, private bottomSheet: MatBottomSheet, private windowRef: WindowRef,
-              private shortcutsService: ShortcutsService, private settingsService: SettingsService) {
-    this.pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
+  constructor(private translateService: TranslateService, private pageTitleService: PageTitleService,
+              private openlpService: OpenLPService, private dialog: MatDialog, private bottomSheet: MatBottomSheet,
+              private windowRef: WindowRef, private shortcutsService: ShortcutsService, private settingsService: SettingsService) {
+    this.pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle.toUpperCase());
     this.openlpService.stateChanged$.subscribe(item => this.state = item);
     this.openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
     this.shortcutsService.shortcutsChanged$.subscribe(shortcuts => this.addShortcuts(shortcuts));
     this.appVersion = this.windowRef.nativeWindow.appVersion || '0.0';
+    
+    // This language will be used as a fallback when a translation isn't found in the current language
+    this.translateService.setDefaultLang('en');
+
     this.webSocketOpen = openlpService.webSocketStatus === WebSocketStatus.Open;
     // Try to force websocket reconnection as user is now focused on window and will try to interact soon
     // Adding a debounce to avoid event flooding
@@ -55,6 +62,12 @@ export class AppComponent implements OnInit {
     }
     this.openlpService.retrieveSystemInformation().subscribe(res => {
         this.showLogin = res.login_required
+        this.useLanguageFromOpenlp = this.openlpService.assertApiVersionMinimum(2, 5)
+        if (this.useLanguageFromOpenlp) {
+          this.openlpService.getLanguage().subscribe(res => {
+            this.translateService.use(res.language);
+          });
+        }
         this.useShortcutsFromOpenlp = this.openlpService.assertApiVersionMinimum(2, 5)
         this.shortcutsService.getShortcuts(this.useShortcutsFromOpenlp);
       }

@@ -1,17 +1,15 @@
 <form #themeForm="ngForm">
-  <h4>Theme Options</h4>
+  <h4>{{ 'THEME_OPTIONS' | translate }}</h4>
   <div>
-    <!-- Theme level menu -->
     <mat-form-field>
-      <mat-label>Theme level</mat-label>
+      <mat-label>{{ 'THEME_LEVEL' | translate }}</mat-label>
       <mat-select [(value)]="themeLevel">
-        <mat-option value="global">Global</mat-option>
-        <mat-option value="service">Service</mat-option>
-        <mat-option value="song">Song</mat-option>
+        <mat-option value="global">{{ 'GLOBAL' | translate }}</mat-option>
+        <mat-option value="service">{{ 'SERVICE' | translate }}</mat-option>
+        <mat-option value="song">{{ 'SONG' | translate }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <!-- Themes display -->
   <div class="theme-container content" *ngIf="isThemeLevelSupported()">
     <div *ngFor="let theme of themeList;">
       <mat-card class="theme-card" (click)='setTheme(theme.name)' [class.selected]="theme.selected">
@@ -22,5 +20,7 @@
       </mat-card>
     </div>
   </div>
-  <mat-error *ngIf="!isThemeLevelSupported()">Song level theme changing not supported. Change your theme level to Global or Service</mat-error>
+  <mat-error *ngIf="!isThemeLevelSupported()">
+    {{ 'SONG_LEVEL_THEME_CHANGING_NOT_SUPPORTED' | translate }}
+  </mat-error>
 </form>

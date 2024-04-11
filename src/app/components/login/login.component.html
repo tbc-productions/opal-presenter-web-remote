@@ -1,15 +1,29 @@
-<h1 mat-dialog-title>Login</h1>
+<h1 mat-dialog-title>{{ 'LOGIN' | translate }}</h1>
 
 <form #loginForm="ngForm">
   <div mat-dialog-content>
     <mat-form-field>
-      <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+      <input matInput
+        placeholder="{{ 'USER_NAME' | translate }}"
+        [(ngModel)]="username"
+        name="username"
+        required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="password" type="password" [(ngModel)]="password" name="password" required>
+      <input matInput
+        placeholder="{{ 'PASSWORD' | translate }}"
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button id="loginButton" color="primary" [disabled]="!loginForm.form.valid" (click)="performLogin()">Login</button>
+    <button mat-raised-button id="loginButton"
+      color="primary"
+      [disabled]="!loginForm.form.valid"
+      (click)="performLogin()">
+      {{ 'LOGIN' | translate }}
+    </button>
   </div>
 </form>
