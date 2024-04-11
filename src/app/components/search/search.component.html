@@ -12,21 +12,36 @@
     <openlp-search-options></openlp-search-options>
   </div>
   <mat-form-field>
-    <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search Text" required>
+    <input matInput [(ngModel)]="searchText" name="searchText" placeholder="{{ 'SEARCH_TEXT' | translate }}" required>
   </mat-form-field>
   <br>
-  <button mat-raised-button id="searchButton" color="primary" [disabled]="!searchForm.form.valid" (click)="onSubmit()">Search</button>
+  <button mat-raised-button id="searchButton"
+    color="primary"
+    [disabled]="!searchForm.form.valid"
+    (click)="onSubmit()">
+    {{ 'SEARCH' | translate }}
+  </button>
 </form>
 <div *ngIf="searchResults">
-  <h3>Search Results:</h3>
+  <h3>{{ 'SEARCH_RESULTS' | translate }}:</h3>
   <div *ngIf="!searchResults.length">
-    No Results matching your search were found...
+    {{ 'NO_SEARCH_RESULTS' | translate }}...
   </div>
   <table *ngIf="searchResults.length">
     <tr *ngFor="let item of searchResults">
       <td>{{item[1]}}</td>
-      <td><button mat-button color="primary" (click)="addToService(item[0])">Add to Service</button></td>
-      <td><button mat-button color="accent" (click)="sendLive(item[0])">Send Live</button></td>
+      <td>
+        <button mat-button color="primary"
+          (click)="addToService(item[0])">
+          {{ 'ADD_TO_SERVICE' | translate }}
+        </button>
+      </td>
+      <td>
+        <button mat-button color="accent"
+          (click)="sendLive(item[0])">
+          {{ 'SEND_LIVE' | translate }}
+        </button>
+      </td>
     </tr>
   </table>
 </div>

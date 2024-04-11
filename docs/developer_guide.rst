@@ -24,14 +24,42 @@ To run the web remote, run the following command:
 
 .. code::
 
-  yarn run
+  yarn start
 
 
 To build the web remote manually for deployment:
 
 .. code::
 
-  yarn build --prod --aot
+  yarn build --aot
+
+
+To lint the web remote:
+
+.. code::
+
+  yarn lint
+
+
+To audit the web remote:
+
+.. code::
+
+  yarn audit
+
+
+To run unit tests on the web remote using the Chrome browser:
+
+.. code::
+
+  yarn test --browsers Chrome
+
+
+To run unit tests on the web remote using the Microsoft Edge browser:
+
+.. code::
+
+  yarn test --browsers Edge
 
 
 Deployment

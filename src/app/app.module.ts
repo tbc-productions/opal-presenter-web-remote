@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +22,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSliderModule } from '@angular/material/slider';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
@@ -50,6 +53,10 @@ import { DisplayModeSelectorComponent } from './components/display-mode-selector
 import { SettingsComponent } from './components/settings/settings.component';
 import { StageChordPreviewComponent } from './components/settings/stage-chord-preview/stage-chord-preview.component';
 
+// AoT requires an exported function for factories
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -99,7 +106,15 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
     MatToolbarModule,
     MatTooltipModule,
     MatBottomSheetModule,
-    MatSliderModule
+    MatSliderModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     PageTitleService,

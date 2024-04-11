@@ -9,6 +9,7 @@ import {
   Slide,
   ServiceItem,
   Theme,
+  Language,
   MainView,
   Shortcut,
   SystemInformation,
@@ -91,6 +92,10 @@ export class OpenLPService {
           this.apiRevision = systemInfo.api_revision;
         }
       }));
+  }
+
+  getLanguage(): Observable<Language> {
+    return this.doGet(`${this.apiURL}/core/language`);
   }
 
   getMainImage(): Observable<MainView> {

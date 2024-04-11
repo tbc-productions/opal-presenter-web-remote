@@ -11,12 +11,12 @@
   <div class="no-items" *ngIf="!loading">
     <div class="no-items-title">
       <span class="material-icons icon">info</span>
-      No slide items.
+      {{ 'NO_SLIDE_ITEMS' | translate }}.
     </div>
     <div class="no-items-actions">
       <a routerLink="/search" mat-stroked-button color="primary" size="small">
         <span class="material-icons">add</span>
-        Add Item to Service
+        {{ 'ADD_ITEM_TO_SERVICE' | translate }}
       </a>
     </div>
   </div>

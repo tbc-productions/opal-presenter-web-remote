@@ -4,19 +4,18 @@
     [item]="item"
     [selected]="item.selected"
     (selectItem)="onItemSelected($event)"
-    [tabindex]="item.id"
-  ></openlp-service-item>
+    [tabindex]="item.id"></openlp-service-item>
 </ng-container>
 <ng-template #noServiceItems>
   <div class="no-items" *ngIf="!loading">
     <div class="no-items-title">
       <span class="material-icons icon">info</span>
-      No service items.
+      {{ 'NO_SERVICE_ITEMS' | translate }}.
     </div>
     <div class="no-items-actions">
       <a routerLink="/search" mat-stroked-button color="primary" size="small">
         <span class="material-icons">add</span>
-        Add Item
+        {{ 'ADD_ITEM' | translate }}
       </a>
     </div>
   </div>

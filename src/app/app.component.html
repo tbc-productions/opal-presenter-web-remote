@@ -1,16 +1,21 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
-    <span class="page-title">{{pageTitle}}</span>
+    <span class="page-title">{{ pageTitle | translate }}</span>
     <span class="spacer"></span>
-    <button *ngIf="showLogin" mat-button (click)="login()">Login</button>
-    <button
+    <button *ngIf="showLogin" mat-button (click)="login()">{{ 'LOGIN' | translate }}</button>
+    <button *ngIf="webSocketOpen"
       mat-icon-button
       (click)="forceWebSocketReconnection()"
       class="connection-status"
-      [matTooltip]="webSocketOpen ? 'Connected to OpenLP' : 'Disconnected'"
-    >
+      matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate }}">
       <mat-icon *ngIf="webSocketOpen">link</mat-icon>
+    </button>
+    <button *ngIf="!webSocketOpen"
+      mat-icon-button
+      (click)="forceWebSocketReconnection()"
+      class="connection-status"
+      matTooltip="{{ 'DISCONNECTED' | translate }}">
       <mat-icon *ngIf="!webSocketOpen">link_off</mat-icon>
     </button>
     <span class="app-version">v{{appVersion}}</span>
@@ -19,28 +24,63 @@
 <mat-sidenav-container>
   <mat-sidenav #menu mode="over">
     <mat-nav-list>
-      <a mat-list-item (click)="menu.close()" routerLink="/service" routerLinkActive #serviceRoute="routerLinkActive" [activated]="serviceRoute.isActive">
-        <mat-icon>list</mat-icon>  Service
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/service"
+        routerLinkActive #serviceRoute="routerLinkActive"
+        [activated]="serviceRoute.isActive">
+        <mat-icon>list</mat-icon>  {{ 'SERVICE' | translate }}
       </a>
-      <a mat-list-item (click)="menu.close()" routerLink="/slides" routerLinkActive #slidesRoute="routerLinkActive" [activated]="slidesRoute.isActive">
-        <mat-icon>collections</mat-icon>  Slides
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/slides"
+        routerLinkActive #slidesRoute="routerLinkActive"
+        [activated]="slidesRoute.isActive">
+        <mat-icon>collections</mat-icon>  {{ 'SLIDES' | translate }}
       </a>
-      <a mat-list-item (click)="menu.close()" routerLink="/alerts" routerLinkActive #alertsRoute="routerLinkActive" [activated]="alertsRoute.isActive">
-        <mat-icon>error</mat-icon>  Alerts
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/alerts"
+        routerLinkActive #alertsRoute="routerLinkActive"
+        [activated]="alertsRoute.isActive">
+        <mat-icon>error</mat-icon>  {{ 'ALERTS' | translate }}
       </a>
-      <a mat-list-item (click)="menu.close()" routerLink="/search" routerLinkActive #searchRoute="routerLinkActive" [activated]="searchRoute.isActive">
-        <mat-icon>search</mat-icon>  Search
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/search"
+        routerLinkActive #searchRoute="routerLinkActive"
+        [activated]="searchRoute.isActive">
+        <mat-icon>search</mat-icon>  {{ 'SEARCH' | translate }}
       </a>
-      <a mat-list-item (click)="menu.close()" routerLink="/themes" routerLinkActive #themesRoute="routerLinkActive" [activated]="themesRoute.isActive">
-        <mat-icon>image</mat-icon>  Themes
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/themes"
+        routerLinkActive #themesRoute="routerLinkActive"
+        [activated]="themesRoute.isActive">
+        <mat-icon>image</mat-icon>  {{ 'THEMES' | translate }}
       </a>
       <mat-divider></mat-divider>
-      <a mat-list-item (click)="menu.close()" routerLink="/main">Main View</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/stage">Stage View</a>
-      <a mat-list-item (click)="menu.close()" routerLink="/chords">Chord View</a>
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/main">
+        {{ 'MAIN_VIEW' | translate }}
+      </a>
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/stage">
+        {{ 'STAGE_VIEW' | translate }}
+      </a>
+      <a mat-list-item
+        (click)="menu.close()"
+        routerLink="/chords">
+        {{ 'CHORD_VIEW' | translate }}
+      </a>
       <mat-divider></mat-divider>
-      <a mat-list-item (click)="menu.close()" routerLink="/settings" routerLinkActive #settingsRoute="routerLinkActive" [activated]="settingsRoute.isActive">
-        <mat-icon>settings</mat-icon>  Settings
+      <a mat-list-item (click)="menu.close()"
+        routerLink="/settings"
+        routerLinkActive #settingsRoute="routerLinkActive"
+        [activated]="settingsRoute.isActive">
+        <mat-icon>settings</mat-icon>  {{ 'SETTINGS' | translate }}
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -55,68 +95,164 @@
     <mat-toolbar *ngIf="fastSwitching" class="toolbar-padding"></mat-toolbar>
     <footer>
       <mat-toolbar class="footer">
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="previousItem()" matTooltip="Previous item" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="previousItem()"
+          matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>first_page</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="previousItem()" matTooltip="Previous item" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="previousItem()"
+          matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>first_page</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="nextItem()" matTooltip="Next item" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="nextItem()"
+          matTooltip="{{ 'NEXT_ITEM' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>last_page</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="nextItem()" matTooltip="Next item" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="nextItem()"
+          matTooltip="{{ 'NEXT_ITEM' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>last_page</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="previousSlide()" matTooltip="Previous slide" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="previousSlide()"
+          matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>navigate_before</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="previousSlide()" matTooltip="Previous slide" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="previousSlide()"
+          matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>navigate_before</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="nextSlide()" matTooltip="Next slide" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="nextSlide()"
+          matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>navigate_next</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="nextSlide()" matTooltip="Next slide" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="nextSlide()"
+          matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>navigate_next</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" #squashedDisplayButton (click)="openDisplayModeSelector()" class="squashed-display-button" matTooltip="Change Display Mode" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          #squashedDisplayButton
+          (click)="openDisplayModeSelector()"
+          class="squashed-display-button"
+          matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
           <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
           <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
           <mat-icon *ngIf="state.live()">videocam</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button #squashedDisplayButton (click)="openDisplayModeSelector()" class="squashed-display-button" matTooltip="Change Display Mode" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button
+          #squashedDisplayButton
+          (click)="openDisplayModeSelector()"
+          class="squashed-display-button"
+          matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+          matTooltipPosition="above">
           <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
           <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
           <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
           <mat-icon *ngIf="state.live()">videocam</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="blankDisplay()"
+          class="displayButton"
+          [class.active]="state.blank"
+          [disabled]="state.blank"
+          matTooltip="{{ 'SHOW_BLACK' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>videocam_off</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="blankDisplay()" class="displayButton" [class.active]="state.blank" [disabled]="state.blank" matTooltip="Show black" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="blankDisplay()"
+          class="displayButton"
+          [class.active]="state.blank"
+          [disabled]="state.blank"
+          matTooltip="{{ 'SHOW_BLACK' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>videocam_off</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="themeDisplay()"
+          class="displayButton"
+          [class.active]="state.theme"
+          [disabled]="state.theme"
+          matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>wallpaper</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="themeDisplay()" class="displayButton" [class.active]="state.theme" [disabled]="state.theme" matTooltip="Show background" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button
+          (click)="themeDisplay()"
+          class="displayButton"
+          [class.active]="state.theme"
+          [disabled]="state.theme"
+          matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>wallpaper</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="desktopDisplay()"
+          class="displayButton"
+          [class.active]="state.display"
+          [disabled]="state.display"
+          matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>desktop_windows</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="desktopDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.display" matTooltip="Show Desktop" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="desktopDisplay()"
+          class="displayButton"
+          [class.active]="state.display"
+          [disabled]="state.display"
+          matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>desktop_windows</mat-icon>
         </button>
-        <button *ngIf="bigDisplayButtons" mat-fab color="primary" (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation" matTooltipPosition="above">
+        <button *ngIf="bigDisplayButtons"
+          mat-fab color="primary"
+          (click)="showDisplay()"
+          class="displayButton"
+          [class.active]="state.display"
+          [disabled]="state.live()"
+          matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>videocam</mat-icon>
         </button>
-        <button *ngIf="!bigDisplayButtons" mat-icon-button (click)="showDisplay()" class="displayButton" [class.active]="state.display" [disabled]="state.live()" matTooltip="Show Presentation" matTooltipPosition="above">
+        <button *ngIf="!bigDisplayButtons"
+          mat-icon-button (click)="showDisplay()"
+          class="displayButton"
+          [class.active]="state.display"
+          [disabled]="state.live()"
+          matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+          matTooltipPosition="above">
           <mat-icon>videocam</mat-icon>
         </button>
       </mat-toolbar>
-      <nav mat-tab-nav-bar mat-stretch-tabs class="fast-switcher" [tabPanel]="tabPanel" *ngIf="fastSwitching">
+      <nav *ngIf="fastSwitching"
+        mat-tab-nav-bar mat-stretch-tabs
+        class="fast-switcher"
+        [tabPanel]="tabPanel">
         <a mat-tab-link
           routerLink="/service"
           routerLinkActive #serviceRoute="routerLinkActive"
