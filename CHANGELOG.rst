@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.16
+--------------
+
+* Make use of the configured language in OpenLP in order to use translations in Web Remote when version 3.1.2 or newer is installed.
+* Updated dependencies including Angular.
+
 Version 0.9.15
 --------------
 
