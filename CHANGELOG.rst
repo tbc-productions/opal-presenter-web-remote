@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.17
+--------------
+
+* Add workaround for missing default English translation file when using Web API 2.4 or older.
+* Correct Slovenian translation.
+
 Version 0.9.16
 --------------
 
