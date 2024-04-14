@@ -38,8 +38,10 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "core-js": "^3.36.1",
+    "deepmerge-ts": "^5.1.0",
     "hammerjs": "^2.0.8",
     "material-icons": "^1.13.12",
+    "ngx-translate-multi-http-loader": "^17.0.0",
     "rxjs": "^7.8.1",
     "zone.js": "^0.14.4"
   },
