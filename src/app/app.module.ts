@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSliderModule } from '@angular/material/slider';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AppComponent } from './app.component';
 import { PageTitleService } from './page-title.service';
@@ -54,8 +54,11 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { StageChordPreviewComponent } from './components/settings/stage-chord-preview/stage-chord-preview.component';
 
 // AoT requires an exported function for factories
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function HttpLoaderFactory(httpBackend: HttpBackend) {
+  return new MultiTranslateHttpLoader(httpBackend, [
+    { prefix: './assets/i18n/', optional: true },
+    { prefix: './assets/', optional: true } // Workaround for Web API 2.4 or older to prevent HTTP 404 errors while retrieving the en.json file when using Web Remote 0.9.16 or newer.
+  ]);
 }
 
 @NgModule({
@@ -111,8 +114,8 @@ export function createTranslateLoader(http: HttpClient) {
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpBackend]
       }
     })
   ],
