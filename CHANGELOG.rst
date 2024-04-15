@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.18
+--------------
+
+* Prevent HTTP 404 error in browser console when using Web API 2.4 or older.
+* Remove Hammerjs.
+
 Version 0.9.17
 --------------
 
