@@ -44,9 +44,6 @@ export class AppComponent implements OnInit {
     this.openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
     this.shortcutsService.shortcutsChanged$.subscribe(shortcuts => this.addShortcuts(shortcuts));
     this.appVersion = this.windowRef.nativeWindow.appVersion || '0.0';
-    
-    // This language will be used as a fallback when a translation isn't found in the current language
-    this.translateService.setDefaultLang('en');
 
     this.webSocketOpen = openlpService.webSocketStatus === WebSocketStatus.Open;
     // Try to force websocket reconnection as user is now focused on window and will try to interact soon
@@ -67,6 +64,8 @@ export class AppComponent implements OnInit {
           this.openlpService.getLanguage().subscribe(res => {
             this.translateService.use(res.language);
           });
+        } else {
+          this.translateService.use('default');
         }
         this.useShortcutsFromOpenlp = this.openlpService.assertApiVersionMinimum(2, 5)
         this.shortcutsService.getShortcuts(this.useShortcutsFromOpenlp);
