@@ -2840,6 +2840,13 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.1.tgz#621270c02c0a5d4f4669eb1caa9723c91cf201de"
   integrity sha512-dzJtaDAAoXx4GCOJpbB2eG/Qj8VDpdwkLsWGzGm+0L7E8/434RyMbAHmk9ubXWVAb9nXmc44jUf8GKqVDiKezg==
 
+"@transifex/api@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@transifex/api/-/api-7.1.0.tgz#aa0f3f3fb1764bad6d46c44ec04d8f41c3cb3b7a"
+  integrity sha512-qXH1H8+7nDj4KcNlcxzpU9DGj6WSfap4EgSEQnF2ALRsyHAdfg49ne1+I7aBFaqdnR3tsFK6KTr/lVUCybUmLQ==
+  dependencies:
+    core-js "^3.35.0"
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.11.tgz#6ee46400685f130e278128c7b38b7e031ff5b2f2"
@@ -3665,7 +3672,7 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@^1.6.0:
+axios@^1.6.0, axios@^1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
