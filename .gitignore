@@ -25,6 +25,7 @@
 !.vscode/extensions.json
 
 # misc
+/.nx
 /.sass-cache
 /connect.lock
 /coverage
