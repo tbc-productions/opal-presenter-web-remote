@@ -1,23 +1,58 @@
 const fs = require('fs');
 const process = require('process');
 const path = require('path');
+const { parseArgs } = require('util');
 const { transifexApi } = require('@transifex/api');
 const axios = require('axios');
 
-// Exit early if the auth token is not set
-if (!process.env.TX_TOKEN) {
-  console.log("TX_TOKEN is not set");
-  process.exit(1);
-}
 
-// Check if there is an argument
-if (process.argv.length < 3 || (process.argv[2] != 'upload' && process.argv[2] != 'download')) {
-  console.log("Action is not valid, please use either 'upload' or 'download'");
-  process.exit(1);
-}
+// Parse the command line arguments
+function parseCliArgs() {
+  const options = {
+    token: {
+      type: 'string',
+      short: 't'
+    },
+    verbose: {
+      type: 'boolean',
+      short: 'v',
+      default: false
+    },
+    help: {
+      type: 'boolean',
+      short: 'h',
+      default: false
+    }
+  };
+  const { values, positionals } = parseArgs({options: options, allowPositionals: true});
+  if (values.help) {
+    console.log(`usage: tx [-h|--help] [-v|--verbose] [-t|--token TOKEN] <action>
 
-// Set up the Transifex API
-transifexApi.setup({auth: process.env.TX_TOKEN});
+positional arguments:
+  action                the action to perform, one of 'upload' or 'download'
+
+options:
+  -h, --help            show this help message and exit
+  -e, --verbose         show extra logging messages
+  -t TOKEN, --token TOKEN
+                        specify a Transifex API token, can also use the TX_TOKEN environment variable
+`);
+    process.exit(0);
+  }
+
+  if (!values.token && !process.env.TX_TOKEN) {
+    console.error("ERROR: Neither --token nor TX_TOKEN was set");
+    process.exit(1);
+  }
+  else if (!values.token && process.env.TX_TOKEN) {
+    values.token = process.env.TX_TOKEN;
+  }
+  if (positionals.length < 1 || (positionals[0] != 'upload' && positionals[0] != 'download')) {
+    console.error("ERROR: Action is not valid, please use either 'upload' or 'download'");
+    process.exit(1);
+  }
+  return {token: values.token, action: positionals[0], verbose: values.verbose};
+}
 
 
 function getPercentage(attributes) {
@@ -25,13 +60,15 @@ function getPercentage(attributes) {
 }
 
 
-async function uploadFiles(resource, languages) {
+async function uploadFiles(resource, languages, verbose) {
   for (const lang of languages) {
     const filename = path.join('src', 'assets', 'i18n', `${lang.attributes.code}.json`)
     if (!fs.existsSync(filename)) {
       continue;
     }
-    console.log(`Reading ${lang.attributes.code}.json...`);
+    if (verbose) {
+      console.log(`Reading ${lang.attributes.code}.json...`);
+    }
     const content = fs.readFileSync(filename);
     console.log(`Uploading ${lang.attributes.code}.json...`);
     await transifexApi.ResourceTranslationsAsyncUpload.upload({
@@ -42,9 +79,11 @@ async function uploadFiles(resource, languages) {
   }
 }
 
-async function downloadFiles(org, project, resource, languages) {
+async function downloadFiles(org, project, resource, languages, verbose) {
   for (const lang of languages) {
-    console.log(`Checking completeness of ${lang.attributes.code}.json...`);
+    if (verbose) {
+      console.log(`Checking completeness of ${lang.attributes.code}.json...`);
+    }
     const trs = await transifexApi.ResourceLanguageStats.get({
       project: project,
       resource: resource,
@@ -69,18 +108,26 @@ async function downloadFiles(org, project, resource, languages) {
 }
 
 async function main() {
-  console.log('Fetching organization, project and languages...');
+  // Parse the command line arguments
+  const { token, action, verbose } = parseCliArgs();
+
+  // Set up the Transifex API
+  transifexApi.setup({auth: token});
+
+  if (verbose) {
+    console.log('Fetching organization, project and languages...');
+  }
   const org = await transifexApi.Organization.get({slug: 'openlp'});
   const projects = await org.fetch('projects');
   const proj = await projects.get({slug: 'web-remote'});
   const resource = await transifexApi.Resource.get({project: proj, slug: 'i18n-strings'});
   const languages = await proj.fetch('languages');
   await languages.fetch();
-  if (process.argv[2] == 'upload') {
-    await uploadFiles(resource, languages.data);
+  if (action == 'upload') {
+    await uploadFiles(resource, languages.data, verbose);
   }
-  else if (process.argv[2] == 'download') {
-    await downloadFiles(org, proj, resource, languages.data);
+  else if (action == 'download') {
+    await downloadFiles(org, proj, resource, languages.data, verbose);
   }
 }
 
