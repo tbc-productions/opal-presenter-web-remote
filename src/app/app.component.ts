@@ -20,7 +20,7 @@ import * as supportedBrowsers from '../assets/supportedBrowsers';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   // Make DisplayMode enum visible to html code
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   constructor(private translateService: TranslateService, private pageTitleService: PageTitleService,
               private openlpService: OpenLPService, private dialog: MatDialog, private bottomSheet: MatBottomSheet,
               private windowRef: WindowRef, private shortcutsService: ShortcutsService, private settingsService: SettingsService) {
-    this.pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle.toUpperCase());
+    this.pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
     this.openlpService.stateChanged$.subscribe(item => this.state = item);
     this.openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
     this.shortcutsService.shortcutsChanged$.subscribe(shortcuts => this.addShortcuts(shortcuts));

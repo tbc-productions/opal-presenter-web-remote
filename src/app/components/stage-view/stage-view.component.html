@@ -4,49 +4,67 @@
   [style.--openlp-stage-font-scale]="fontScale">
   <div class="overlay-content">
     <div class="tags">
-      <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
+      @for (tag of tags; track tag) {
+        <span [class.active]="tag.active">{{ tag.text }}</span>
+      }
     </div>
     <div class="container">
-      <app-stage-view-item [slide]="currentSlides[activeSlide]" [active]="true"></app-stage-view-item>
+      <app-stage-view-item
+        [slide]="currentSlides[activeSlide]"
+        [active]="true">
+      </app-stage-view-item>
       <div class="nextSlides">
-        <app-stage-view-item [slide]="slide" *ngFor="let slide of nextSlides; trackBy: trackByIndex"></app-stage-view-item>
+        @for (slide of nextSlides; track trackByIndex) {
+          <app-stage-view-item [slide]="slide">
+          </app-stage-view-item>
+        }
       </div>
     </div>
   </div>
   <div class="toolbar">
-    <a *ngIf="!embedded"
-      class="back-button"
-      mat-mini-fab color=""
-      routerLink="/"
-      matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
-      <mat-icon>arrow_back</mat-icon>
-    </a>
-    <button *ngIf="showNotes"
-      mat-mini-fab
-      class="show-notes"
-      matTooltip="{{ 'HIDE_NOTES' | translate }}"
-      [color]="primary"
-      [class.show-notes-disabled]="false"
-      (click)="showNotes = false">
-      <mat-icon>sticky_note_2</mat-icon>
-    </button>
-    <button *ngIf="!showNotes"
-      mat-mini-fab
-      class="show-notes"
-      matTooltip="{{ 'SHOW_NOTES' | translate }}"
-      [color]=""
-      [class.show-notes-disabled]="true"
-      (click)="showNotes = true">
-      <mat-icon>sticky_note_2</mat-icon>
-    </button>
-    <div *ngIf="!embedded && activeSlide+1 === currentSlides.length"
-      class="next-service-item"
-      matTooltip="{{ 'NEXT_ITEM' | translate }}">
-      {{ nextServiceItemTitle }}
-    </div>
+    @if (!embedded) {
+      <a
+        class="back-button"
+        mat-mini-fab color=""
+        routerLink="/"
+        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+    }
+    @if (showNotes) {
+      <button
+        mat-mini-fab
+        class="show-notes"
+        matTooltip="{{ 'HIDE_NOTES' | translate }}"
+        color="primary"
+        [class.show-notes-disabled]="false"
+        (click)="showNotes = false">
+        <mat-icon>sticky_note_2</mat-icon>
+      </button>
+    }
+    @else {
+      <button
+        mat-mini-fab
+        class="show-notes"
+        matTooltip="{{ 'SHOW_NOTES' | translate }}"
+        color=""
+        [class.show-notes-disabled]="true"
+        (click)="showNotes = true">
+        <mat-icon>sticky_note_2</mat-icon>
+      </button>
+    }
+    @if (!embedded && activeSlide+1 === currentSlides.length) {
+      <div
+        class="next-service-item"
+        matTooltip="{{ 'NEXT_ITEM' | translate }}">
+        {{ nextServiceItemTitle }}
+      </div>
+    }
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
   </div>
-  <div class="sidebar" *ngIf="(showNotes || embedded) && notes">
-    <div class="notes" [innerHTML]="notes|nl2br"></div>
-  </div>
+  @if ((showNotes || embedded) && notes) {
+    <div class="sidebar">
+      <div class="notes" [innerHTML]="notes|nl2br"></div>
+    </div>
+  }
 </div>

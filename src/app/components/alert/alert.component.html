@@ -1,14 +1,16 @@
 <h3>{{ 'SEND_AN_ALERT' | translate }}</h3>
 <form #alertForm="ngForm">
   <mat-form-field>
-    <input matInput
+    <input
+      matInput
       [(ngModel)]="alert"
       type="text"
       name="alert"
       placeholder="{{ 'ALERT' | translate }}" 
       required>
   </mat-form-field>
-  <button mat-raised-button color="primary"
+  <button
+    mat-raised-button color="primary"
     id="sendButton"
     [disabled]="!alertForm.form.valid"
     (click)="onSubmit(); alertForm.reset()">

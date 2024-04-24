@@ -63,8 +63,9 @@ export interface ServiceItem {
 }
 
 export interface Theme {
-  selected: boolean;
   name: string;
+  selected: boolean;
+  thumbnail: object;
 }
 
 export interface Language {

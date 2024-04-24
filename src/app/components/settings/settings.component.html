@@ -1,64 +1,70 @@
 <div class="settings-panel">
-    <mat-card>
-        <mat-card-header>
-            {{ 'USER_INTERFACE' | translate }}
-        </mat-card-header>
-        <mat-card-content>
-            <div class="settings-item">
-                <mat-slide-toggle
-                    color="primary"
-                    [checked]="settings.fastSwitching"
-                    (change)="setSetting('fastSwitching', $event.checked)">
-                    {{ 'ENABLE_FAST_SWITCHING_PANEL' | translate }}
-                </mat-slide-toggle>
-            </div>
-            <div class="settings-item">
-                <mat-slide-toggle
-                    color="primary"
-                    [checked]="settings.bigDisplayButtons"
-                    (change)="setSetting('bigDisplayButtons', $event.checked)">
-                    {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate }}
-                </mat-slide-toggle>
-            </div>
-        </mat-card-content>
+  <mat-card>
+    <mat-card-header>
+      {{ 'USER_INTERFACE' | translate }}
+    </mat-card-header>
+    <mat-card-content>
+      <div class="settings-item">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="settings.fastSwitching"
+          (change)="setSetting('fastSwitching', $event.checked)">
+          {{ 'ENABLE_FAST_SWITCHING_PANEL' | translate }}
+        </mat-slide-toggle>
+      </div>
+      <div class="settings-item">
+         <mat-slide-toggle
+            color="primary"
+            [checked]="settings.bigDisplayButtons"
+            (change)="setSetting('bigDisplayButtons', $event.checked)">
+            {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate }}
+          </mat-slide-toggle>
+        </div>
+      </mat-card-content>
     </mat-card>
     <mat-card>
-        <mat-card-header>
-            {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate }}
-        </mat-card-header>
-        <mat-card-content>
-            <mat-tab-group>
-                <mat-tab label="{{ 'STAGE' | translate }}">
-                    <ng-template matTabContent>
-                        <ng-container>
-                            <openlp-stage-chord-preview stageType="stage"></openlp-stage-chord-preview>
-                            <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'stage'}"></ng-container>
-                        </ng-container>
-                    </ng-template>
-                </mat-tab>
-                <mat-tab label="{{ 'CHORDS' | translate }}">
-                    <ng-template matTabContent>
-                        <openlp-stage-chord-preview stageType="chords"></openlp-stage-chord-preview>
-                        <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'chords'}"></ng-container>
-                    </ng-template>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card-content>
+      <mat-card-header>
+        {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate }}
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="{{ 'STAGE' | translate }}">
+             <ng-template matTabContent>
+                <ng-container>
+                   <openlp-stage-chord-preview stageType="stage">
+                   </openlp-stage-chord-preview>
+                   <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'stage'}">
+                   </ng-container>
+                 </ng-container>
+             </ng-template>
+          </mat-tab>
+          <mat-tab label="{{ 'CHORDS' | translate }}">
+            <ng-template matTabContent>
+              <openlp-stage-chord-preview stageType="chords">
+              </openlp-stage-chord-preview>
+              <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'chords'}">
+              </ng-container>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
     </mat-card>
 </div>
-<ng-template #stageSettings let-prefix="prefix">
-    <div class="stage-settings">
-        <div class="settings-item">
-            <label>{{ 'FONT_SCALE' | translate }}: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
-            <mat-slider
-                min="25"
-                max="200"
-                step="6.25">
-                <input
-                    matSliderThumb
-                    [value]="settings[prefix + 'FontScale']"
-                    (valueChange)="setSetting(prefix + 'FontScale', $event)">
-            </mat-slider>
-        </div>
+<ng-template
+  #stageSettings
+  let-prefix="prefix">
+  <div class="stage-settings">
+    <div class="settings-item">
+      <label>{{ 'FONT_SCALE' | translate }}: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
+      <mat-slider
+         min="25"
+         max="200"
+         step="6.25">
+         <input
+            matSliderThumb
+            [value]="settings[prefix + 'FontScale']"
+            (valueChange)="setSetting(prefix + 'FontScale', $event)">
+      </mat-slider>
     </div>
+  </div>
 </ng-template>

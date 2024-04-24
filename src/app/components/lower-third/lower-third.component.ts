@@ -8,7 +8,7 @@ import { ServiceItem, Slide } from '../../responses';
 @Component({
   selector: 'app-lower-third',
   templateUrl: './lower-third.component.html',
-  styleUrls: ['./lower-third.component.scss'],
+  styleUrl: './lower-third.component.scss',
   encapsulation: ViewEncapsulation.None
 })
 export class LowerThirdComponent implements OnInit, OnDestroy {

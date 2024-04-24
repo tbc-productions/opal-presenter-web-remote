@@ -5,7 +5,7 @@ import { OpenLPService } from '../../../openlp.service';
 @Component({
   selector: 'openlp-search-options',
   templateUrl: './search-options.component.html',
-  styleUrls: ['./search-options.component.scss'],
+  styleUrl: './search-options.component.scss',
   providers: [OpenLPService]
 })
 export class SearchOptionsComponent {

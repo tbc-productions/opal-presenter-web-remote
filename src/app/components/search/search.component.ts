@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
@@ -8,7 +9,7 @@ import { SearchOptionsComponent } from './search-options/search-options.componen
 @Component({
   selector: 'openlp-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrl: './search.component.scss',
   providers: [OpenLPService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
@@ -20,9 +21,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public displaySearchOptions = false;
   @ViewChild(SearchOptionsComponent, {static: false}) searchOptions: SearchOptionsComponent;
 
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService,
-              private cdr: ChangeDetectorRef) {
-    pageTitleService.changePageTitle('Search');
+  constructor(
+    private pageTitleService: PageTitleService,
+    private openlpService: OpenLPService,
+    private cdr: ChangeDetectorRef,
+    private translateService: TranslateService) {
+      this.translateService.get('SEARCH').subscribe(res => {
+        this.pageTitleService.changePageTitle(res);
+      });
   }
 
   onSubmit() {

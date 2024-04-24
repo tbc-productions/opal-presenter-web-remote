@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
@@ -8,7 +9,7 @@ import { ServiceItem } from '../../responses';
 @Component({
   selector: 'openlp-service',
   templateUrl: './service.component.html',
-  styleUrls: ['./service.component.scss'],
+  styleUrl: './service.component.scss',
 })
 
 export class ServiceComponent {
@@ -19,8 +20,13 @@ export class ServiceComponent {
     }
   }
 
-  constructor(protected pageTitleService: PageTitleService, protected openlpService: OpenLPService,
-              protected router: Router) {
-    pageTitleService.changePageTitle('Service');
+  constructor(
+    protected pageTitleService: PageTitleService,
+    protected openlpService: OpenLPService,
+    protected router: Router,
+    private translateService: TranslateService) {
+    this.translateService.get('SERVICE').subscribe(res => {
+      this.pageTitleService.changePageTitle(res);
+    });
   }
 }

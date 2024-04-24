@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
+import { Theme } from '../../responses';
 
 @Component({
   selector: 'openlp-themes',
   templateUrl: './themes.component.html',
-  styleUrls: ['./themes.component.scss'],
+  styleUrl: './themes.component.scss',
   providers: [OpenLPService]
 })
 export class ThemesComponent implements OnInit {
@@ -13,8 +16,13 @@ export class ThemesComponent implements OnInit {
   private _themeList = [];
   private _themeLevel = null;
 
-  constructor(private pageTitleService: PageTitleService, private openlpService: OpenLPService) {
-    pageTitleService.changePageTitle('Themes');
+  constructor(
+    private pageTitleService: PageTitleService,
+    private openlpService: OpenLPService,
+    private translateService: TranslateService) {
+    this.translateService.get('THEMES').subscribe(res => {
+      this.pageTitleService.changePageTitle(res);
+    });
   }
 
   ngOnInit() {
@@ -22,7 +30,7 @@ export class ThemesComponent implements OnInit {
     this.getThemes();
   }
 
-  get themeList(): Array<string> {
+  get themeList(): Array<Theme> {
     return this._themeList;
   }
 

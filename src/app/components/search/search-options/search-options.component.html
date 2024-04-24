@@ -1,8 +1,16 @@
 <mat-form-field >
-  <mat-select [(ngModel)]="selectedSearchOption" (selectionChange)="setSearchOption($event)" name="selectedSearchOption" [placeholder]="searchOptionsTitle">
-    <mat-option *ngFor="let option of searchOptions" name="searchOptions" [value]="option">
-      {{option}}
-    </mat-option>
+  <mat-select
+    [(ngModel)]="selectedSearchOption"
+    (selectionChange)="setSearchOption($event)"
+    name="selectedSearchOption"
+    [placeholder]="searchOptionsTitle">
+    @for (option of searchOptions; track option) {
+      <mat-option
+        name="searchOptions"
+        [value]="option">
+        {{ option }}
+      </mat-option>
+    }
   </mat-select>
 </mat-form-field>
 <br>

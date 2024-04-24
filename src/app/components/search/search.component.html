@@ -1,10 +1,18 @@
 <h3>Search</h3>
 <form #searchForm="ngForm">
   <mat-form-field>
-    <mat-select [(ngModel)]="selectedPlugin" (selectionChange)="onPluginChange()" name="selectedPlugin" placeholder="Search for:">
-      <mat-option *ngFor="let plugin of searchPlugins" name="searchPlugins" [value]="plugin.key">
-        {{plugin.name}}
-      </mat-option>
+    <mat-select
+      [(ngModel)]="selectedPlugin"
+      (selectionChange)="onPluginChange()"
+      name="selectedPlugin"
+      placeholder="Search for:">
+      @for (plugin of searchPlugins; track plugin.name) {
+        <mat-option
+          name="searchPlugins"
+          [value]="plugin.key">
+          {{ plugin.name }}
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
   <br>
@@ -12,36 +20,53 @@
     <openlp-search-options></openlp-search-options>
   </div>
   <mat-form-field>
-    <input matInput [(ngModel)]="searchText" name="searchText" placeholder="{{ 'SEARCH_TEXT' | translate }}" required>
+    <input
+      matInput
+      [(ngModel)]="searchText"
+      name="searchText"
+      placeholder="{{ 'SEARCH_TEXT' | translate }}"
+      required>
   </mat-form-field>
   <br>
-  <button mat-raised-button id="searchButton"
+  <button
+    mat-raised-button
+    id="searchButton"
     color="primary"
     [disabled]="!searchForm.form.valid"
     (click)="onSubmit()">
     {{ 'SEARCH' | translate }}
   </button>
 </form>
-<div *ngIf="searchResults">
-  <h3>{{ 'SEARCH_RESULTS' | translate }}:</h3>
-  <div *ngIf="!searchResults.length">
-    {{ 'NO_SEARCH_RESULTS' | translate }}...
+@if (searchResults) {
+  <div>
+    <h3>{{ 'SEARCH_RESULTS' | translate }}:</h3>
+    @if (searchResults.length) {
+      <table>
+        @for (item of searchResults; track item) {
+          <tr>
+            <td>{{ item[1] }}</td>
+            <td>
+              <button
+                mat-button color="primary"
+                (click)="addToService(item[0])">
+                {{ 'ADD_TO_SERVICE' | translate }}
+              </button>
+            </td>
+            <td>
+              <button
+                mat-button color="accent"
+                (click)="sendLive(item[0])">
+                {{ 'SEND_LIVE' | translate }}
+              </button>
+            </td>
+          </tr>
+        }
+      </table>
+    }
+    @else {
+      <div>
+        {{ 'NO_SEARCH_RESULTS' | translate }}...
+      </div>
+    }
   </div>
-  <table *ngIf="searchResults.length">
-    <tr *ngFor="let item of searchResults">
-      <td>{{item[1]}}</td>
-      <td>
-        <button mat-button color="primary"
-          (click)="addToService(item[0])">
-          {{ 'ADD_TO_SERVICE' | translate }}
-        </button>
-      </td>
-      <td>
-        <button mat-button color="accent"
-          (click)="sendLive(item[0])">
-          {{ 'SEND_LIVE' | translate }}
-        </button>
-      </td>
-    </tr>
-  </table>
-</div>
+}

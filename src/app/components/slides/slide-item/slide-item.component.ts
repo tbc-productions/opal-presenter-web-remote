@@ -4,7 +4,7 @@ import { Slide } from '../../../responses';
 @Component({
   selector: 'openlp-slide-item',
   templateUrl: './slide-item.component.html',
-  styleUrls: ['./slide-item.component.scss'],
+  styleUrl: './slide-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

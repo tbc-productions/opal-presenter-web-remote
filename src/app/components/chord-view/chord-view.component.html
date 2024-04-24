@@ -1,53 +1,74 @@
 <div
   class="overlay"
   [class.embedded]="embedded"
-  [style.--openlp-stage-font-scale]="fontScale"
->
+  [style.--openlp-stage-font-scale]="fontScale">
   <div class="overlay-content">
     <div class="tags">
-      <span *ngFor="let tag of tags" [class.active]="tag.active">{{ tag.text }}</span>
+      @for (tag of tags; track tag) {
+        <span [class.active]="tag.active">{{ tag.text }}</span>
+      }
     </div>
     <div class="container">
-      <app-chord-view-item
-        [slide]="currentSlides[activeSlide]"
-        [active]="true"
-        *ngIf="currentSlides[activeSlide]?.chords; else elseSlideNoChords"
-      ></app-chord-view-item>
-      <ng-template #elseSlideNoChords>
-        <app-stage-view-item [slide]="currentSlides[activeSlide]" [active]="true"></app-stage-view-item>
-      </ng-template>
+      @if (currentSlides[activeSlide]?.chords) {
+        <app-chord-view-item
+          [slide]="currentSlides[activeSlide]"
+          [active]="true">
+        </app-chord-view-item>
+      }
+      @else {
+        <app-stage-view-item
+          [slide]="currentSlides[activeSlide]"
+          [active]="true">
+        </app-stage-view-item>
+      }
       <div class="nextSlides">
-        <ng-container *ngFor="let slide of nextSlides; trackBy: trackByIndex">
-          <app-chord-view-item [slide]="slide" *ngIf="slide?.chords; else elseNextSlideNoChords"></app-chord-view-item>
-          <ng-template #elseNextSlideNoChords>
-            <app-stage-view-item [slide]="slide"></app-stage-view-item>
-          </ng-template>
-        </ng-container>
+        @for (slide of nextSlides; track trackByIndex) {
+          <ng-container>
+            @if (slide?.chords) {
+              <app-chord-view-item
+                [slide]="slide">
+              </app-chord-view-item>
+            }
+            @else {
+              <app-stage-view-item
+                [slide]="slide">
+              </app-stage-view-item>
+            }
+          </ng-container>
+        }
       </div>
     </div>
   </div>
   <div class="toolbar">
-    <a *ngIf="!embedded"
-      mat-mini-fab color=""
-      class="back-button"
-      routerLink="/"
-      matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
-      <mat-icon>arrow_back</mat-icon>
-    </a>
+    @if (!embedded) {
+      <a
+        mat-mini-fab color=""
+        class="back-button"
+        routerLink="/"
+        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+    }
     <div class="transpose">
-      <button mat-icon-button (click)="transposeDown()">
+      <button
+        mat-icon-button
+        (click)="transposeDown()">
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <span>{{ transposeLevel }}</span>
-      <button mat-icon-button (click)="transposeUp()">
+      <button
+        mat-icon-button
+        (click)="transposeUp()">
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
-    <div *ngIf="!embedded && activeSlide+1 === currentSlides.length"
-      class="next-service-item"
-      matTooltip="{{ 'NEXT_ITEM' | translate }}">
-      {{ nextServiceItemTitle }}
-    </div>
+    @if (!embedded && activeSlide+1 === currentSlides.length) {
+      <div
+        class="next-service-item"
+        matTooltip="{{ 'NEXT_ITEM' | translate }}">
+        {{ nextServiceItemTitle }}
+      </div>
+    }
     <div class="time">{{ (openlpService.getIsTwelveHourTime()) ? (time|date:'h:mm a') : (time|date:'HH:mm') }}</div>
   </div>
 </div>
