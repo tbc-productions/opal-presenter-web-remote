@@ -5,7 +5,7 @@ import { ServiceItem } from '../../../responses';
 @Component({
   selector: 'openlp-service-item',
   templateUrl: './service-item.component.html',
-  styleUrls: ['./service-item.component.scss'],
+  styleUrl: './service-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

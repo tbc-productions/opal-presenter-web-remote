@@ -1,22 +1,29 @@
-<ng-container *ngIf="items?.length; else noServiceItems">
-  <openlp-service-item
-    *ngFor="let item of items"
-    [item]="item"
-    [selected]="item.selected"
-    (selectItem)="onItemSelected($event)"
-    [tabindex]="item.id"></openlp-service-item>
-</ng-container>
-<ng-template #noServiceItems>
-  <div class="no-items" *ngIf="!loading">
+@if (items?.length) {
+  <ng-container>
+    @for (item of items; track item) {
+      <openlp-service-item
+        [item]="item"
+        [selected]="item.selected"
+        (selectItem)="onItemSelected($event)"
+        [tabindex]="item.id">
+      </openlp-service-item>
+    }
+  </ng-container>
+}
+@else if (!loading) {
+  <div class="no-items">
     <div class="no-items-title">
       <span class="material-icons icon">info</span>
       {{ 'NO_SERVICE_ITEMS' | translate }}.
     </div>
     <div class="no-items-actions">
-      <a routerLink="/search" mat-stroked-button color="primary" size="small">
+      <a
+        routerLink="/search"
+        mat-stroked-button color="primary"
+        size="small">
         <span class="material-icons">add</span>
         {{ 'ADD_ITEM' | translate }}
       </a>
     </div>
   </div>
-</ng-template>
+}

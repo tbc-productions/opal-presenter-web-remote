@@ -3,6 +3,7 @@
   "ADD_ITEM_TO_SERVICE": "Voeg Item Toe aan Liturgie",
   "ADD_TO_SERVICE": "Voeg Toe aan Liturgie",
   "ALERT": "Waarschuwing",
+  "ALERT_SUBMITTED": "Waarschuwing Verstuurd",
   "ALERTS": "Waarschuwingen",
   "CHANGE_DISPLAY_MODE": "Wijzig Weergave",
   "CHORD_VIEW": "Akkoordenscherm",
@@ -46,7 +47,7 @@
   "STAGE_VIEW": "Podiumscherm",
   "THEMES": "Thema's",
   "THEME_LEVEL": "Thema Niveau",
-  "THEME_OPTIONS": "Theme Opties",
+  "THEME_OPTIONS": "Thema Opties",
   "USER_NAME": "Gebruikersnaam",
   "USER_INTERFACE": "Gebruikersinterface"
 }

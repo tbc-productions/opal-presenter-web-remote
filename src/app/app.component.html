@@ -1,23 +1,35 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="menu.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="menu.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <span class="page-title">{{ pageTitle | translate }}</span>
     <span class="spacer"></span>
-    <button *ngIf="showLogin" mat-button (click)="login()">{{ 'LOGIN' | translate }}</button>
-    <button *ngIf="webSocketOpen"
-      mat-icon-button
-      (click)="forceWebSocketReconnection()"
-      class="connection-status"
-      matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate }}">
-      <mat-icon *ngIf="webSocketOpen">link</mat-icon>
-    </button>
-    <button *ngIf="!webSocketOpen"
-      mat-icon-button
-      (click)="forceWebSocketReconnection()"
-      class="connection-status"
-      matTooltip="{{ 'DISCONNECTED' | translate }}">
-      <mat-icon *ngIf="!webSocketOpen">link_off</mat-icon>
-    </button>
+    @if (showLogin) {
+      <button 
+        mat-button
+        (click)="login()">
+        {{ 'LOGIN' | translate }}
+      </button>
+    }
+    @if (webSocketOpen) {
+      <button
+        mat-icon-button
+        (click)="forceWebSocketReconnection()"
+        class="connection-status"
+        matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate }}">
+        <mat-icon>link</mat-icon>
+      </button>
+    }
+    @else {
+      <button
+        mat-icon-button
+        (click)="forceWebSocketReconnection()"
+        class="connection-status"
+        matTooltip="{{ 'DISCONNECTED' | translate }}">
+        <mat-icon>link_off</mat-icon>
+      </button>
+    }
     <span class="app-version">v{{appVersion}}</span>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -92,188 +104,214 @@
     </main>
     <!-- These two toolbars are for padding the content so the real toolbars do not block content when scrolled down -->
     <mat-toolbar class="toolbar-padding"></mat-toolbar>
-    <mat-toolbar *ngIf="fastSwitching" class="toolbar-padding"></mat-toolbar>
+    @if (fastSwitching) {
+      <mat-toolbar class="toolbar-padding"></mat-toolbar>
+    }
     <footer>
       <mat-toolbar class="footer">
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="previousItem()"
-          matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>first_page</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="previousItem()"
-          matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>first_page</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="nextItem()"
-          matTooltip="{{ 'NEXT_ITEM' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>last_page</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="nextItem()"
-          matTooltip="{{ 'NEXT_ITEM' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>last_page</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="previousSlide()"
-          matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>navigate_before</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="previousSlide()"
-          matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>navigate_before</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="nextSlide()"
-          matTooltip="{{ 'NEXT_SLIDE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>navigate_next</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="nextSlide()"
-          matTooltip="{{ 'NEXT_SLIDE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>navigate_next</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          #squashedDisplayButton
-          (click)="openDisplayModeSelector()"
-          class="squashed-display-button"
-          matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
-          <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
-          <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
-          <mat-icon *ngIf="state.live()">videocam</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button
-          #squashedDisplayButton
-          (click)="openDisplayModeSelector()"
-          class="squashed-display-button"
-          matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon *ngIf="state.blank">videocam_off</mat-icon>
-          <mat-icon *ngIf="state.theme">wallpaper</mat-icon>
-          <mat-icon *ngIf="state.display">desktop_windows</mat-icon>
-          <mat-icon *ngIf="state.live()">videocam</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="blankDisplay()"
-          class="displayButton"
-          [class.active]="state.blank"
-          [disabled]="state.blank"
-          matTooltip="{{ 'SHOW_BLACK' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>videocam_off</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="blankDisplay()"
-          class="displayButton"
-          [class.active]="state.blank"
-          [disabled]="state.blank"
-          matTooltip="{{ 'SHOW_BLACK' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>videocam_off</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="themeDisplay()"
-          class="displayButton"
-          [class.active]="state.theme"
-          [disabled]="state.theme"
-          matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>wallpaper</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button
-          (click)="themeDisplay()"
-          class="displayButton"
-          [class.active]="state.theme"
-          [disabled]="state.theme"
-          matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>wallpaper</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="desktopDisplay()"
-          class="displayButton"
-          [class.active]="state.display"
-          [disabled]="state.display"
-          matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>desktop_windows</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="desktopDisplay()"
-          class="displayButton"
-          [class.active]="state.display"
-          [disabled]="state.display"
-          matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>desktop_windows</mat-icon>
-        </button>
-        <button *ngIf="bigDisplayButtons"
-          mat-fab color="primary"
-          (click)="showDisplay()"
-          class="displayButton"
-          [class.active]="state.display"
-          [disabled]="state.live()"
-          matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>videocam</mat-icon>
-        </button>
-        <button *ngIf="!bigDisplayButtons"
-          mat-icon-button (click)="showDisplay()"
-          class="displayButton"
-          [class.active]="state.display"
-          [disabled]="state.live()"
-          matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
-          matTooltipPosition="above">
-          <mat-icon>videocam</mat-icon>
-        </button>
+        @if (bigDisplayButtons) {
+          <button
+            mat-fab color="primary"
+            (click)="previousItem()"
+            matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>first_page</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="nextItem()"
+            matTooltip="{{ 'NEXT_ITEM' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>last_page</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="previousSlide()"
+            matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="nextSlide()"
+            matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            #squashedDisplayButton
+            (click)="openDisplayModeSelector()"
+            class="squashed-display-button"
+            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+            matTooltipPosition="above">
+            @if (state.blank) {
+              <mat-icon>videocam_off</mat-icon>
+            }
+            @else if (state.theme) {
+              <mat-icon>wallpaper</mat-icon>
+            }
+            @else if (state.display) {
+              <mat-icon>desktop_windows</mat-icon>
+            }
+            @else if (state.live) {
+              <mat-icon>videocam</mat-icon>
+            }
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="blankDisplay()"
+            class="displayButton"
+            [class.active]="state.blank"
+            [disabled]="state.blank"
+            matTooltip="{{ 'SHOW_BLACK' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>videocam_off</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="themeDisplay()"
+            class="displayButton"
+            [class.active]="state.theme"
+            [disabled]="state.theme"
+            matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>wallpaper</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="desktopDisplay()"
+            class="displayButton"
+            [class.active]="state.display"
+            [disabled]="state.display"
+            matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>desktop_windows</mat-icon>
+          </button>
+          <button
+            mat-fab color="primary"
+            (click)="showDisplay()"
+            class="displayButton"
+            [class.active]="state.display"
+            [disabled]="state.live"
+            matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>videocam</mat-icon>
+          </button>
+        }
+        @else {
+          <button
+            mat-icon-button
+            (click)="previousItem()"
+            matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+            matTooltipPosition="above"> 
+            <mat-icon>first_page</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="nextItem()"
+            matTooltip="{{ 'NEXT_ITEM' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>last_page</mat-icon>
+          </button>
+          <button
+            mat-icon-button (click)="previousSlide()"
+            matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button
+            mat-icon-button (click)="nextSlide()"
+            matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            #squashedDisplayButton
+            (click)="openDisplayModeSelector()"
+            class="squashed-display-button"
+            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+            matTooltipPosition="above">
+            @if (state.blank) {
+              <mat-icon>videocam_off</mat-icon>
+            }
+            @else if (state.theme) {
+              <mat-icon>wallpaper</mat-icon>
+            }
+            @else if (state.display) {
+              <mat-icon>desktop_windows</mat-icon>
+            }
+            @else if (state.live) {
+              <mat-icon>videocam</mat-icon>
+            }
+          </button>
+          <button
+            mat-icon-button (click)="blankDisplay()"
+            class="displayButton"
+            [class.active]="state.blank"
+            [disabled]="state.blank"
+            matTooltip="{{ 'SHOW_BLACK' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>videocam_off</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="themeDisplay()"
+            class="displayButton"
+            [class.active]="state.theme"
+            [disabled]="state.theme"
+            matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>wallpaper</mat-icon>
+          </button>
+          <button
+            mat-icon-button (click)="desktopDisplay()"
+            class="displayButton"
+            [class.active]="state.display"
+            [disabled]="state.display"
+            matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>desktop_windows</mat-icon>
+          </button>
+          <button
+            mat-icon-button (click)="showDisplay()"
+            class="displayButton"
+            [class.active]="state.display"
+            [disabled]="state.live"
+            matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+            matTooltipPosition="above">
+            <mat-icon>videocam</mat-icon>
+          </button>
+        }
       </mat-toolbar>
-      <nav *ngIf="fastSwitching"
-        mat-tab-nav-bar mat-stretch-tabs
-        class="fast-switcher"
-        [tabPanel]="tabPanel">
-        <a mat-tab-link
-          routerLink="/service"
-          routerLinkActive #serviceRoute="routerLinkActive"
-          [active]="serviceRoute.isActive"><mat-icon>list</mat-icon></a>
-        <a mat-tab-link
-          routerLink="/slides"
-          routerLinkActive #slidesRoute="routerLinkActive"
-          [active]="slidesRoute.isActive"><mat-icon>collections</mat-icon></a>
-        <a mat-tab-link
-          routerLink="/alerts"
-          routerLinkActive #alertsRoute="routerLinkActive"
-          [active]="alertsRoute.isActive"><mat-icon>error</mat-icon></a>
-        <a mat-tab-link
-          routerLink="/search"
-          routerLinkActive #searchRoute="routerLinkActive"
-          [active]="searchRoute.isActive"><mat-icon>search</mat-icon></a>
-        <a mat-tab-link
-          routerLink="/themes"
-          routerLinkActive #themesRoute="routerLinkActive"
-          [active]="themesRoute.isActive"><mat-icon>image</mat-icon></a>
-      </nav>
+      @if (fastSwitching) {
+        <nav
+          mat-tab-nav-bar mat-stretch-tabs
+          class="fast-switcher"
+          [tabPanel]="tabPanel">
+          <a mat-tab-link
+            routerLink="/service"
+            routerLinkActive #serviceRoute="routerLinkActive"
+            [active]="serviceRoute.isActive"><mat-icon>list</mat-icon></a>
+          <a mat-tab-link
+            routerLink="/slides"
+            routerLinkActive #slidesRoute="routerLinkActive"
+            [active]="slidesRoute.isActive"><mat-icon>collections</mat-icon></a>
+          <a mat-tab-link
+            routerLink="/alerts"
+            routerLinkActive #alertsRoute="routerLinkActive"
+            [active]="alertsRoute.isActive"><mat-icon>error</mat-icon></a>
+          <a mat-tab-link
+            routerLink="/search"
+            routerLinkActive #searchRoute="routerLinkActive"
+            [active]="searchRoute.isActive"><mat-icon>search</mat-icon></a>
+          <a mat-tab-link
+            routerLink="/themes"
+            routerLinkActive #themesRoute="routerLinkActive"
+            [active]="themesRoute.isActive"><mat-icon>image</mat-icon></a>
+        </nav>
+      }
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

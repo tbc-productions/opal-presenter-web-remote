@@ -10,17 +10,26 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="theme-container content" *ngIf="isThemeLevelSupported()">
-    <div *ngFor="let theme of themeList;">
-      <mat-card class="theme-card" (click)='setTheme(theme.name)' [class.selected]="theme.selected">
-        <mat-card-content>
-          <img [src]="theme.thumbnail"/>
-          <div class="theme-title">{{ theme.name }}</div>
-        </mat-card-content>
-      </mat-card>
+  @if (isThemeLevelSupported()) {
+    <div class="theme-container content">
+      @for (theme of themeList; track theme) {
+        <div>
+          <mat-card
+            class="theme-card"
+            (click)='setTheme(theme.name)'
+            [class.selected]="theme.selected">
+            <mat-card-content>
+              <img [src]="theme.thumbnail"/>
+              <div class="theme-title">{{ theme.name }}</div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
     </div>
-  </div>
-  <mat-error *ngIf="!isThemeLevelSupported()">
-    {{ 'SONG_LEVEL_THEME_CHANGING_NOT_SUPPORTED' | translate }}
-  </mat-error>
+  }
+  @else {
+    <mat-error>
+      {{ 'SONG_LEVEL_THEME_CHANGING_NOT_SUPPORTED' | translate }}
+    </mat-error>
+  }
 </form>

@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { OpenLPService } from '../../openlp.service';
 import { PageTitleService } from '../../page-title.service';
@@ -6,17 +7,19 @@ import { SettingsProperties, SettingsPropertiesItem, SettingsService } from '../
 
 @Component({
     selector: 'openlp-settings',
-    templateUrl: `./settings.component.html`,
-    styleUrls: [`./settings.component.scss`]
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent implements OnDestroy {
   constructor(
     protected pageTitleService: PageTitleService,
     protected openlpService: OpenLPService,
     protected settingsService: SettingsService,
-  ) {
+    private translateService: TranslateService) {
     this.settingsSubscription$ = settingsService.settingChanged$.subscribe(this._settingChanged);
-    pageTitleService.changePageTitle('Settings');
+    this.translateService.get('SETTINGS').subscribe(res => {
+      this.pageTitleService.changePageTitle(res);
+    });
   }
 
   protected settingsSubscription$: Subscription;
@@ -36,5 +39,4 @@ export class SettingsComponent implements OnDestroy {
   ngOnDestroy(): void {
       this.settingsSubscription$.unsubscribe();
   }
-
 }

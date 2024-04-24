@@ -17,7 +17,7 @@ import { SettingsProperties, SettingsService } from 'src/app/settings.service';
 @Component({
     selector: 'openlp-stage-chord-preview',
     templateUrl: './stage-chord-preview.component.html',
-    styleUrls: ['./stage-chord-preview.component.scss'],
+    styleUrl: './stage-chord-preview.component.scss',
 })
 export class StageChordPreviewComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
     constructor(

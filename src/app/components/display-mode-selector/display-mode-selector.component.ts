@@ -5,11 +5,11 @@ import { Display, DisplayMode } from 'src/app/responses';
 @Component({
     selector: 'openlp-display-mode-sheet',
     templateUrl: 'display-mode-selector.component.html',
-    styleUrls: ['./display-mode-selector.component.scss']
+    styleUrl: './display-mode-selector.component.scss'
   })
   export class DisplayModeSelectorComponent {
     // Make DisplayMode enum visible in HTML template.
-    DisplayMode = DisplayMode;
+    displayMode = DisplayMode;
 
     constructor(
       private bottomSheetRef: MatBottomSheetRef<DisplayModeSelectorComponent>,

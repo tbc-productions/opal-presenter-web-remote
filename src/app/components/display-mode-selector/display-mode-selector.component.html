@@ -1,84 +1,98 @@
-<mat-action-list *ngIf="!display.bigDisplayButtons">
-  <button mat-list-item
-    aria-labelledby="caption-blank"
-    class="display-button"
-    (click)="setMode(DisplayMode.Blank)"
-    [disabled]="displayMode === DisplayMode.Blank">
-    <mat-icon class="small-icon">videocam_off</mat-icon>
-    <span id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</span>
-  </button>
-  <button mat-list-item
-    aria-labelledby="caption-theme"
-    class="display-button"
-    (click)="setMode(DisplayMode.Theme)"
-    [disabled]="displayMode === DisplayMode.Theme">
-    <mat-icon class="small-icon">wallpaper</mat-icon>
-    <span id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</span>
-  </button>
-  <button mat-list-item
-    aria-labelledby="caption-desktop"
-    class="display-button"
-    (click)="setMode(DisplayMode.Desktop)"
-    [disabled]="displayMode === DisplayMode.Desktop">
-    <mat-icon class="small-icon">desktop_windows</mat-icon>
-    <span id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</span>
-  </button>
-  <button mat-list-item
-    aria-labelledby="caption-presentation"
-    class="display-button"
-    (click)="setMode(DisplayMode.Presentation)"
-    [disabled]="displayMode === DisplayMode.Presentation">
-    <mat-icon class="small-icon">videocam</mat-icon>
-    <span id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</span>
-  </button>
-</mat-action-list>
-<mat-grid-list *ngIf="display.bigDisplayButtons" cols="2" rowHeight="2:1">
-  <mat-grid-tile>
-    <button mat-fab color="primary"
+@if (display.bigDisplayButtons) {
+  <mat-grid-list
+    cols="2"
+    rowHeight="2:1">
+    <mat-grid-tile>
+      <button
+        mat-fab color="primary"
+        aria-labelledby="caption-blank"
+        class="display-button"
+        (click)="setMode(displayMode.Blank)"
+        [disabled]="display.displayMode === displayMode.Blank">
+        <mat-icon class="big-icon">videocam_off</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-fab color="primary"
+        aria-labelledby="caption-theme"
+        class="display-button"
+        (click)="setMode(displayMode.Theme)"
+        [disabled]="display.displayMode === displayMode.Theme">
+        <mat-icon class="big-icon">wallpaper</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-fab color="primary"
+        aria-labelledby="caption-desktop"
+        class="display-button"
+        (click)="setMode(displayMode.Desktop)"
+        [disabled]="display.displayMode === displayMode.Desktop">
+        <mat-icon class="big-icon">desktop_windows</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-fab color="primary"
+        aria-labelledby="caption-presentation"
+        class="display-button"
+        (click)="setMode(displayMode.Presentation)"
+        [disabled]="display.displayMode === displayMode.Presentation">
+        <mat-icon class="big-icon">videocam</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</div>
+    </mat-grid-tile>
+  </mat-grid-list>
+}
+@else {
+  <mat-action-list>
+    <button
+      mat-list-item
       aria-labelledby="caption-blank"
       class="display-button"
-      (click)="setMode(DisplayMode.Blank)"
-      [disabled]="displayMode === DisplayMode.Blank">
-      <mat-icon class="big-icon">videocam_off</mat-icon>
+      (click)="setMode(displayMode.Blank)"
+      [disabled]="display.displayMode === displayMode.Blank">
+      <mat-icon class="small-icon">videocam_off</mat-icon>
+      <span id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</span>
     </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button mat-fab color="primary"
+    <button
+      mat-list-item
       aria-labelledby="caption-theme"
       class="display-button"
-      (click)="setMode(DisplayMode.Theme)"
-      [disabled]="displayMode === DisplayMode.Theme">
-      <mat-icon class="big-icon">wallpaper</mat-icon>
+      (click)="setMode(displayMode.Theme)"
+      [disabled]="display.displayMode === displayMode.Theme">
+      <mat-icon class="small-icon">wallpaper</mat-icon>
+      <span id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</span>
     </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button mat-fab color="primary"
+    <button
+      mat-list-item
       aria-labelledby="caption-desktop"
       class="display-button"
-      (click)="setMode(DisplayMode.Desktop)"
-      [disabled]="displayMode === DisplayMode.Desktop">
-      <mat-icon class="big-icon">desktop_windows</mat-icon>
+      (click)="setMode(displayMode.Desktop)"
+      [disabled]="display.displayMode === displayMode.Desktop">
+      <mat-icon class="small-icon">desktop_windows</mat-icon>
+      <span id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</span>
     </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button mat-fab color="primary"
+    <button
+      mat-list-item
       aria-labelledby="caption-presentation"
       class="display-button"
-      (click)="setMode(DisplayMode.Presentation)"
-      [disabled]="displayMode === DisplayMode.Presentation">
-      <mat-icon class="big-icon">videocam</mat-icon>
+      (click)="setMode(displayMode.Presentation)"
+      [disabled]="display.displayMode === displayMode.Presentation">
+      <mat-icon class="small-icon">videocam</mat-icon>
+      <span id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</span>
     </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </mat-action-list>
+}

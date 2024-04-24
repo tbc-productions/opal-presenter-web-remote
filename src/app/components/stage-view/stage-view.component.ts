@@ -97,7 +97,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
   }
 
   setNewSlides(slides: Slide[], _currentSlide: number): void { /* eslint-disable-line @typescript-eslint/no-unused-vars */
-    if (slides.length === 0) {
+    if ((slides?.length ?? 0) === 0) {
       return;
     }
     this.currentSlides = slides;

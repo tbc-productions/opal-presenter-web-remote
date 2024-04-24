@@ -1,14 +1,18 @@
-<div class="stage-preview-container" #stageViewContainer>
+<div
+  class="stage-preview-container"
+  #stageViewContainer>
+  @if (stageType === 'stage') {
     <app-stage-view
-        #stageView
-        *ngIf="stageType === 'stage'"
-        [embedded]="true"
-        [style.--openlp-stage-font-scale]="fontScale"
-    ></app-stage-view>
+      #stageView
+      [embedded]="true"
+      [style.--openlp-stage-font-scale]="fontScale">
+    </app-stage-view>
+  }
+  @else if (stageType === 'chords') {
     <app-chord-view
-        #chordsView
-        *ngIf="stageType === 'chords'"
-        [embedded]="true"
-        [style.--openlp-stage-font-scale]="fontScale"
-    ></app-chord-view>
+      #chordsView
+      [embedded]="true"
+      [style.--openlp-stage-font-scale]="fontScale">
+    </app-chord-view>
+  }
 </div>
