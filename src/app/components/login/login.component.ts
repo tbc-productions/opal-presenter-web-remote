@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { OpenLPService } from '../../openlp.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   username: string;
   password: string;
   loginSucceededMessage: string;
@@ -29,17 +29,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // Do nothing
-  }
-
   performLogin() {
-    this.openlpService.login({username: this.username, password: this.password}).subscribe(
-      result => {
-        this.snackBar.open(this.loginSucceededMessage, '', {duration: 2000});
+    this.openlpService.login({ username: this.username, password: this.password }).subscribe({
+      next: result => {
+        this.snackBar.open(this.loginSucceededMessage, '', { duration: 2000 });
         this.dialogRef.close(result);
       },
-      () => this.snackBar.open(this.loginFailedMessage, '', {duration: 2000})
-    );
+      error: () => this.snackBar.open(this.loginFailedMessage, '', { duration: 2000 })
+    });
   }
 }
