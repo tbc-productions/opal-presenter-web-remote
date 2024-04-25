@@ -22,10 +22,10 @@ export class AlertComponent {
     private openlpService: OpenLPService,
     private snackBar: MatSnackBar,
     private translateService: TranslateService) {
-    this.translateService.get('ALERTS').subscribe(res => {
+    this.translateService.stream('ALERTS').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
-    this.translateService.get('ALERT_SUBMITTED').subscribe(res => {
+    this.translateService.stream('ALERT_SUBMITTED').subscribe(res => {
       this.alertMessage = res;
     });
   }

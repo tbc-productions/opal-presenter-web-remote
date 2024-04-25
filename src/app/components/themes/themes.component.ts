@@ -20,7 +20,7 @@ export class ThemesComponent implements OnInit {
     private pageTitleService: PageTitleService,
     private openlpService: OpenLPService,
     private translateService: TranslateService) {
-    this.translateService.get('THEMES').subscribe(res => {
+    this.translateService.stream('THEMES').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
   }

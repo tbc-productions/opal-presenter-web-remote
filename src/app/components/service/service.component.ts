@@ -25,7 +25,7 @@ export class ServiceComponent {
     protected openlpService: OpenLPService,
     protected router: Router,
     private translateService: TranslateService) {
-    this.translateService.get('SERVICE').subscribe(res => {
+    this.translateService.stream('SERVICE').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
   }

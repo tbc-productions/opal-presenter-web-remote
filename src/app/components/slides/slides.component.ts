@@ -16,7 +16,7 @@ export class SlidesComponent {
     protected pageTitleService: PageTitleService,
     protected openlpService: OpenLPService,
     private translateService: TranslateService) {
-    this.translateService.get('SLIDES').subscribe(res => {
+    this.translateService.stream('SLIDES').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
   }

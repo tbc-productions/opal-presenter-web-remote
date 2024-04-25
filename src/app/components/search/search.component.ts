@@ -26,9 +26,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     private openlpService: OpenLPService,
     private cdr: ChangeDetectorRef,
     private translateService: TranslateService) {
-      this.translateService.get('SEARCH').subscribe(res => {
-        this.pageTitleService.changePageTitle(res);
-      });
+    this.translateService.stream('SEARCH').subscribe(res => {
+      this.pageTitleService.changePageTitle(res);
+    });
   }
 
   onSubmit() {

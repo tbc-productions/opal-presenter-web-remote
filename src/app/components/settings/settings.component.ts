@@ -17,7 +17,7 @@ export class SettingsComponent implements OnDestroy {
     protected settingsService: SettingsService,
     private translateService: TranslateService) {
     this.settingsSubscription$ = settingsService.settingChanged$.subscribe(this._settingChanged);
-    this.translateService.get('SETTINGS').subscribe(res => {
+    this.translateService.stream('SETTINGS').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
   }
