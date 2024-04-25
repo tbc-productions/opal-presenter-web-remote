@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../../openlp.service';
 
@@ -12,15 +13,19 @@ export class SearchOptionsComponent {
   public selectedPlugin: string;
   public searchOptions: Array<string>;
   public selectedSearchOption: string;
-  public searchOptionsTitle = '';
+  public searchOptionsTitle: string;
 
-  constructor(private openlpService: OpenLPService) {}
+  constructor(
+    private openlpService: OpenLPService,
+    private translateService: TranslateService) { }
 
   // Used to display search-options for certain plugins
   onPluginChange(plugin) {
     this.selectedPlugin = plugin;
     if (this.selectedPlugin === 'bibles') {
-      this.searchOptionsTitle = 'Bible version:';
+      this.translateService.stream('BIBLE_VERSION').subscribe(res => {
+        this.searchOptionsTitle = res + ':';
+      });
       this.getSearchOptions();
     }
   }
