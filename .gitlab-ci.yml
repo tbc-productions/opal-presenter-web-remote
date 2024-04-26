@@ -33,7 +33,10 @@ test:
 build-branch:
   stage: build
   script:
-    - yarn install
+    # Temporarily install npm manually until we get it added to the runner image
+    - apk add npm
+    - yarn install --production
+    - npm install @angular/cli
     - yarn build --no-progress --configuration production --aot
     - export APP_VERSION=`git describe --dirty --tags --long --match '*[0-9]*'`
     - 'echo "window.appVersion = \"$APP_VERSION\";" > dist/web-remote/assets/version.js'
@@ -46,7 +49,10 @@ build-branch:
 build-tag:
   stage: build
   script:
-    - yarn install
+    # Temporarily install npm manually until we get it added to the runner image
+    - apk add npm
+    - yarn install --production
+    - npm install @angular/cli
     - yarn build --no-progress --configuration production --aot
     - 'echo "window.appVersion = \"$CI_COMMIT_TAG\";" > dist/web-remote/assets/version.js'
   artifacts:
