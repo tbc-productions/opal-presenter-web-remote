@@ -1,6 +1,16 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.19
+--------------
+
+* Hook Web Remote up to Transifex regarding the translations.
+* Add some missing translations.
+* Make sure that the English translation will function in Web Remote when version 3.1.2 or newer is installed.
+* The page title is not capitalized anymore.
+* Prevent a TypeError in the browser console when Settings is displayed and there are no live items.
+* Updated dependencies including Angular.
+
 Version 0.9.18
 --------------
 
