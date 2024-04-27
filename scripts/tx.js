@@ -70,7 +70,10 @@ async function pushSource(resource, verbose) {
   if (verbose) {
     console.log('Reading en.json...');
   }
-  const content = fs.readFileSync(filename);
+  let content = fs.readFileSync(filename);
+  let json = JSON.parse(content);
+  delete json._COMMENT;
+  content = JSON.stringify(json);
   console.log('Uploading en.json...');
   await transifexApi.ResourceStringsAsyncUpload.upload({
     resource: resource,
