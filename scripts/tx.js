@@ -5,6 +5,7 @@ const { parseArgs } = require('util');
 const { transifexApi } = require('@transifex/api');
 const axios = require('axios');
 
+const ACTIONS = ['push', 'upload', 'download'];
 
 // Parse the command line arguments
 function parseCliArgs() {
@@ -29,7 +30,7 @@ function parseCliArgs() {
     console.log(`usage: tx [-h|--help] [-v|--verbose] [-t|--token TOKEN] <action>
 
 positional arguments:
-  action                the action to perform, one of 'upload' or 'download'
+  action                the action to perform, one of 'push', 'upload' or 'download'
 
 options:
   -h, --help            show this help message and exit
@@ -47,8 +48,8 @@ options:
   else if (!values.token && process.env.TX_TOKEN) {
     values.token = process.env.TX_TOKEN;
   }
-  if (positionals.length < 1 || (positionals[0] != 'upload' && positionals[0] != 'download')) {
-    console.error("ERROR: Action is not valid, please use either 'upload' or 'download'");
+  if (positionals.length < 1 || !ACTIONS.includes(positionals[0])) {
+    console.error("ERROR: Action is not valid, please use one of " + ACTIONS.join(", "));
     process.exit(1);
   }
   return {token: values.token, action: positionals[0], verbose: values.verbose};
@@ -60,9 +61,26 @@ function getPercentage(attributes) {
 }
 
 
+async function pushSource(resource, verbose) {
+  const filename = path.join('src', 'assets', 'en.json');
+  if (!fs.existsSync(filename)) {
+    console.error(`Source file ${filename} does not exist!`);
+    process.exit(1);
+  }
+  if (verbose) {
+    console.log('Reading en.json...');
+  }
+  const content = fs.readFileSync(filename);
+  console.log('Uploading en.json...');
+  await transifexApi.ResourceStringsAsyncUpload.upload({
+    resource: resource,
+    content: content.toString()
+  });
+}
+
 async function uploadFiles(resource, languages, verbose) {
   for (const lang of languages) {
-    const filename = path.join('src', 'assets', 'i18n', `${lang.attributes.code}.json`)
+    const filename = path.join('src', 'assets', 'i18n', `${lang.attributes.code}.json`);
     if (!fs.existsSync(filename)) {
       continue;
     }
@@ -128,6 +146,9 @@ async function main() {
   }
   else if (action == 'download') {
     await downloadFiles(org, proj, resource, languages.data, verbose);
+  }
+  else if (action == 'push') {
+    await pushSource(resource, verbose);
   }
 }
 
