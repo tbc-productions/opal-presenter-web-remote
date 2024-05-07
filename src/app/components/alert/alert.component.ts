@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PageTitleService } from '../../page-title.service';
@@ -21,12 +22,13 @@ export class AlertComponent {
     private pageTitleService: PageTitleService,
     private openlpService: OpenLPService,
     private snackBar: MatSnackBar,
+    private titleCasePipe: TitleCasePipe,
     private translateService: TranslateService) {
     this.translateService.stream('ALERTS').subscribe(res => {
       this.pageTitleService.changePageTitle(res);
     });
     this.translateService.stream('ALERT_SUBMITTED').subscribe(res => {
-      this.alertMessage = res;
+      this.alertMessage = this.titleCasePipe.transform(res);
     });
   }
 

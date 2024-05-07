@@ -1,12 +1,12 @@
 <form #themeForm="ngForm">
-  <h4>{{ 'THEME_OPTIONS' | translate }}</h4>
+  <h4>{{ 'THEME_OPTIONS' | translate | titlecase }}</h4>
   <div>
     <mat-form-field>
-      <mat-label>{{ 'THEME_LEVEL' | translate }}</mat-label>
+      <mat-label>{{ 'THEME_LEVEL' | translate | titlecase }}</mat-label>
       <mat-select [(value)]="themeLevel">
-        <mat-option value="global">{{ 'GLOBAL' | translate }}</mat-option>
-        <mat-option value="service">{{ 'SERVICE' | translate }}</mat-option>
-        <mat-option value="song">{{ 'SONG' | translate }}</mat-option>
+        <mat-option value="global">{{ 'GLOBAL' | translate | titlecase }}</mat-option>
+        <mat-option value="service">{{ 'SERVICE' | translate | titlecase }}</mat-option>
+        <mat-option value="song">{{ 'SONG' | translate | titlecase }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -29,7 +29,7 @@
   }
   @else {
     <mat-error>
-      {{ 'SONG_LEVEL_THEME_CHANGING_NOT_SUPPORTED' | translate }}
+      {{ 'SONG_LEVEL_THEME_CHANGING_NOT_SUPPORTED' | translate | sentencecase }}
     </mat-error>
   }
 </form>

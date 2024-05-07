@@ -5,7 +5,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class Nl2BrPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
 
-    transform(value: string): string|SafeHtml {
+    transform(value: string): string | SafeHtml {
       if (!value) {
         return value;
       }

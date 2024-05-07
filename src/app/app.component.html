@@ -3,13 +3,13 @@
     <button mat-icon-button (click)="menu.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="page-title">{{ pageTitle | translate }}</span>
+    <span class="page-title">{{ pageTitle | translate | titlecase }}</span>
     <span class="spacer"></span>
     @if (showLogin) {
       <button 
         mat-button
         (click)="login()">
-        {{ 'LOGIN' | translate }}
+        {{ 'LOGIN' | translate | titlecase }}
       </button>
     }
     @if (webSocketOpen) {
@@ -17,7 +17,7 @@
         mat-icon-button
         (click)="forceWebSocketReconnection()"
         class="connection-status"
-        matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate }}">
+        matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate | titlecase }}">
         <mat-icon>link</mat-icon>
       </button>
     }
@@ -26,7 +26,7 @@
         mat-icon-button
         (click)="forceWebSocketReconnection()"
         class="connection-status"
-        matTooltip="{{ 'DISCONNECTED' | translate }}">
+        matTooltip="{{ 'DISCONNECTED' | translate | titlecase }}">
         <mat-icon>link_off</mat-icon>
       </button>
     }
@@ -41,58 +41,58 @@
         routerLink="/service"
         routerLinkActive #serviceRoute="routerLinkActive"
         [activated]="serviceRoute.isActive">
-        <mat-icon>list</mat-icon>  {{ 'SERVICE' | translate }}
+        <mat-icon>list</mat-icon>  {{ 'SERVICE' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/slides"
         routerLinkActive #slidesRoute="routerLinkActive"
         [activated]="slidesRoute.isActive">
-        <mat-icon>collections</mat-icon>  {{ 'SLIDES' | translate }}
+        <mat-icon>collections</mat-icon>  {{ 'SLIDES' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/alerts"
         routerLinkActive #alertsRoute="routerLinkActive"
         [activated]="alertsRoute.isActive">
-        <mat-icon>error</mat-icon>  {{ 'ALERTS' | translate }}
+        <mat-icon>error</mat-icon>  {{ 'ALERTS' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/search"
         routerLinkActive #searchRoute="routerLinkActive"
         [activated]="searchRoute.isActive">
-        <mat-icon>search</mat-icon>  {{ 'SEARCH' | translate }}
+        <mat-icon>search</mat-icon>  {{ 'SEARCH' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/themes"
         routerLinkActive #themesRoute="routerLinkActive"
         [activated]="themesRoute.isActive">
-        <mat-icon>image</mat-icon>  {{ 'THEMES' | translate }}
+        <mat-icon>image</mat-icon>  {{ 'THEMES' | translate | titlecase }}
       </a>
       <mat-divider></mat-divider>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/main">
-        {{ 'MAIN_VIEW' | translate }}
+        {{ 'MAIN_VIEW' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/stage">
-        {{ 'STAGE_VIEW' | translate }}
+        {{ 'STAGE_VIEW' | translate | titlecase }}
       </a>
       <a mat-list-item
         (click)="menu.close()"
         routerLink="/chords">
-        {{ 'CHORD_VIEW' | translate }}
+        {{ 'CHORD_VIEW' | translate | titlecase }}
       </a>
       <mat-divider></mat-divider>
       <a mat-list-item (click)="menu.close()"
         routerLink="/settings"
         routerLinkActive #settingsRoute="routerLinkActive"
         [activated]="settingsRoute.isActive">
-        <mat-icon>settings</mat-icon>  {{ 'SETTINGS' | translate }}
+        <mat-icon>settings</mat-icon>  {{ 'SETTINGS' | translate | titlecase }}
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -113,28 +113,28 @@
           <button
             mat-fab color="primary"
             (click)="previousItem()"
-            matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+            matTooltip="{{ 'PREVIOUS_ITEM' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>first_page</mat-icon>
           </button>
           <button
             mat-fab color="primary"
             (click)="nextItem()"
-            matTooltip="{{ 'NEXT_ITEM' | translate }}"
+            matTooltip="{{ 'NEXT_ITEM' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>last_page</mat-icon>
           </button>
           <button
             mat-fab color="primary"
             (click)="previousSlide()"
-            matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+            matTooltip="{{ 'PREVIOUS_SLIDE' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>navigate_before</mat-icon>
           </button>
           <button
             mat-fab color="primary"
             (click)="nextSlide()"
-            matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+            matTooltip="{{ 'NEXT_SLIDE' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>navigate_next</mat-icon>
           </button>
@@ -143,7 +143,7 @@
             #squashedDisplayButton
             (click)="openDisplayModeSelector()"
             class="squashed-display-button"
-            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate | titlecase }}"
             matTooltipPosition="above">
             @if (state.blank) {
               <mat-icon>videocam_off</mat-icon>
@@ -164,7 +164,7 @@
             class="displayButton"
             [class.active]="state.blank"
             [disabled]="state.blank"
-            matTooltip="{{ 'SHOW_BLACK' | translate }}"
+            matTooltip="{{ 'SHOW_BLACK' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>videocam_off</mat-icon>
           </button>
@@ -174,7 +174,7 @@
             class="displayButton"
             [class.active]="state.theme"
             [disabled]="state.theme"
-            matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+            matTooltip="{{ 'SHOW_BACKGROUND' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>wallpaper</mat-icon>
           </button>
@@ -184,7 +184,7 @@
             class="displayButton"
             [class.active]="state.display"
             [disabled]="state.display"
-            matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+            matTooltip="{{ 'SHOW_DESKTOP' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>desktop_windows</mat-icon>
           </button>
@@ -194,7 +194,7 @@
             class="displayButton"
             [class.active]="state.display"
             [disabled]="state.live()"
-            matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+            matTooltip="{{ 'SHOW_PRESENTATION' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>videocam</mat-icon>
           </button>
@@ -203,26 +203,26 @@
           <button
             mat-icon-button
             (click)="previousItem()"
-            matTooltip="{{ 'PREVIOUS_ITEM' | translate }}"
+            matTooltip="{{ 'PREVIOUS_ITEM' | translate | titlecase }}"
             matTooltipPosition="above"> 
             <mat-icon>first_page</mat-icon>
           </button>
           <button
             mat-icon-button
             (click)="nextItem()"
-            matTooltip="{{ 'NEXT_ITEM' | translate }}"
+            matTooltip="{{ 'NEXT_ITEM' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>last_page</mat-icon>
           </button>
           <button
             mat-icon-button (click)="previousSlide()"
-            matTooltip="{{ 'PREVIOUS_SLIDE' | translate }}"
+            matTooltip="{{ 'PREVIOUS_SLIDE' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>navigate_before</mat-icon>
           </button>
           <button
             mat-icon-button (click)="nextSlide()"
-            matTooltip="{{ 'NEXT_SLIDE' | translate }}"
+            matTooltip="{{ 'NEXT_SLIDE' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>navigate_next</mat-icon>
           </button>
@@ -231,7 +231,7 @@
             #squashedDisplayButton
             (click)="openDisplayModeSelector()"
             class="squashed-display-button"
-            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate }}"
+            matTooltip="{{ 'CHANGE_DISPLAY_MODE' | translate | titlecase }}"
             matTooltipPosition="above">
             @if (state.blank) {
               <mat-icon>videocam_off</mat-icon>
@@ -251,7 +251,7 @@
             class="displayButton"
             [class.active]="state.blank"
             [disabled]="state.blank"
-            matTooltip="{{ 'SHOW_BLACK' | translate }}"
+            matTooltip="{{ 'SHOW_BLACK' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>videocam_off</mat-icon>
           </button>
@@ -261,7 +261,7 @@
             class="displayButton"
             [class.active]="state.theme"
             [disabled]="state.theme"
-            matTooltip="{{ 'SHOW_BACKGROUND' | translate }}"
+            matTooltip="{{ 'SHOW_BACKGROUND' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>wallpaper</mat-icon>
           </button>
@@ -270,7 +270,7 @@
             class="displayButton"
             [class.active]="state.display"
             [disabled]="state.display"
-            matTooltip="{{ 'SHOW_DESKTOP' | translate }}"
+            matTooltip="{{ 'SHOW_DESKTOP' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>desktop_windows</mat-icon>
           </button>
@@ -279,7 +279,7 @@
             class="displayButton"
             [class.active]="state.display"
             [disabled]="state.live()"
-            matTooltip="{{ 'SHOW_PRESENTATION' | translate }}"
+            matTooltip="{{ 'SHOW_PRESENTATION' | translate | titlecase }}"
             matTooltipPosition="above">
             <mat-icon>videocam</mat-icon>
           </button>

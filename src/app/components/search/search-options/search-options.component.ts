@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../../openlp.service';
@@ -17,6 +18,7 @@ export class SearchOptionsComponent {
 
   constructor(
     private openlpService: OpenLPService,
+    private titleCasePipe: TitleCasePipe,
     private translateService: TranslateService) { }
 
   // Used to display search-options for certain plugins
@@ -24,7 +26,7 @@ export class SearchOptionsComponent {
     this.selectedPlugin = plugin;
     if (this.selectedPlugin === 'bibles') {
       this.translateService.stream('BIBLE_VERSION').subscribe(res => {
-        this.searchOptionsTitle = res + ':';
+        this.searchOptionsTitle = this.titleCasePipe.transform(res) + ':';
       });
       this.getSearchOptions();
     }

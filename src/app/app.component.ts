@@ -13,7 +13,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
 import { Shortcuts, ShortcutsService } from './shortcuts.service';
-import { ShortcutPipe } from './components/shortcuts/shortcut.pipe';
+import { ShortcutPipe } from './components/pipes/shortcut.pipe';
 import { SettingsService } from './settings.service';
 import * as supportedBrowsers from '../assets/supportedBrowsers';
 

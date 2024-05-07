@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>{{ 'LOGIN' | translate }}</h1>
+<h1 mat-dialog-title>{{ 'LOGIN' | translate | titlecase }}</h1>
 
 <form #loginForm="ngForm">
   <div mat-dialog-content>
     <mat-form-field>
       <input
         matInput
-        placeholder="{{ 'USER_NAME' | translate }}"
+        placeholder="{{ 'USER_NAME' | translate | titlecase }}"
         [(ngModel)]="username"
         name="username"
         required>
@@ -13,7 +13,7 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="{{ 'PASSWORD' | translate }}"
+        placeholder="{{ 'PASSWORD' | translate | titlecase }}"
         type="password"
         [(ngModel)]="password"
         name="password"
@@ -25,7 +25,7 @@
       color="primary"
       [disabled]="!loginForm.form.valid"
       (click)="performLogin()">
-      {{ 'LOGIN' | translate }}
+      {{ 'LOGIN' | translate | titlecase }}
     </button>
   </div>
 </form>

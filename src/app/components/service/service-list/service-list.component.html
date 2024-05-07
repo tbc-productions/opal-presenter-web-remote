@@ -14,7 +14,7 @@
   <div class="no-items">
     <div class="no-items-title">
       <span class="material-icons icon">info</span>
-      {{ 'NO_SERVICE_ITEMS' | translate }}.
+      {{ 'NO_SERVICE_ITEMS' | translate | sentencecase }}.
     </div>
     <div class="no-items-actions">
       <a
@@ -22,7 +22,7 @@
         mat-stroked-button color="primary"
         size="small">
         <span class="material-icons">add</span>
-        {{ 'ADD_ITEM' | translate }}
+        {{ 'ADD_ITEM' | translate | sentencecase }}
       </a>
     </div>
   </div>

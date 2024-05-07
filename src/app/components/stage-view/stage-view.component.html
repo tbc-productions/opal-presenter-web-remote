@@ -27,7 +27,7 @@
         class="back-button"
         mat-mini-fab color=""
         routerLink="/"
-        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
+        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate | titlecase }}">
         <mat-icon>arrow_back</mat-icon>
       </a>
     }
@@ -35,7 +35,7 @@
       <button
         mat-mini-fab
         class="show-notes"
-        matTooltip="{{ 'HIDE_NOTES' | translate }}"
+        matTooltip="{{ 'HIDE_NOTES' | translate | titlecase }}"
         color="primary"
         [class.show-notes-disabled]="false"
         (click)="showNotes = false">
@@ -46,7 +46,7 @@
       <button
         mat-mini-fab
         class="show-notes"
-        matTooltip="{{ 'SHOW_NOTES' | translate }}"
+        matTooltip="{{ 'SHOW_NOTES' | translate | titlecase }}"
         color=""
         [class.show-notes-disabled]="true"
         (click)="showNotes = true">
@@ -56,7 +56,7 @@
     @if (!embedded && activeSlide+1 === currentSlides.length) {
       <div
         class="next-service-item"
-        matTooltip="{{ 'NEXT_ITEM' | translate }}">
+        matTooltip="{{ 'NEXT_ITEM' | translate | titlecase }}">
         {{ nextServiceItemTitle }}
       </div>
     }

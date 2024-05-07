@@ -13,7 +13,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</div>
+      <div id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate | titlecase }}</div>
     </mat-grid-tile>
     <mat-grid-tile>
       <button
@@ -26,7 +26,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</div>
+      <div id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate | titlecase }}</div>
     </mat-grid-tile>
     <mat-grid-tile>
       <button
@@ -39,7 +39,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</div>
+      <div id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate | titlecase }}</div>
     </mat-grid-tile>
     <mat-grid-tile>
       <button
@@ -52,7 +52,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</div>
+      <div id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate | titlecase }}</div>
     </mat-grid-tile>
   </mat-grid-list>
 }
@@ -65,7 +65,7 @@
       (click)="setMode(displayMode.Blank)"
       [disabled]="display.displayMode === displayMode.Blank">
       <mat-icon class="small-icon">videocam_off</mat-icon>
-      <span id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate }}</span>
+      <span id="caption-blank" class="caption">{{ 'SHOW_BLACK' | translate | titlecase }}</span>
     </button>
     <button
       mat-list-item
@@ -74,7 +74,7 @@
       (click)="setMode(displayMode.Theme)"
       [disabled]="display.displayMode === displayMode.Theme">
       <mat-icon class="small-icon">wallpaper</mat-icon>
-      <span id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate }}</span>
+      <span id="caption-theme" class="caption">{{ 'SHOW_BACKGROUND' | translate | titlecase }}</span>
     </button>
     <button
       mat-list-item
@@ -83,7 +83,7 @@
       (click)="setMode(displayMode.Desktop)"
       [disabled]="display.displayMode === displayMode.Desktop">
       <mat-icon class="small-icon">desktop_windows</mat-icon>
-      <span id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate }}</span>
+      <span id="caption-desktop" class="caption">{{ 'SHOW_DESKTOP' | translate | titlecase }}</span>
     </button>
     <button
       mat-list-item
@@ -92,7 +92,7 @@
       (click)="setMode(displayMode.Presentation)"
       [disabled]="display.displayMode === displayMode.Presentation">
       <mat-icon class="small-icon">videocam</mat-icon>
-      <span id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate }}</span>
+      <span id="caption-presentation" class="caption">{{ 'SHOW_PRESENTATION' | translate | titlecase }}</span>
     </button>
   </mat-action-list>
 }
