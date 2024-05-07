@@ -1,7 +1,7 @@
 <div class="settings-panel">
   <mat-card>
     <mat-card-header>
-      {{ 'USER_INTERFACE' | translate }}
+      {{ 'USER_INTERFACE' | translate | titlecase }}
     </mat-card-header>
     <mat-card-content>
       <div class="settings-item">
@@ -9,7 +9,7 @@
           color="primary"
           [checked]="settings.fastSwitching"
           (change)="setSetting('fastSwitching', $event.checked)">
-          {{ 'ENABLE_FAST_SWITCHING_PANEL' | translate }}
+          {{ 'ENABLE_FAST_SWITCHING_PANEL' | translate | sentencecase }}
         </mat-slide-toggle>
       </div>
       <div class="settings-item">
@@ -17,18 +17,18 @@
             color="primary"
             [checked]="settings.bigDisplayButtons"
             (change)="setSetting('bigDisplayButtons', $event.checked)">
-            {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate }}
+            {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate | sentencecase }}
           </mat-slide-toggle>
         </div>
       </mat-card-content>
     </mat-card>
     <mat-card>
       <mat-card-header>
-        {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate }}
+        {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate | sentencecase }}
       </mat-card-header>
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab label="{{ 'STAGE' | translate }}">
+          <mat-tab label="{{ 'STAGE' | translate | titlecase }}">
              <ng-template matTabContent>
                 <ng-container>
                    <openlp-stage-chord-preview stageType="stage">
@@ -38,7 +38,7 @@
                  </ng-container>
              </ng-template>
           </mat-tab>
-          <mat-tab label="{{ 'CHORDS' | translate }}">
+          <mat-tab label="{{ 'CHORDS' | translate | titlecase }}">
             <ng-template matTabContent>
               <openlp-stage-chord-preview stageType="chords">
               </openlp-stage-chord-preview>
@@ -55,7 +55,7 @@
   let-prefix="prefix">
   <div class="stage-settings">
     <div class="settings-item">
-      <label>{{ 'FONT_SCALE' | translate }}: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
+      <label>{{ 'FONT_SCALE' | translate | sentencecase }}: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
       <mat-slider
          min="25"
          max="200"

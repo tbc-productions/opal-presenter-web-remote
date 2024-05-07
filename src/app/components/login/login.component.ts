@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../openlp.service';
@@ -20,12 +21,13 @@ export class LoginComponent {
     private dialogRef: MatDialogRef<LoginComponent>,
     private openlpService: OpenLPService,
     private snackBar: MatSnackBar,
+    private titleCasePipe: TitleCasePipe,
     private translateService: TranslateService) {
     this.translateService.stream('LOGIN_SUCCEEDED').subscribe(res => {
-      this.loginSucceededMessage = res;
+      this.loginSucceededMessage = this.titleCasePipe.transform(res);
     });
     this.translateService.stream('LOGIN_FAILED').subscribe(res => {
-      this.loginFailedMessage = res;
+      this.loginFailedMessage = this.titleCasePipe.transform(res);
     });
   }
 

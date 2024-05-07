@@ -1,4 +1,4 @@
-<h3>{{ 'SEND_AN_ALERT' | translate }}</h3>
+<h3>{{ 'SEND_AN_ALERT' | translate | sentencecase }}</h3>
 <form #alertForm="ngForm">
   <mat-form-field>
     <input
@@ -6,7 +6,7 @@
       [(ngModel)]="alert"
       type="text"
       name="alert"
-      placeholder="{{ 'ALERT' | translate }}" 
+      placeholder="{{ 'ALERT' | translate | titlecase }}" 
       required>
   </mat-form-field>
   <button
@@ -14,6 +14,6 @@
     id="sendButton"
     [disabled]="!alertForm.form.valid"
     (click)="onSubmit(); alertForm.reset()">
-    {{ 'SEND' | translate }}
+    {{ 'SEND' | translate | titlecase }}
   </button>
 </form>

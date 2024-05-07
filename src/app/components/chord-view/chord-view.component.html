@@ -45,7 +45,7 @@
         mat-mini-fab color=""
         class="back-button"
         routerLink="/"
-        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate }}">
+        matTooltip="{{ 'GO_BACK_TO_CONTROLLER' | translate | titlecase }}">
         <mat-icon>arrow_back</mat-icon>
       </a>
     }
@@ -65,7 +65,7 @@
     @if (!embedded && activeSlide+1 === currentSlides.length) {
       <div
         class="next-service-item"
-        matTooltip="{{ 'NEXT_ITEM' | translate }}">
+        matTooltip="{{ 'NEXT_ITEM' | translate | titlecase }}">
         {{ nextServiceItemTitle }}
       </div>
     }

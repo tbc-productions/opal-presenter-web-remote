@@ -1,4 +1,4 @@
-<h3>{{ 'SEARCH' | translate }}</h3>
+<h3>{{ 'SEARCH' | translate | titlecase }}</h3>
 <form #searchForm="ngForm">
   <mat-form-field>
     <mat-select
@@ -24,7 +24,7 @@
       matInput
       [(ngModel)]="searchText"
       name="searchText"
-      placeholder="{{ 'SEARCH_TEXT' | translate }}"
+      placeholder="{{ 'SEARCH_TEXT' | translate | titlecase }}"
       required>
   </mat-form-field>
   <br>
@@ -34,12 +34,12 @@
     color="primary"
     [disabled]="!searchForm.form.valid"
     (click)="onSubmit()">
-    {{ 'SEARCH' | translate }}
+    {{ 'SEARCH' | translate | titlecase }}
   </button>
 </form>
 @if (searchResults) {
   <div>
-    <h3>{{ 'SEARCH_RESULTS' | translate }}:</h3>
+    <h3>{{ 'SEARCH_RESULTS' | translate | titlecase }}:</h3>
     @if (searchResults.length) {
       <table>
         @for (item of searchResults; track item) {
@@ -49,14 +49,14 @@
               <button
                 mat-button color="primary"
                 (click)="addToService(item[0])">
-                {{ 'ADD_TO_SERVICE' | translate }}
+                {{ 'ADD_TO_SERVICE' | translate | sentencecase }}
               </button>
             </td>
             <td>
               <button
                 mat-button color="accent"
                 (click)="sendLive(item[0])">
-                {{ 'SEND_LIVE' | translate }}
+                {{ 'SEND_LIVE' | translate | sentencecase }}
               </button>
             </td>
           </tr>
@@ -65,7 +65,7 @@
     }
     @else {
       <div>
-        {{ 'NO_SEARCH_RESULTS' | translate }}...
+        {{ 'NO_SEARCH_RESULTS' | translate | sentencecase }}...
       </div>
     }
   </div>

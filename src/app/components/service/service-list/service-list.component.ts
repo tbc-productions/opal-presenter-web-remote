@@ -7,7 +7,7 @@ import { ServiceItem } from '../../../responses';
 @Component({
   selector: 'openlp-service-list',
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.scss', '../../no-items.scss'],
+  styleUrls: ['./service-list.component.scss', '../../no-items.scss']
 })
 
 export class ServiceListComponent implements OnInit, OnDestroy {
