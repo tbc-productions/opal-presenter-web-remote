@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.20
+--------------
+
+* Force capitalization in translations when version 3.1.2 or newer is installed.
+* Updated dependencies including Angular.
+
 Version 0.9.19
 --------------
 
