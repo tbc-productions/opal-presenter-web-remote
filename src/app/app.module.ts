@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 
@@ -84,7 +84,6 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     MatButtonModule,
@@ -119,7 +118,8 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
     SentenceCasePipe,
     Title,
     TitleCasePipe,
-    WindowRef
+    WindowRef,
+    provideHttpClient(withInterceptorsFromDi()),
   ],
   bootstrap: [AppComponent]
 })

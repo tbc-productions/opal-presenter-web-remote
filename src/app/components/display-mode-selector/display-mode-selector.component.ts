@@ -6,16 +6,16 @@ import { Display, DisplayMode } from 'src/app/responses';
     selector: 'openlp-display-mode-sheet',
     templateUrl: 'display-mode-selector.component.html',
     styleUrl: './display-mode-selector.component.scss'
-  })
-  export class DisplayModeSelectorComponent {
-    // Make DisplayMode enum visible in HTML template.
-    displayMode = DisplayMode;
+})
+export class DisplayModeSelectorComponent {
+  // Make DisplayMode enum visible in HTML template.
+  displayMode = DisplayMode;
 
-    constructor(
-      private bottomSheetRef: MatBottomSheetRef<DisplayModeSelectorComponent>,
-      @Inject(MAT_BOTTOM_SHEET_DATA) public display: Display) {}
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef<DisplayModeSelectorComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public display: Display) {}
 
-    setMode(mode: DisplayMode): void {
-      this.bottomSheetRef.dismiss(mode);
-    }
+  setMode(mode: DisplayMode): void {
+    this.bottomSheetRef.dismiss(mode);
   }
+}
