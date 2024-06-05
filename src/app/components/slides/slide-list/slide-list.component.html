@@ -1,6 +1,6 @@
 @if (slides?.length) {
   <ng-container>
-    @for (slide of slides; track slide; let index = $index) {
+    @for (slide of slides; track index; let index = $index) {
       <openlp-slide-item
           [slide]="slide"
           [tabindex]="index"

@@ -23,7 +23,7 @@ import * as supportedBrowsers from '../assets/supportedBrowsers';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  // Make DisplayMode enum visible to html code
+  // Make DisplayMode enum visible to HTML code.
   DisplayMode = DisplayMode;
 
   state = new State();
@@ -127,8 +127,13 @@ export class AppComponent implements OnInit {
     const display = new Display();
     display.displayMode = this.state.displayMode;
     display.bigDisplayButtons = this.bigDisplayButtons;
-    const selectorRef = this.bottomSheet.open(DisplayModeSelectorComponent, {data: display});
-    selectorRef.afterDismissed().subscribe(result => {
+    const selectorRef = this.bottomSheet.open(
+      DisplayModeSelectorComponent,
+      {
+        data: display
+      }
+    );
+    selectorRef.afterDismissed().subscribe((result: DisplayMode) => {
       if (result === DisplayMode.Blank) {this.blankDisplay();}
       else if (result === DisplayMode.Desktop) {this.desktopDisplay();}
       else if (result === DisplayMode.Theme) {this.themeDisplay();}
