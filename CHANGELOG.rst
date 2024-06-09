@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 0.9.22
+--------------
+
+* Use unique keys in template for loops.
+* Updated dependencies including Angular.
+
 Version 0.9.21
 --------------
 
