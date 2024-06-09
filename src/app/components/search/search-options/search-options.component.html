@@ -4,7 +4,7 @@
     (selectionChange)="setSearchOption($event)"
     name="selectedSearchOption"
     [placeholder]="searchOptionsTitle">
-    @for (option of searchOptions; track option) {
+    @for (option of searchOptions; track $index) {
       <mat-option
         name="searchOptions"
         [value]="option">

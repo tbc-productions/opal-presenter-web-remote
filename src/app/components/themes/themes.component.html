@@ -12,7 +12,7 @@
   </div>
   @if (isThemeLevelSupported()) {
     <div class="theme-container content">
-      @for (theme of themeList; track theme) {
+      @for (theme of themeList; track theme.name) {
         <div>
           <mat-card
             class="theme-card"

@@ -42,7 +42,7 @@
     <h3>{{ 'SEARCH_RESULTS' | translate | titlecase }}:</h3>
     @if (searchResults.length) {
       <table>
-        @for (item of searchResults; track item) {
+        @for (item of searchResults; track $index) {
           <tr>
             <td>{{ item[1] }}</td>
             <td>
