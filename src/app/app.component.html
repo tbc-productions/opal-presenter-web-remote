@@ -1,13 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="header">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="menu.toggle()">
+    <button mat-icon-button class="header" (click)="menu.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span class="page-title">{{ pageTitle | translate | titlecase }}</span>
     <span class="spacer"></span>
     @if (showLogin) {
       <button 
-        mat-button
+        mat-raised-button
         (click)="login()">
         {{ 'LOGIN' | translate | titlecase }}
       </button>
@@ -16,8 +16,8 @@
       <button
         mat-icon-button
         (click)="forceWebSocketReconnection()"
-        class="connection-status"
-        matTooltip="{{ 'CONNECTED_TO_OPENLP' | translate | titlecase }}">
+        class="header connection-status"
+        matTooltip="{{ ('CONNECTED_TO_OPENLP' | translate | titlecase).replace('Openlp', 'OpenLP') }}">
         <mat-icon>link</mat-icon>
       </button>
     }
@@ -25,7 +25,7 @@
       <button
         mat-icon-button
         (click)="forceWebSocketReconnection()"
-        class="connection-status"
+        class="header connection-status"
         matTooltip="{{ 'DISCONNECTED' | translate | titlecase }}">
         <mat-icon>link_off</mat-icon>
       </button>
