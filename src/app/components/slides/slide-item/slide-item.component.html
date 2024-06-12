@@ -3,18 +3,13 @@
   mat-list-item
   (click)="onSlideSelected(slide)"
   [class.selected]="selected">
-  <mat-card-content>
-    <div class="verse-tag">{{ slide?.tag }}</div>
-    @if (slide?.img) {
-      <div class="verse-img-container">
-        <img src="{{ slide?.img }}" />
-        <div class="img-verse-text">
-          {{ slide?.text }}
-        </div>
-      </div>
-    }
-    @else {
-      <div class="verse-text">{{ slide?.text }}</div>
-    }
-  </mat-card-content>
+  <mat-card-header>
+    <mat-card-subtitle class="slide-title">{{ slide?.tag }}</mat-card-subtitle>
+  </mat-card-header>
+  @if (slide?.img) {
+    <img mat-card-image src="{{ slide?.img }}" alt="{{ slide?.tag }}" />
+  }
+  @if (slide?.text) {
+    <mat-card-content>{{ slide?.text }}</mat-card-content>
+  }
 </mat-card>
