@@ -1,6 +1,13 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.0.0
+-------------
+
+* New OpenLP light and dark theme based on Angular Material v3.
+* Made image in slides responsive.
+* Updated dependencies including Angular.
+
 Version 0.9.22
 --------------
 

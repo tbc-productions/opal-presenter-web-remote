@@ -1,6 +1,6 @@
 {
   "name": "@openlp/web-remote",
-  "version": "0.9.22",
+  "version": "1.0.0",
   "description": "The web remote for OpenLP, written in Angular",
   "keywords": [
     "OpenLP",
