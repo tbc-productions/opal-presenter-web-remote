@@ -30,8 +30,9 @@ export class State {
 }
 
 export class Display {
-  displayMode: DisplayMode;
   bigDisplayButtons: boolean;
+  darkTheme: boolean;
+  displayMode: DisplayMode;
 }
 
 export enum DisplayMode {

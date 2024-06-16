@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   webSocketOpen = false;
   fastSwitching = false;
   bigDisplayButtons = false;
+  darkTheme = false;
   useShortcutsFromOpenlp = false;
   useLanguageFromOpenlp = false;
 
@@ -72,9 +73,11 @@ export class AppComponent implements OnInit {
       }
     );
     this.fastSwitching = this.settingsService.get('fastSwitching');
-    this.settingsService.onPropertyChanged('fastSwitching').subscribe(value => this.fastSwitching = value);
+    this.settingsService.onPropertyChanged('fastSwitching').subscribe((value: boolean) => this.fastSwitching = value);
     this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons');
-    this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe(value => this.bigDisplayButtons = value);
+    this.darkTheme = this.settingsService.get('darkTheme');
+    this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe((value: boolean) => this.bigDisplayButtons = value);
+    this.settingsService.onPropertyChanged('darkTheme').subscribe((value: boolean) => this.darkTheme = value);
   }
 
   addShortcuts(shortcuts: Shortcuts): void {
@@ -125,8 +128,9 @@ export class AppComponent implements OnInit {
 
   openDisplayModeSelector(): void {
     const display = new Display();
-    display.displayMode = this.state.displayMode;
     display.bigDisplayButtons = this.bigDisplayButtons;
+    display.darkTheme = this.darkTheme;
+    display.displayMode = this.state.displayMode;
     const selectorRef = this.bottomSheet.open(
       DisplayModeSelectorComponent,
       {

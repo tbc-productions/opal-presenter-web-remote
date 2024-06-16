@@ -12,6 +12,7 @@
   "CONNECTED_TO_OPENLP": "OpenLP에 연결됨",
   "DISCONNECTED": "연결이 끊어짐",
   "ENABLE_BIG_DISPLAY_BUTTONS": "큰 디스플레이 버튼 활성화",
+  "ENABLE_DARK_THEME": "어두운 테마 사용",
   "ENABLE_FAST_SWITCHING_PANEL": "빠른 전환 패널 활성화",
   "FONT_SCALE": "글꼴 크기",
   "GLOBAL": " 전역",

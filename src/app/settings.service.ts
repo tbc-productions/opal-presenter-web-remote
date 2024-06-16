@@ -6,6 +6,7 @@ export class SettingsProperties {
     stageFontScale = 100;
     chordsFontScale = 100;
     bigDisplayButtons = false;
+    darkTheme = false;
 }
 
 export interface SettingsPropertiesItem<SP extends keyof SettingsProperties, SV = SettingsProperties[SP]> {

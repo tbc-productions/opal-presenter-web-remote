@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use './assets/themes/openlp-light-theme.scss';
+@use './assets/themes/openlp-dark-theme.scss';
 @use './assets/themes/_header-theme.scss' as header;
+@use './assets/themes/_fast-switcher-theme.scss' as fast-switcher;
+@use './assets/themes/_slide-item-theme.scss' as slide-item;
 @include mat.core();
 
 * {
@@ -9,10 +12,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+.dark-theme {
+  @include mat.all-component-colors(openlp-dark-theme.$dark-theme);
+  @include header.theme(openlp-dark-theme.$dark-theme);
+  @include fast-switcher.theme(openlp-dark-theme.$dark-theme);
+  @include slide-item.theme(openlp-dark-theme.$dark-theme);
+}
+
+html {
   @include mat.all-component-themes(openlp-light-theme.$light-theme);
   @include header.theme(openlp-light-theme.$light-theme);
-  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  @include fast-switcher.theme(openlp-light-theme.$light-theme);
+  @include slide-item.theme(openlp-light-theme.$light-theme);
 }
 
 html,
@@ -21,18 +32,14 @@ body {
   padding: 0;
 }
 
+body {
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+}
+
 app-root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-mat-sidenav-layout {
-  background: rgba(0, 0, 0, 0.03);
-}
-
-mat-sidenav {
-  width: 12rem;
 }
 
 .mat-mdc-card {
@@ -42,10 +49,6 @@ mat-sidenav {
 .mat-mdc-card.service-item,
 .mat-mdc-card.slide {
   cursor: pointer;
-}
-
-.displayButton .active {
-  background: 'teal';
 }
 
 .page-title {
@@ -61,6 +64,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 
 .chordline {
@@ -111,18 +115,5 @@ footer {
 .cdk-overlay-container {
   &:not(.embedded) {
     z-index: 1200;
-  }
-}
-
-footer {
-  z-index: 1;
-}
-
-// This rule is to avoid the left menu scrolling with the page itself.
-.mat-drawer.mat-sidenav {
-  position: fixed;
-  padding-top: 64px;
-  @media screen and (max-width: 600px) {
-    padding-top: 56px; 
   }
 }

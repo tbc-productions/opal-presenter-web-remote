@@ -13,42 +13,50 @@
         </mat-slide-toggle>
       </div>
       <div class="settings-item">
-         <mat-slide-toggle
-            color="primary"
-            [checked]="settings.bigDisplayButtons"
-            (change)="setSetting('bigDisplayButtons', $event.checked)">
-            {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate | sentencecase }}
-          </mat-slide-toggle>
-        </div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card>
-      <mat-card-header>
-        {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate | sentencecase }}
-      </mat-card-header>
-      <mat-card-content>
-        <mat-tab-group>
-          <mat-tab label="{{ 'STAGE' | translate | titlecase }}">
-             <ng-template matTabContent>
-                <ng-container>
-                   <openlp-stage-chord-preview stageType="stage">
-                   </openlp-stage-chord-preview>
-                   <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'stage'}">
-                   </ng-container>
-                 </ng-container>
-             </ng-template>
-          </mat-tab>
-          <mat-tab label="{{ 'CHORDS' | translate | titlecase }}">
-            <ng-template matTabContent>
-              <openlp-stage-chord-preview stageType="chords">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="settings.bigDisplayButtons"
+          (change)="setSetting('bigDisplayButtons', $event.checked)">
+          {{ 'ENABLE_BIG_DISPLAY_BUTTONS' | translate | sentencecase }}
+        </mat-slide-toggle>
+      </div>
+      <div class="settings-item">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="settings.darkTheme"
+          (change)="setSetting('darkTheme', $event.checked)">
+          {{ 'ENABLE_DARK_THEME' | translate | sentencecase }}
+        </mat-slide-toggle>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      {{ 'STAGE_AND_CHORDS_APPEARANCE' | translate | sentencecase }}
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="{{ 'STAGE' | translate | titlecase }}">
+          <ng-template matTabContent>
+            <ng-container>
+              <openlp-stage-chord-preview stageType="stage">
               </openlp-stage-chord-preview>
-              <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'chords'}">
+              <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'stage'}">
               </ng-container>
-            </ng-template>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card-content>
-    </mat-card>
+            </ng-container>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="{{ 'CHORDS' | translate | titlecase }}">
+          <ng-template matTabContent>
+            <openlp-stage-chord-preview stageType="chords">
+            </openlp-stage-chord-preview>
+            <ng-container *ngTemplateOutlet="stageSettings; context: {prefix: 'chords'}">
+            </ng-container>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
 </div>
 <ng-template
   #stageSettings
