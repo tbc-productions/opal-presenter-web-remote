@@ -4,7 +4,7 @@
   (click)="onSlideSelected(slide)"
   [class.selected]="selected">
   <mat-card-header>
-    <mat-card-subtitle class="slide-title">{{ slide?.tag }}</mat-card-subtitle>
+    <mat-card-subtitle class="slide-title" [class.selected]="selected">{{ slide?.tag }}</mat-card-subtitle>
   </mat-card-header>
   @if (slide?.img) {
     <img mat-card-image src="{{ slide?.img }}" alt="{{ slide?.tag }}" />

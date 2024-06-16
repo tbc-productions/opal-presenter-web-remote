@@ -1,32 +1,27 @@
 
 img {
-    width: 100%;
-}
-  
-.selected {
-    background-color: rgb(235, 235, 235);
-    font-weight: 700;
+  width: 100%;
 }
 
 .theme-container {
-    display: grid;
-    justify-content: space-evenly;
-    grid-template-columns: repeat(auto-fill, min(220px, 100%));
-    gap: 1rem;
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, min(220px, 100%));
+  gap: 1rem;
 }
 
 .theme-card {
-    cursor: pointer;
-    justify-content: center;
+  cursor: pointer;
+  justify-content: center;
 }
 
 .theme-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .theme-title:hover {
-    overflow: visible;
-    white-space: pre-wrap;
+  overflow: visible;
+  white-space: pre-wrap;
 }

@@ -12,6 +12,7 @@
   "CONNECTED_TO_OPENLP": "已连接到 OpenLP",
   "DISCONNECTED": "断开连接",
   "ENABLE_BIG_DISPLAY_BUTTONS": "启用大显示按钮",
+  "ENABLE_DARK_THEME": "启用深色主题",
   "ENABLE_FAST_SWITCHING_PANEL": "启用快速切换面板",
   "FONT_SCALE": "字体缩放",
   "GLOBAL": "全局",

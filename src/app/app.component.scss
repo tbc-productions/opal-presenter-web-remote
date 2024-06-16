@@ -1,10 +1,28 @@
+div.light-theme,
+div.dark-theme {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 $small-toolbar-breakpoint: 500px;
 
-// To allow the inner overlay (and other items) to use z-indexes greater than 1
+// To allow the inner overlay (and other items) to use z-indexes greater than 1.
 .mat-sidenav {
   &-container, &-content {
     z-index: auto;
   }
+  // This rule is to avoid the left menu scrolling with the page itself.
+  position: fixed;
+  padding-top: 64px;
+  @media screen and (max-width: 600px) {
+    padding-top: 56px; 
+  }
+  width: 12rem;
 }
 
 mat-toolbar {
@@ -13,14 +31,10 @@ mat-toolbar {
   top: 0;
   z-index: 1020;
 
-  /* Fix icon button alignment on some Firefox configurations */
+  // Fix icon button alignment on some Firefox configurations.
   [mat-icon-button] {
     line-height: 1;
   }
-}
-
-mat-divider {
-  border-color: rgb(175, 175, 175);
 }
 
 mat-toolbar-row .spacer {
@@ -31,15 +45,11 @@ mat-toolbar-row .spacer {
   font-size: 70%;
 }
 
-mat-sidenav {
-  background: white;
-}
-
 mat-sidenav-container {
   flex: 1;
 }
 
-/* Align icons with text */
+// Align icons with text.
 mat-sidenav-container .mat-icon {
   vertical-align: text-top;
 }
@@ -56,10 +66,6 @@ mat-sidenav-container .mat-icon {
 
 .connection-status {
   margin-right: 1rem;
-}
-
-.fast-switcher {
-  background-color: whitesmoke;
 }
 
 .fast-switcher a.mat-mdc-tab-link > span.text {
@@ -85,9 +91,7 @@ mat-sidenav-container .mat-icon {
   }
 }
 
-/*
- * Make the Component injected by Router Outlet full height:
- */
+// Make the Component injected by Router Outlet full height.
 main {
   display: flex;
   flex-direction: column;

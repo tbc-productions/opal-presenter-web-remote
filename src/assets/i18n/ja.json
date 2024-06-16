@@ -12,6 +12,7 @@
   "CONNECTED_TO_OPENLP": "OpenLPに接続済み",
   "DISCONNECTED": "切断されました",
   "ENABLE_BIG_DISPLAY_BUTTONS": "大きな表示ボタンを有効にする",
+  "ENABLE_DARK_THEME": "ダークテーマを有効にする",
   "ENABLE_FAST_SWITCHING_PANEL": "高速切り替えパネルを有効にする",
   "FONT_SCALE": "フォントスケール",
   "GLOBAL": "グローバル",
