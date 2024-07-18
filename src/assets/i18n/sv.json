@@ -5,11 +5,14 @@
   "ALERT": "Varning",
   "ALERT_SUBMITTED": "Avisering Skickad",
   "ALERTS": "Varningar",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Är du säker på att du vill ta bort posten från körschemat?",
   "BIBLE_VERSION": "Bibelöversättning",
   "CHANGE_DISPLAY_MODE": "Ändra Visningsläge",
   "CHORD_VIEW": "Ackordvy",
   "CHORDS": "Ackord",
   "CONNECTED_TO_OPENLP": "Ansluten till OpenLP",
+  "DELETE": "Ta bort",
+  "DELETE_FROM_SERVICE": "Ta bort från Tjänst",
   "DISCONNECTED": "Frånkopplad",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktivera Stora Visningsknappar",
   "ENABLE_DARK_THEME": "Aktivera Mörkt Tema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Huvudvy",
   "NEXT_ITEM": "Nästa Objekt",
   "NEXT_SLIDE": "Nästa Bild",
+  "NO": "Nej",
   "NO_SEARCH_RESULTS": "Inga resultat som matchar din sökning hittades",
   "NO_SERVICE_ITEMS": "Inga Tjänsteobjekt",
   "NO_SLIDE_ITEMS": "Inga Bildobjekt",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Temanivå",
   "THEME_OPTIONS": "Temaval",
   "USER_NAME": "Användarnamn",
-  "USER_INTERFACE": "Användargränssnitt"
+  "USER_INTERFACE": "Användargränssnitt",
+  "YES": "Ja"
 }

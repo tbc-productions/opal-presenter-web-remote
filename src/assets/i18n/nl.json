@@ -2,6 +2,7 @@
   "ADD_ITEM": "Voeg Item Toe",
   "ADD_ITEM_TO_SERVICE": "Voeg Item Toe aan Liturgie",
   "ADD_TO_SERVICE": "Voeg Toe aan Liturgie",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Weet u zeker dat u dit item uit de liturgie wilt verwijderen?",
   "ALERT": "Waarschuwing",
   "ALERT_SUBMITTED": "Waarschuwing Verstuurd",
   "ALERTS": "Waarschuwingen",
@@ -10,6 +11,8 @@
   "CHORD_VIEW": "Akkoordenscherm",
   "CHORDS": "Akkoorden",
   "CONNECTED_TO_OPENLP": "Verbonden met OpenLP",
+  "DELETE": "Verwijderen",
+  "DELETE_FROM_SERVICE": "Uit Liturgie Verwijderen",
   "DISCONNECTED": "Niet Verbonden",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Activeer Grote Beeldschermknoppen",
   "ENABLE_DARK_THEME": "Activeer Donker Thema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hoofdscherm",
   "NEXT_ITEM": "Volgend Item",
   "NEXT_SLIDE": "Volgende Slide",
+  "NO": "Nee",
   "NO_SEARCH_RESULTS": "Jouw zoekopdracht heeft geen resultaten opgeleverd",
   "NO_SERVICE_ITEMS": "Geen Liturgie Items",
   "NO_SLIDE_ITEMS": "Geen Slide Items",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Thema Niveau",
   "THEME_OPTIONS": "Thema Opties",
   "USER_NAME": "Gebruikersnaam",
-  "USER_INTERFACE": "Gebruikersinterface"
+  "USER_INTERFACE": "Gebruikersinterface",
+  "YES": "Ja"
 }

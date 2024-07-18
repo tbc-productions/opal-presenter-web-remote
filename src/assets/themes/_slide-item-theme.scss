@@ -3,7 +3,7 @@
 @mixin color($theme) {
   .selected {
     color: mat.get-theme-color($theme, secondary, 0);
-    background-color: mat.get-theme-color($theme, secondary, 80);
+    background-color: mat.get-theme-color($theme, primary, 60);
   }
 }
 

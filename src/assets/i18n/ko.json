@@ -5,11 +5,14 @@
   "ALERT": "경고",
   "ALERT_SUBMITTED": "경고가 제출됨",
   "ALERTS": "경고",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "서비스에서 이 항목을 삭제하시겠습니까?",
   "BIBLE_VERSION": "성경 번역본",
   "CHANGE_DISPLAY_MODE": "디스플레이 모드 변경",
   "CHORD_VIEW": "코드 보기",
   "CHORDS": "코드",
   "CONNECTED_TO_OPENLP": "OpenLP에 연결됨",
+  "DELETE": "삭제하다",
+  "DELETE_FROM_SERVICE": "서비스에서 삭제",
   "DISCONNECTED": "연결이 끊어짐",
   "ENABLE_BIG_DISPLAY_BUTTONS": "큰 디스플레이 버튼 활성화",
   "ENABLE_DARK_THEME": "어두운 테마 사용",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "주 화면",
   "NEXT_ITEM": "다음 항목",
   "NEXT_SLIDE": "다음 슬라이드",
+  "NO": "아니요",
   "NO_SEARCH_RESULTS": "검색 결과가 없습니다",
   "NO_SERVICE_ITEMS": "서비스 항목 없음",
   "NO_SLIDE_ITEMS": "슬라이드 항목 없음",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "테마 수준",
   "THEME_OPTIONS": "테마 옵션",
   "USER_NAME": "사용자 이름",
-  "USER_INTERFACE": "사용자 인터페이스"
+  "USER_INTERFACE": "사용자 인터페이스",
+  "YES": "예"
 }

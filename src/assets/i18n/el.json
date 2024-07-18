@@ -5,11 +5,14 @@
   "ALERT": "Ειδοποίηση",
   "ALERT_SUBMITTED": "Η ειδοποίηση υποβλήθηκε",
   "ALERTS": "Ειδοποιήσεις",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το στοιχείο από την υπηρεσία;",
   "BIBLE_VERSION": "Βιβλική έκδοση",
   "CHANGE_DISPLAY_MODE": "Αλλαγή λειτουργίας εμφάνισης",
   "CHORD_VIEW": "Προβολή συγχορδιών",
   "CHORDS": "Συγχορδίες",
   "CONNECTED_TO_OPENLP": "Συνδέθηκε στο OpenLP",
+  "DELETE": "Διαγραφή",
+  "DELETE_FROM_SERVICE": "Διαγραφή από την υπηρεσία",
   "DISCONNECTED": "Αποσυνδέθηκε",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Ενεργοποίηση μεγάλων κουμπιών εμφάνισης",
   "ENABLE_DARK_THEME": "Ενεργοποίηση σκούρου θέματος",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Κύρια προβολή",
   "NEXT_ITEM": "Επόμενο στοιχείο",
   "NEXT_SLIDE": "Επόμενη διαφάνεια",
+  "NO": "Όχι",
   "NO_SEARCH_RESULTS": "Δεν βρέθηκαν αποτελέσματα που να ταιριάζουν με την αναζήτησή σας",
   "NO_SERVICE_ITEMS": "Δεν υπάρχουν στοιχεία υπηρεσίας",
   "NO_SLIDE_ITEMS": "Δεν υπάρχουν στοιχεία διαφανειών",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Επίπεδο Θέματος",
   "THEME_OPTIONS": "Επιλογές Θέματος",
   "USER_NAME": "Όνομα Χρήστη",
-  "USER_INTERFACE": "Διεπαφή Χρήστη"
+  "USER_INTERFACE": "Διεπαφή Χρήστη",
+  "YES": "Ναι"
 }

@@ -5,11 +5,14 @@
   "ALERT": "Upozornění",
   "ALERT_SUBMITTED": "Výstraha Odeslána",
   "ALERTS": "Upozornění",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Opravdu chcete odstranit tuto položku ze služby?",
   "BIBLE_VERSION": "Biblická verze",
   "CHANGE_DISPLAY_MODE": "Změnit Režim Zobrazení",
   "CHORD_VIEW": "Zobrazení Akordů",
   "CHORDS": "Akordy",
   "CONNECTED_TO_OPENLP": "Připojeno k OpenLP",
+  "DELETE": "Smazat",
+  "DELETE_FROM_SERVICE": "Odstranit ze Služby",
   "DISCONNECTED": "Odpojeno",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Povolit Velká Tlačítka na Displeji",
   "ENABLE_DARK_THEME": "Povolit Tmavý Motiv",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hlavní Zobrazení",
   "NEXT_ITEM": "Další Položka",
   "NEXT_SLIDE": "Další Snímek",
+  "NO": "Ne",
   "NO_SEARCH_RESULTS": "Nebyly nalezeny žádné výsledky odpovídající vašemu hledání",
   "NO_SERVICE_ITEMS": "Žádné Položky Služby",
   "NO_SLIDE_ITEMS": "Žádné Položky Snímku",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Úroveň Tématu",
   "THEME_OPTIONS": "Možnosti Tématu",
   "USER_NAME": "Uživatelské Jméno",
-  "USER_INTERFACE": "Uživatelské Rozhraní"
+  "USER_INTERFACE": "Uživatelské Rozhraní",
+  "YES": "Ano"
 }

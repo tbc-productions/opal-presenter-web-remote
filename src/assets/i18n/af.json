@@ -5,11 +5,14 @@
   "ALERT": "Waarskuwing",
   "ALERT_SUBMITTED": "Waarskuwing Ingedien",
   "ALERTS": "Waarskuwings",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Is u seker dat u hierdie item uit die diens wil verwyder?",
   "BIBLE_VERSION": "Bybel weergawe",
   "CHANGE_DISPLAY_MODE": "Verander Vertoonmodus",
   "CHORD_VIEW": "Akkoordaansig",
   "CHORDS": "Akkoorde",
   "CONNECTED_TO_OPENLP": "Gekoppel aan OpenLP",
+  "DELETE": "Wis Uit",
+  "DELETE_FROM_SERVICE": "Vee uit diens",
   "DISCONNECTED": "Ontkoppel",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktiveer Grootskermknoppies",
   "ENABLE_DARK_THEME": "Aktiveer Donker Tema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hoofaansig",
   "NEXT_ITEM": "Volgende Item",
   "NEXT_SLIDE": "Volgende Skyfie",
+  "NO": "Nee",
   "NO_SEARCH_RESULTS": "Geen resultate wat ooreenstem met jou soektog is gevind nie",
   "NO_SERVICE_ITEMS": "Geen Diensitems Nie",
   "NO_SLIDE_ITEMS": "Geen Skyfie-items Nie",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Temavlak",
   "THEME_OPTIONS": "Tema Opsies",
   "USER_NAME": "Gebruikersnaam",
-  "USER_INTERFACE": "Gebruikerskoppelvlak"
+  "USER_INTERFACE": "Gebruikerskoppelvlak",
+  "YES": "Ja"
 }

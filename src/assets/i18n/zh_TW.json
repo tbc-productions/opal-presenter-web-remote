@@ -5,11 +5,14 @@
   "ALERT": "警示",
   "ALERT_SUBMITTED": "警報已提交",
   "ALERTS": "警示訊息",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "確定要從聚會中刪除項目?",
   "BIBLE_VERSION": "聖經版本",
   "CHANGE_DISPLAY_MODE": "變更顯示模式",
   "CHORD_VIEW": "和弦檢視",
   "CHORDS": "和弦",
   "CONNECTED_TO_OPENLP": "已連接至 OpenLP",
+  "DELETE": "刪除",
+  "DELETE_FROM_SERVICE": "從服務中刪除",
   "DISCONNECTED": "已斷開連線",
   "ENABLE_BIG_DISPLAY_BUTTONS": "啟用大型顯示按鈕",
   "ENABLE_DARK_THEME": "啟用深色主題",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "主畫面",
   "NEXT_ITEM": "下一項目",
   "NEXT_SLIDE": "下一張投影片",
+  "NO": "不",
   "NO_SEARCH_RESULTS": "找不到符合您搜尋的結果",
   "NO_SERVICE_ITEMS": "無服務項目",
   "NO_SLIDE_ITEMS": "無投影片項目",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "主題層級",
   "THEME_OPTIONS": "主題選項",
   "USER_NAME": "使用者名稱",
-  "USER_INTERFACE": "使用者介面"
+  "USER_INTERFACE": "使用者介面",
+  "YES": "是的"
 }

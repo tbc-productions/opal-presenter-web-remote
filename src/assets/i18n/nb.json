@@ -5,11 +5,14 @@
   "ALERT": "Varsel",
   "ALERT_SUBMITTED": "Varsel Sendt Inn",
   "ALERTS": "Varsler",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Er du sikker på at du vil slette denne posten fra møteprogrammet?",
   "BIBLE_VERSION": "Bibelens versjon",
   "CHANGE_DISPLAY_MODE": "Endre Visningsmodus",
   "CHORD_VIEW": "Akkordvisning",
   "CHORDS": "Akkorder",
   "CONNECTED_TO_OPENLP": "Koblet til OpenLP",
+  "DELETE": "Slett",
+  "DELETE_FROM_SERVICE": "Slett fra Tjeneste",
   "DISCONNECTED": "Frakoblet",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktiver Store Visningsknapper",
   "ENABLE_DARK_THEME": "Aktiver Mørkt Tema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hovedvisning",
   "NEXT_ITEM": "Neste Element",
   "NEXT_SLIDE": "Neste Lysbilde",
+  "NO": "Nei",
   "NO_SEARCH_RESULTS": "Ingen resultater som samsvarer med søket ditt ble funnet",
   "NO_SERVICE_ITEMS": "Ingen Tjenesteelementer",
   "NO_SLIDE_ITEMS": "Ingen Lysbildeelementer",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Temanivå",
   "THEME_OPTIONS": "Temaopsjoner",
   "USER_NAME": "Brukernavn",
-  "USER_INTERFACE": "Brukergrensesnitt"
+  "USER_INTERFACE": "Brukergrensesnitt",
+  "YES": "Ja"
 }

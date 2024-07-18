@@ -5,11 +5,14 @@
   "ALERT": "Alertă",
   "ALERT_SUBMITTED": "Alertă Transmisă",
   "ALERTS": "Alerte",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Sigur doriți să ștergeți acest element din serviciu?",
   "BIBLE_VERSION": "Versiunea Bibliei",
   "CHANGE_DISPLAY_MODE": "Schimbați Modul de Afișare",
   "CHORD_VIEW": "Vizualizare Acorduri",
   "CHORDS": "Acorduri",
   "CONNECTED_TO_OPENLP": "Conectat la OpenLP",
+  "DELETE": "Ștergeți",
+  "DELETE_FROM_SERVICE": "Ștergeți din Serviciu",
   "DISCONNECTED": "Deconectat",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Activați Butoanele de Afișare Mare",
   "ENABLE_DARK_THEME": "Activați Tema întunecată",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Vizualizare Principală",
   "NEXT_ITEM": "Elementul Următo",
   "NEXT_SLIDE": "Diapozitivul Următo",
+  "NO": "Nu",
   "NO_SEARCH_RESULTS": "Nu s-au găsit rezultate care să corespundă căutării dvs",
   "NO_SERVICE_ITEMS": "Niciun Element de Serviciu",
   "NO_SLIDE_ITEMS": "Niciun Element de Diapozitiv",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Nivel Temă",
   "THEME_OPTIONS": "Opțiuni Temă",
   "USER_NAME": "Nume Utilizator",
-  "USER_INTERFACE": "Interfață Utilizator"
+  "USER_INTERFACE": "Interfață Utilizator",
+  "YES": "Da"
 }

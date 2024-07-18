@@ -5,11 +5,14 @@
   "ALERT": "Advarsel",
   "ALERT_SUBMITTED": "Advarsel Indsendt",
   "ALERTS": "Advarsler",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Er du sikker på, at du vil slette dette element fra tjenesten?",
   "BIBLE_VERSION": "Bibelsk udgave",
   "CHANGE_DISPLAY_MODE": "Skift Visningstilstand",
   "CHORD_VIEW": "Akkordvisning",
   "CHORDS": "Akkorder",
   "CONNECTED_TO_OPENLP": "Tilsluttet OpenLP",
+  "DELETE": "Slet",
+  "DELETE_FROM_SERVICE": "Slet fra Tjeneste",
   "DISCONNECTED": "Frakoblet",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktivér Store Skærmknapper",
   "ENABLE_DARK_THEME": "Aktivér Mørkt Tema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hovedvisning",
   "NEXT_ITEM": "Næste Emne",
   "NEXT_SLIDE": "Næste Dias",
+  "NO": "Nej",
   "NO_SEARCH_RESULTS": "Ingen resultater fundet for din søgning",
   "NO_SERVICE_ITEMS": "Ingen Tjenesteemner",
   "NO_SLIDE_ITEMS": " Ingen Diasemner",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Temaniveau",
   "THEME_OPTIONS": "Temaindstillinger",
   "USER_NAME": "Brugernavn",
-  "USER_INTERFACE": "Brugergrænseflade"
+  "USER_INTERFACE": "Brugergrænseflade",
+  "YES": "Ja"
 }

@@ -5,11 +5,14 @@
   "ALERT": "Предупреждение",
   "ALERT_SUBMITTED": "Подадено предупреждение",
   "ALERTS": "Предупреждения",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Наистина ли искате да изтриете този елемент от услугата?",
   "BIBLE_VERSION": "Библейска версия",
   "CHANGE_DISPLAY_MODE": "Промени режима на дисплея",
   "CHORD_VIEW": "Преглед на акорди",
   "CHORDS": "Акорди",
   "CONNECTED_TO_OPENLP": "Свързан с OpenLP",
+  "DELETE": "Изтрий",
+  "DELETE_FROM_SERVICE": "Изтриване от услугата",
   "DISCONNECTED": "Разкачен",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Включи големи бутони на дисплея",
   "ENABLE_DARK_THEME": "Разреши тъмна тема",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Основен изглед",
   "NEXT_ITEM": "Следващ елемент",
   "NEXT_SLIDE": "Следващ слайд",
+  "NO": "Не",
   "NO_SEARCH_RESULTS": "Няма намерени резултати, отговарящи на вашето търсене",
   "NO_SERVICE_ITEMS": "Няма елементи за услуга",
   "NO_SLIDE_ITEMS": "Няма елементи за слайд",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Ниво на темата",
   "THEME_OPTIONS": "Опции за темата",
   "USER_NAME": "Потребителско име",
-  "USER_INTERFACE": "Потребителски интерфейс"
+  "USER_INTERFACE": "Потребителски интерфейс",
+  "YES": "Да"
 }

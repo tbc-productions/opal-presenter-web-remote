@@ -5,11 +5,14 @@
   "ALERT": "Оповещение",
   "ALERT_SUBMITTED": "Оповещение отправлено",
   "ALERTS": "Оповещения",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Вы уверены, что хотите удалить этот элемент из сервиса?",
   "BIBLE_VERSION": "Перевод Библии",
   "CHANGE_DISPLAY_MODE": "Изменить режим отображения",
   "CHORD_VIEW": "Просмотр аккордов",
   "CHORDS": "Аккорды",
   "CONNECTED_TO_OPENLP": "Подключено к OpenLP",
+  "DELETE": "Удалить",
+  "DELETE_FROM_SERVICE": "Удалить из сервиса",
   "DISCONNECTED": "Отключено",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Включить большие кнопки отображения",
   "ENABLE_DARK_THEME": "Включить темную тему",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Основное представление",
   "NEXT_ITEM": "Следующий элемент",
   "NEXT_SLIDE": "Следующий слайд",
+  "NO": "Нет",
   "NO_SEARCH_RESULTS": "Не найдено результатов, соответствующих вашему запросу",
   "NO_SERVICE_ITEMS": "Нет элементов службы",
   "NO_SLIDE_ITEMS": "Нет элементов слайдов",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Уровень темы",
   "THEME_OPTIONS": "Варианты темы",
   "USER_NAME": "Имя пользователя",
-  "USER_INTERFACE": "Пользовательский интерфейс"
+  "USER_INTERFACE": "Пользовательский интерфейс",
+  "YES": "Да"
 }

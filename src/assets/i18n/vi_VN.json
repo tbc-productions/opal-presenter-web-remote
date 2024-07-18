@@ -5,11 +5,14 @@
   "ALERT": "Cảnh báo",
   "ALERT_SUBMITTED": "Cảnh báo đã Gửi",
   "ALERTS": "Các cảnh báo",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Bạn có chắc chắn muốn xoá mục này khỏi danh sách chi không?",
   "BIBLE_VERSION": "Phiên bản Kinh Thánh",
   "CHANGE_DISPLAY_MODE": "Thay đổi Chế độ Hiển thị",
   "CHORD_VIEW": "Xem hợp âm",
   "CHORDS": "Hợp âm",
   "CONNECTED_TO_OPENLP": "Đã kết nối với OpenLP",
+  "DELETE": "Xóa bỏ",
+  "DELETE_FROM_SERVICE": "Xóa khỏi dịch vụ",
   "DISCONNECTED": "Đã ngắt kết nối",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Bật nút Hiển thị lớn",
   "ENABLE_DARK_THEME": "Bật giao diện tối",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Chế độ xem chính",
   "NEXT_ITEM": "Mục tiếp theo",
   "NEXT_SLIDE": "Trang tiếp theo",
+  "NO": "Không",
   "NO_SEARCH_RESULTS": "Không tìm thấy kết quả phù hợp với tìm kiếm của bạn",
   "NO_SERVICE_ITEMS": "Không có mục Dịch vụ",
   "NO_SLIDE_ITEMS": "Không có mục Trang",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Cấp chủ đề",
   "THEME_OPTIONS": "Tùy chọn chủ đề",
   "USER_NAME": "Tên người dùn",
-  "USER_INTERFACE": "Giao diện người dùng"
+  "USER_INTERFACE": "Giao diện người dùng",
+  "YES": "Có"
 }
