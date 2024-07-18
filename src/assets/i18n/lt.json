@@ -5,11 +5,14 @@
   "ALERT": "Įspėjimas",
   "ALERT_SUBMITTED": "Pateiktas Įspėjimas",
   "ALERTS": "Įspėjimai",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Ar tikrai norite ištrinti šį elementą iš pamaldų programos?",
   "BIBLE_VERSION": "Biblijos versija",
   "CHANGE_DISPLAY_MODE": "Keisti Rodymo Režimą",
   "CHORD_VIEW": "Akordei",
   "CHORDS": "Akordei",
   "CONNECTED_TO_OPENLP": "Prisijungta prie OpenLP",
+  "DELETE": "Ištrinti",
+  "DELETE_FROM_SERVICE": "Ištrinti iš Paslaugos",
   "DISCONNECTED": "Atjungta",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Įjungti Didelius Rodymo Mygtukus",
   "ENABLE_DARK_THEME": "Įgalinti Tamsiąją Temą",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Pagrindinis Rodinys",
   "NEXT_ITEM": "Kitas Elementas",
   "NEXT_SLIDE": "Kitas Skaidrė",
+  "NO": "Ne",
   "NO_SEARCH_RESULTS": "Nerasta rezultatų, atitinkančių jūsų paiešką",
   "NO_SERVICE_ITEMS": "Nėra Paslaugų Elementų",
   "NO_SLIDE_ITEMS": "Nėra Skaidrių Elementų",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Temos Lygis",
   "THEME_OPTIONS": "Temos Parinktys",
   "USER_NAME": "Vartotojo Vardas",
-  "USER_INTERFACE": "Vartotojo Sąsaja"
+  "USER_INTERFACE": "Vartotojo Sąsaja",
+  "YES": "Taip"
 }

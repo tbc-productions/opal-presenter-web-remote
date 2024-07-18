@@ -5,11 +5,14 @@
   "ALERT": "Alert",
   "ALERT_SUBMITTED": "Przesłano Alert",
   "ALERTS": "Alerty",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Czy na pewno chcesz usunąć ten element z usługi?",
   "BIBLE_VERSION": "Wersja Biblii",
   "CHANGE_DISPLAY_MODE": "Zmień Tryb Wyświetlania",
   "CHORD_VIEW": "Widok Akordów",
   "CHORDS": "Akordy",
   "CONNECTED_TO_OPENLP": "Połączono z OpenLP",
+  "DELETE": "Usuń",
+  "DELETE_FROM_SERVICE": "Usuń z Usługi",
   "DISCONNECTED": "Rozłączono",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Włącz Duże Przyciski Wyświetlania",
   "ENABLE_DARK_THEME": "Włącz Ciemny Motyw",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Widok Główny",
   "NEXT_ITEM": "Następny Element",
   "NEXT_SLIDE": "Następny Slajd",
+  "NO": "Nie",
   "NO_SEARCH_RESULTS": "Nie znaleziono wyników pasujących do twojego wyszukiwania",
   "NO_SERVICE_ITEMS": "Brak Elementów Usługi",
   "NO_SLIDE_ITEMS": "Brak Elementów Slajdu",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Poziom Motywu",
   "THEME_OPTIONS": "Opcje Motywu",
   "USER_NAME": "Nazwa Użytkownika",
-  "USER_INTERFACE": "Interfejs Użytkownika"
+  "USER_INTERFACE": "Interfejs Użytkownika",
+  "YES": "Tak"
 }

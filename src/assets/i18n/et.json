@@ -5,11 +5,14 @@
   "ALERT": "Teatise",
   "ALERT_SUBMITTED": "Hoiatusteade on Esitatud",
   "ALERTS": "Teatised",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Kas tahad kustutada teenistusest selle kirje?",
   "BIBLE_VERSION": "Piibli versioon",
   "CHANGE_DISPLAY_MODE": "Muuda Kuvamisrežiimi",
   "CHORD_VIEW": "Akordi Vaade",
   "CHORDS": "Akorde",
   "CONNECTED_TO_OPENLP": "Ühendatud OpenLP-ga",
+  "DELETE": "Kustuta",
+  "DELETE_FROM_SERVICE": "Teenusest Kustutamine",
   "DISCONNECTED": "Lahti",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Luba Suured Kuvanupud",
   "ENABLE_DARK_THEME": "Luba Tume Teema",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Põhivaade",
   "NEXT_ITEM": "Järgmine Päevakorrapunkt",
   "NEXT_SLIDE": "Järgmine Slaid",
+  "NO": "Ei",
   "NO_SEARCH_RESULTS": "Teie otsingule vastavaid tulemusi ei leitud",
   "NO_SERVICE_ITEMS": "Teenindusüksusi Pole",
   "NO_SLIDE_ITEMS": "Slaidiüksusi Pole",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Teema Tase",
   "THEME_OPTIONS": "Teema Valikud",
   "USER_NAME": "Kasutajanimi",
-  "USER_INTERFACE": "Kasutajaliides"
+  "USER_INTERFACE": "Kasutajaliides",
+  "YES": "Jah"
 }

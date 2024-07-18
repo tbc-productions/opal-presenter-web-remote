@@ -5,11 +5,14 @@
   "ALERT": "Hinweise",
   "ALERT_SUBMITTED": "Hinweise Übermittelt",
   "ALERTS": "Hinweisen",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Sind Sie sicher, dass Sie dieses Element aus dem Ablauf entfernen möchten?",
   "BIBLE_VERSION": "Bibelübersetzung",
   "CHANGE_DISPLAY_MODE": "Anzeigemodus Ändern",
   "CHORD_VIEW": "Akkordansicht",
   "CHORDS": "Akkorde",
   "CONNECTED_TO_OPENLP": "Mit OpenLP Verbunden",
+  "DELETE": "Löschen",
+  "DELETE_FROM_SERVICE": "Aus Dienst Löschen",
   "DISCONNECTED": "Getrennt",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Große Anzeige-Schaltflächen Aktivieren",
   "ENABLE_DARK_THEME": "Dunkles Design Aktivieren",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Hauptansicht",
   "NEXT_ITEM": "Nächstes Element",
   "NEXT_SLIDE": "Nächste Folie",
+  "NO": "Nein",
   "NO_SEARCH_RESULTS": "Keine Suchergebnisse Gefunden",
   "NO_SERVICE_ITEMS": "Keine Ablauf Elemente",
   "NO_SLIDE_ITEMS": "Keine Folien-Elemente",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Themenlevel",
   "THEME_OPTIONS": "Themenoptionen",
   "USER_NAME": "Benutzername",
-  "USER_INTERFACE": "Benutzeroberfläche"
+  "USER_INTERFACE": "Benutzeroberfläche",
+  "YES": "Ja"
 }

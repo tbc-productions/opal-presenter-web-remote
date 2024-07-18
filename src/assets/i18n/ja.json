@@ -5,11 +5,14 @@
   "ALERT": "アラート",
   "ALERT_SUBMITTED": "アラート送信済み",
   "ALERTS": "アラート",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "このアイテムをサービスから削除してもよろしいですか?",
   "BIBLE_VERSION": "聖書版",
   "CHANGE_DISPLAY_MODE": "表示モードを変更",
   "CHORD_VIEW": "コード表示",
   "CHORDS": "コード",
   "CONNECTED_TO_OPENLP": "OpenLPに接続済み",
+  "DELETE": "削除",
+  "DELETE_FROM_SERVICE": "サービスから削除",
   "DISCONNECTED": "切断されました",
   "ENABLE_BIG_DISPLAY_BUTTONS": "大きな表示ボタンを有効にする",
   "ENABLE_DARK_THEME": "ダークテーマを有効にする",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "メインビュー",
   "NEXT_ITEM": "次のアイテム",
   "NEXT_SLIDE": "次のスライド",
+  "NO": "いいえ",
   "NO_SEARCH_RESULTS": "検索に一致する結果はありませんでした",
   "NO_SERVICE_ITEMS": "サービスアイテムはありません",
   "NO_SLIDE_ITEMS": "スライドアイテムはありません",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "テーマレベル",
   "THEME_OPTIONS": "テーマオプション",
   "USER_NAME": "ユーザー名",
-  "USER_INTERFACE": "ユーザーインターフェース"
+  "USER_INTERFACE": "ユーザーインターフェース",
+  "YES": "はい"
 }

@@ -206,6 +206,10 @@ export class OpenLPService {
     return this.doPost(`${this.apiURL}/plugins/${plugin}/add`, {id});
   }
 
+  deleteItemFromService(): Observable<any> {
+    return this.doPost(`${this.apiURL}/service/delete_item`, {});
+  }
+
   transposeSong(transpose_value, return_format = 'default'): Observable<any> {
     return this.doGet(`${this.apiURL}/plugins/songs/transpose-live-item/${transpose_value}?response_format=${return_format}`);
   }

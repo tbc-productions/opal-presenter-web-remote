@@ -47,6 +47,7 @@ import { ThemesComponent } from './components/themes/themes.component';
 import { SlideListComponent } from './components/slides/slide-list/slide-list.component';
 import { SlideItemComponent } from './components/slides/slide-item/slide-item.component';
 import { ServiceItemComponent } from './components/service/service-item/service-item.component';
+import { DeleteConfirmationComponent } from './components/service/service-item//delete-confirmation/delete-confirmation.component';
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { ChordViewItemComponent } from './components/chord-view/chord-view-item/chord-view-item.component';
 import { StageViewItemComponent } from './components/stage-view/stage-view-item/stage-view-item.component';
@@ -69,6 +70,7 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
     ServiceComponent,
     ServiceListComponent,
     ServiceItemComponent,
+    DeleteConfirmationComponent,
     AlertComponent,
     SearchComponent,
     SearchOptionsComponent,

@@ -5,11 +5,14 @@
   "ALERT": "Opozorilo",
   "ALERT_SUBMITTED": "Predloženo Opozorilo",
   "ALERTS": "Opozorila",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Ali ste prepričani, da želite izbrisati ta predmet iz sporeda?",
   "BIBLE_VERSION": "Svetopisemska različica",
   "CHANGE_DISPLAY_MODE": "Spremeni Način Prikaza",
   "CHORD_VIEW": "Pogled s Sozvoki",
   "CHORDS": "Sozvoki",
   "CONNECTED_TO_OPENLP": "Povezano z OpenLP",
+  "DELETE": "Izbriši",
+  "DELETE_FROM_SERVICE": "Brisanje iz Storitve",
   "DISCONNECTED": "Nepovezan",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Omogoči Velike Gumbe",
   "ENABLE_DARK_THEME": "Omogočanje Temne Teme",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Glavni Pogled",
   "NEXT_ITEM": "Naslednji Predmet",
   "NEXT_SLIDE": "Naslednja Prosojnica",
+  "NO": "Ne",
   "NO_SEARCH_RESULTS": "Ni rezultatov, ki bi se ujemali z vašim iskanjem",
   "NO_SERVICE_ITEMS": "Ni Predmetov Sporeda",
   "NO_SLIDE_ITEMS": "Ni Prosojnic",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Raven Teme",
   "THEME_OPTIONS": "Možnosti Teme",
   "USER_NAME": "Uporabniško Ime",
-  "USER_INTERFACE": "Uporabniški Vmesnik"
+  "USER_INTERFACE": "Uporabniški Vmesnik",
+  "YES": "Da"
 }

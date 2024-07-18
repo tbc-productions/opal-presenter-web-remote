@@ -5,11 +5,14 @@
   "ALERT": "แจ้งเตือน",
   "ALERT_SUBMITTED": "ส่งการแจ้งเตือนแล้ว",
   "ALERTS": "การแจ้งเตือน",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้ออกจากบริการ",
   "BIBLE_VERSION": "ฉบับพระคัมภีร์",
   "CHANGE_DISPLAY_MODE": "เปลี่ยนโหมดการแสดงผล",
   "CHORD_VIEW": "มุมมองคอร์ด",
   "CHORDS": "คอร์ด",
   "CONNECTED_TO_OPENLP": " เชื่อมต่อกับ OpenLP",
+  "DELETE": "ลบ",
+  "DELETE_FROM_SERVICE": "ลบออกจากบริการ",
   "DISCONNECTED": "ตัดการเชื่อมต่อ",
   "ENABLE_BIG_DISPLAY_BUTTONS": "เปิดใช้งานปุ่มแสดงผลขนาดใหญ่",
   "ENABLE_DARK_THEME": "เปิดใช้งานธีมสีเข้ม",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "มุมมองหลัก",
   "NEXT_ITEM": " รายการถัดไป",
   "NEXT_SLIDE": "ภาพนิ่งถัดไป",
+  "NO": "ไม่ใช่",
   "NO_SEARCH_RESULTS": "ไม่พบผลลัพธ์ตรงกับการค้นหาของคุณ",
   "NO_SERVICE_ITEMS": "ไม่มีรายการบริการ",
   "NO_SLIDE_ITEMS": "ไม่มีรายการภาพนิ่ง",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "ระดับธีม",
   "THEME_OPTIONS": "ตัวเลือกธีม",
   "USER_NAME": "ชื่อผู้ใช้",
-  "USER_INTERFACE": "ส่วนติดต่อผู้ใช้"
+  "USER_INTERFACE": "ส่วนติดต่อผู้ใช้",
+  "YES": "ใช่"
 }

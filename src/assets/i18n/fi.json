@@ -5,11 +5,14 @@
   "ALERT": "Huomio Viesti",
   "ALERT_SUBMITTED": "Ilmoitus Lähetetty",
   "ALERTS": "Huomio Viestit",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Haluatko varmasti poistaa tämän kohteen palvelusta?",
   "BIBLE_VERSION": "Raamatun versio",
   "CHANGE_DISPLAY_MODE": "Vaihda Näyttötilaa",
   "CHORD_VIEW": "Sointunäkymä",
   "CHORDS": "Soinnut",
   "CONNECTED_TO_OPENLP": "Yhdistetty OpenLP:hen",
+  "DELETE": "Poista",
+  "DELETE_FROM_SERVICE": "Poista Palvelusta",
   "DISCONNECTED": "Hajanainen",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Ota Käyttöön Suuret Näyttöpainikkeet",
   "ENABLE_DARK_THEME": "Ota tumma Teema Käyttöön",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Päänäkymä",
   "NEXT_ITEM": "Seuraava Kohta",
   "NEXT_SLIDE": "Seuraava Dia",
+  "NO": "Ei",
   "NO_SEARCH_RESULTS": "Hakuasi vastaavia tuloksia ei löytynyt",
   "NO_SERVICE_ITEMS": "Ei Huoltokohteita",
   "NO_SLIDE_ITEMS": "Ei Diakohteita",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Teeman Taso",
   "THEME_OPTIONS": "Teeman Asetukset",
   "USER_NAME": "Käyttäjänimi",
-  "USER_INTERFACE": "Käyttöliittymä"
+  "USER_INTERFACE": "Käyttöliittymä",
+  "YES": "Kyllä"
 }

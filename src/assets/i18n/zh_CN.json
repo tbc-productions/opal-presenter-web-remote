@@ -5,11 +5,14 @@
   "ALERT": "警报",
   "ALERT_SUBMITTED": "警报已提交",
   "ALERTS": "警报",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "您确定要从敬拜仪式中删除此项吗?",
   "BIBLE_VERSION": "圣经版本",
   "CHANGE_DISPLAY_MODE": "更改显示模式",
   "CHORD_VIEW": "和弦视图",
   "CHORDS": "和弦",
   "CONNECTED_TO_OPENLP": "已连接到 OpenLP",
+  "DELETE": "删除",
+  "DELETE_FROM_SERVICE": "从服务中删除",
   "DISCONNECTED": "断开连接",
   "ENABLE_BIG_DISPLAY_BUTTONS": "启用大显示按钮",
   "ENABLE_DARK_THEME": "启用深色主题",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "主视图",
   "NEXT_ITEM": "下一个项目",
   "NEXT_SLIDE": "下一张幻灯片",
+  "NO": "不",
   "NO_SEARCH_RESULTS": "没有找到与您的搜索匹配的结果",
   "NO_SERVICE_ITEMS": "没有服务项目",
   "NO_SLIDE_ITEMS": "没有幻灯片项目",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "主题级别",
   "THEME_OPTIONS": "主题选项",
   "USER_NAME": "用户名",
-  "USER_INTERFACE": "用户界面"
+  "USER_INTERFACE": "用户界面",
+  "YES": "是的"
 }

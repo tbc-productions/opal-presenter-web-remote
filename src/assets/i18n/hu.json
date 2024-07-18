@@ -5,11 +5,14 @@
   "ALERT": "Riasztási",
   "ALERT_SUBMITTED": "Riasztás Elküldve",
   "ALERTS": "Riasztások",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Valóban törölhető ez az elem a sorrendből?",
   "BIBLE_VERSION": "Bibliai változat",
   "CHANGE_DISPLAY_MODE": "Megjelenítési mód Módosítása",
   "CHORD_VIEW": "Akkord Nézet",
   "CHORDS": "Akkordok",
   "CONNECTED_TO_OPENLP": "OpenLP-hez Csatlakoztatva",
+  "DELETE": "Törlés",
+  "DELETE_FROM_SERVICE": "Törlés a Szolgáltatásból",
   "DISCONNECTED": "Elválasztott",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Nagy Kijelzőgombok Engedélyezése",
   "ENABLE_DARK_THEME": "Sötét Téma Engedélyezése",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Fő Nézet",
   "NEXT_ITEM": "Következő Elem",
   "NEXT_SLIDE": "Következő Dia",
+  "NO": "Nem",
   "NO_SEARCH_RESULTS": "Nem található a keresésének megfelelő találat",
   "NO_SERVICE_ITEMS": "Nincs Szolgáltatási Elem",
   "NO_SLIDE_ITEMS": "Nincsenek Diaelemek",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Téma Szintje",
   "THEME_OPTIONS": "Téma Beállítások",
   "USER_NAME": "Felhasználónév",
-  "USER_INTERFACE": "Felhasználói Felület"
+  "USER_INTERFACE": "Felhasználói Felület",
+  "YES": "Igen"
 }

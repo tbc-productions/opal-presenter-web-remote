@@ -5,11 +5,14 @@
   "ALERT": "Peringatan",
   "ALERT_SUBMITTED": "Peringatan Dikirim",
   "ALERTS": "Peringatan",
+  "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?": "Apakah Anda yakin ingin menghapus item ini dari layanan?",
   "BIBLE_VERSION": "Versi Alkitab",
   "CHANGE_DISPLAY_MODE": "Ubah Mode Tampilan",
   "CHORD_VIEW": "Tampilan Kunci",
   "CHORDS": "Kunci",
   "CONNECTED_TO_OPENLP": "Terhubung ke OpenLP",
+  "DELETE": "Hapus",
+  "DELETE_FROM_SERVICE": "Hapus dari Layanan",
   "DISCONNECTED": "Terputus",
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktifkan Tombol Tampilan Besar",
   "ENABLE_DARK_THEME": "Mengaktifkan Tema Gelap",
@@ -24,6 +27,7 @@
   "MAIN_VIEW": "Tampilan Utama",
   "NEXT_ITEM": "Item Berikutnya",
   "NEXT_SLIDE": "Slide Berikutnya",
+  "NO": "Tidak",
   "NO_SEARCH_RESULTS": "Tidak ada hasil yang cocok dengan pencarian Anda",
   "NO_SERVICE_ITEMS": "Tidak ada Item Layanan",
   "NO_SLIDE_ITEMS": "Tidak ada Item Slide",
@@ -53,5 +57,6 @@
   "THEME_LEVEL": "Tingkat Tema",
   "THEME_OPTIONS": "Opsi Tema",
   "USER_NAME": "Nama Pengguna",
-  "USER_INTERFACE": "Antarmuka Pengguna"
+  "USER_INTERFACE": "Antarmuka Pengguna",
+  "YES": "Ya"
 }

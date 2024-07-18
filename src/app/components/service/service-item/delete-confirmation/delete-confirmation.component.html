@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{ 'DELETE' | translate | titlecase }}</h1>
+<mat-dialog-content>
+  {{ 'ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_ITEM_FROM_THE_SERVICE?' | translate | sentencecase }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button
+    mat-dialog-close
+    (click)="cancel()">{{ 'NO' | translate | titlecase }}</button>
+  <button mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    (click)="delete()">{{ 'YES' | translate | titlecase }}</button>
+</mat-dialog-actions>

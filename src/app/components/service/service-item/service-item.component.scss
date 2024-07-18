@@ -1,4 +1,10 @@
 /* Align icons with text */
-.mat-icon {
-  line-height: inherit !important;
+.service-item-icon {
+  line-height: inherit;
+}
+
+.delete-service-item-button {
+  position: absolute;
+  top: 5px;
+  right: 20px;
 }
