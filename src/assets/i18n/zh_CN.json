@@ -56,6 +56,7 @@
   "THEMES": "主题",
   "THEME_LEVEL": "主题级别",
   "THEME_OPTIONS": "主题选项",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "未经授权：您应先登录才能执行此操作",
   "USER_NAME": "用户名",
   "USER_INTERFACE": "用户界面",
   "YES": "是的"

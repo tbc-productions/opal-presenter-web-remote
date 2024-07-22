@@ -1,7 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
-import { finalize, shareReplay, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpStatusCode } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TitleCasePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, of, Subscription } from 'rxjs';
+import { catchError, finalize, shareReplay, tap } from 'rxjs/operators';
+import { SentenceCasePipe } from './components/pipes/sentence-case.pipe';
+import { LoginComponent } from './components/login/login.component';
 
 import {
   PluginDescription,
@@ -44,14 +50,21 @@ export class OpenLPService {
   public stateChanged$: EventEmitter<State>;
   public messageReceived$: EventEmitter<Message<MessageType>>;
   public webSocketStateChanged$: EventEmitter<WebSocketStatus>;
+  public isLoggedInChanged$: EventEmitter<boolean> = new EventEmitter<boolean>();
   private isTwelveHourTime = true;
-
+  loginMessage: string;
+  unauthorizedMessage: string;
+  
   private webSocketTimeoutHandle: any = 0;
   private _stateWebSocketSubscription: Subscription;
   private _messageWebSocketSubscription: Subscription;
   private _retrieveSystemInformationSubscription: Subscription;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar,
+    private titleCasePipe: TitleCasePipe, private sentenceCasePipe: SentenceCasePipe,
+    private translateService: TranslateService
+  ) {
     const host = window.location.hostname;
     let port: string;
     if (environment.production) {
@@ -66,6 +79,12 @@ export class OpenLPService {
     this.webSocketStateChanged$ = new EventEmitter<WebSocketStatus>();
     this.messageReceived$ = new EventEmitter<Message<MessageType>>();
     this.createWebSocket();
+    this.translateService.stream('LOGIN').subscribe((res: string) => {
+      this.loginMessage = this.titleCasePipe.transform(res);
+    });
+    this.translateService.stream('UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION').subscribe((res: string) => {
+      this.unauthorizedMessage = this.sentenceCasePipe.transform(res);
+    });
   }
 
   assertApiVersionExact(version: number, revision: number) {
@@ -218,14 +237,45 @@ export class OpenLPService {
     return this.doPost<AuthToken>(`${this.apiURL}/core/login`, credentials);
   }
 
+  private handleError<T>(result?: T) {
+    return (error: any): Observable<T> => {
+      if (error.status == HttpStatusCode.Unauthorized) {
+        const snackBarRef = this.snackBar.open(this.unauthorizedMessage, this.loginMessage, {
+          duration: 5000
+        });
+        snackBarRef.onAction().subscribe(() => {
+          this.openLoginDialog()
+        })
+        throw this.unauthorizedMessage
+      }
+      return of(result as T);
+    };
+  }
+
+  public openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.setAuthToken(result.token);
+       }
+    });
+  }
+
   protected doGet<T>(url: string): Observable<T> {
-    return this.http.get<T>(url, httpOptions);
+    return this.http.get<T>(url, httpOptions).pipe(
+      catchError(this.handleError<T>())
+    );
   }
 
   protected doPost<T>(url: string, body: any): Observable<T> {
     // User is expecting instant response, so we'll accelerate the websocket reconnection process if needed.
     this.reconnectWebSocketIfNeeded();
-    return this.http.post<T>(url, body, httpOptions);
+    return this.http.post<T>(url, body, httpOptions).pipe(
+      catchError(this.handleError<T>())
+    );
   }
 
   get webSocketStatus(): WebSocketStatus {

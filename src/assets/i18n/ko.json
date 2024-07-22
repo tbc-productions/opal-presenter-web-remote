@@ -56,6 +56,7 @@
   "THEMES": "테마",
   "THEME_LEVEL": "테마 수준",
   "THEME_OPTIONS": "테마 옵션",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "권한 없음: 이 작업을 수행하려면 먼저 로그인해야 합니다",
   "USER_NAME": "사용자 이름",
   "USER_INTERFACE": "사용자 인터페이스",
   "YES": "예"

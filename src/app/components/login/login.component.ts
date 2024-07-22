@@ -31,13 +31,18 @@ export class LoginComponent {
     });
   }
 
-  performLogin() {
+  cancel() {
+    this.dialogRef.close(false);
+  }
+
+  login() {
     this.openlpService.login({ username: this.username, password: this.password }).subscribe({
       next: result => {
-        this.snackBar.open(this.loginSucceededMessage, '', { duration: 2000 });
+        this.openlpService.isLoggedInChanged$.emit(true);
+        this.snackBar.open(this.loginSucceededMessage, null, { duration: 2000 });
         this.dialogRef.close(result);
       },
-      error: () => this.snackBar.open(this.loginFailedMessage, '', { duration: 2000 })
+      error: () => this.snackBar.open(this.loginFailedMessage, null, { duration: 2000 })
     });
   }
 }

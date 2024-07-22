@@ -56,6 +56,7 @@
   "THEMES": "テーマ",
   "THEME_LEVEL": "テーマレベル",
   "THEME_OPTIONS": "テーマオプション",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "Unauthorized:このアクションを実行するには、最初にログインする必要があります",
   "USER_NAME": "ユーザー名",
   "USER_INTERFACE": "ユーザーインターフェース",
   "YES": "はい"
