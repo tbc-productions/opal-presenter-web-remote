@@ -21,10 +21,14 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button id="loginButton"
-      color="primary"
+    <button mat-button
+      mat-dialog-close
+      (click)="cancel()">
+      {{ 'CANCEL' | translate | titlecase }}
+    </button>
+    <button mat-button
       [disabled]="!loginForm.form.valid"
-      (click)="performLogin()">
+      (click)="login()">
       {{ 'LOGIN' | translate | titlecase }}
     </button>
   </div>

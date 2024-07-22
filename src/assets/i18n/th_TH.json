@@ -56,6 +56,7 @@
   "THEMES": "ธีม",
   "THEME_LEVEL": "ระดับธีม",
   "THEME_OPTIONS": "ตัวเลือกธีม",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "ไม่ได้รับอนุญาต: คุณควรเข้าสู่ระบบก่อนเพื่อดําเนินการนี้",
   "USER_NAME": "ชื่อผู้ใช้",
   "USER_INTERFACE": "ส่วนติดต่อผู้ใช้",
   "YES": "ใช่"

@@ -56,6 +56,7 @@
   "THEMES": "Temaer",
   "THEME_LEVEL": "Temaniveau",
   "THEME_OPTIONS": "Temaindstillinger",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "Uautoriseret: du skal logge ind først for at udføre denne handling",
   "USER_NAME": "Brugernavn",
   "USER_INTERFACE": "Brugergrænseflade",
   "YES": "Ja"

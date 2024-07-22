@@ -56,6 +56,7 @@
   "THEMES": "Теми",
   "THEME_LEVEL": "Ниво на темата",
   "THEME_OPTIONS": "Опции за темата",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "Неупълномощен: първо трябва да влезете, за да извършите това действие",
   "USER_NAME": "Потребителско име",
   "USER_INTERFACE": "Потребителски интерфейс",
   "YES": "Да"

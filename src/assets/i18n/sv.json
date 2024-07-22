@@ -56,6 +56,7 @@
   "THEMES": "Teman",
   "THEME_LEVEL": "Temanivå",
   "THEME_OPTIONS": "Temaval",
+  "UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION": "Obehörig: du bör logga in först för att utföra den här åtgärden",
   "USER_NAME": "Användarnamn",
   "USER_INTERFACE": "Användargränssnitt",
   "YES": "Ja"
