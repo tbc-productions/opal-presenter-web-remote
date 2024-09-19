@@ -1,10 +1,20 @@
+.service-item {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Align icons with text */
 .service-item-icon {
   line-height: inherit;
 }
 
+.card-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .delete-service-item-button {
   position: absolute;
-  top: 5px;
-  right: 20px;
+  right: 5px;
 }
