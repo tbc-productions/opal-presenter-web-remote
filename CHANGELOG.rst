@@ -1,6 +1,15 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.1.1
+-------------
+
+* Prevent that the delete service item button is blocking the service item title.
+* Updated dependencies including Angular.
+
+Version 1.1.0
+-------------
+
 * Add a delete button for service items when version 2.6 or newer of the Web API is being used.
 * Display a message when login is required.
 * Updated dependencies including Angular.
