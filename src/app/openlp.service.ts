@@ -65,7 +65,7 @@ export class OpenLPService {
     private titleCasePipe: TitleCasePipe, private sentenceCasePipe: SentenceCasePipe,
     private translateService: TranslateService
   ) {
-    const protocol = window.location.protocol || "http";
+    const protocol = window.location.protocol || "http:";
     const host = window.location.hostname;
     let port: string;
     if (environment.production) {
@@ -74,7 +74,7 @@ export class OpenLPService {
     else {
       port = '4316';
     }
-    this.apiURL = `${protocol}://${host}:${port}/api/v2`;
+    this.apiURL = `${protocol}//${host}:${port}/api/v2`;
     this.host = host;
     this.stateChanged$ = new EventEmitter<State>();
     this.webSocketStateChanged$ = new EventEmitter<WebSocketStatus>();
