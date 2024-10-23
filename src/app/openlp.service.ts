@@ -65,7 +65,7 @@ export class OpenLPService {
     private titleCasePipe: TitleCasePipe, private sentenceCasePipe: SentenceCasePipe,
     private translateService: TranslateService
   ) {
-    const protocol = window.location.protocol || "http:";
+    const protocol = window.location.protocol;
     const host = window.location.hostname;
     let port: string;
     if (environment.production) {
