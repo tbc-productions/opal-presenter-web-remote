@@ -7,7 +7,8 @@ export function createWebSocket<T>(
   endpoint = ''
 ): Observable<T> {
   return new Observable((observer) => {
-    const ws = new WebSocket(`ws://${host}:${wsPort}/${endpoint}`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${host}:${wsPort}/${endpoint}`);
     ws.onmessage = (e) => {
       const reader = new FileReader();
       reader.onload = () => {
