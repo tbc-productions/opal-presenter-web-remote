@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { OpenLPService } from '../../../openlp.service';
+import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../responses';
 
 @Component({

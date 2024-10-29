@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { OpenLPService } from '../../openlp.service';
-import { PageTitleService } from '../../page-title.service';
+import { OpenLPService } from '../../services/openlp.service';
+import { PageTitleService } from '../../services/page-title.service';
 import { Theme } from '../../responses';
 
 @Component({

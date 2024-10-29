@@ -16,7 +16,7 @@ export interface SettingsPropertiesItem<SP extends keyof SettingsProperties, SV 
 
 const LOCAL_STORAGE_PREFIX = 'OpenLP-';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class SettingsService {
     constructor() {
         window.addEventListener('storage', this._handleStorageEvent);

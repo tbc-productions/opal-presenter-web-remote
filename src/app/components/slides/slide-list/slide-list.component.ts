@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { Subscription } from 'rxjs';
 
 import { Slide } from '../../../responses';
-import { OpenLPService } from '../../../openlp.service';
+import { OpenLPService } from '../../../services/openlp.service';
 
 @Component({
   selector: 'openlp-slide-list',

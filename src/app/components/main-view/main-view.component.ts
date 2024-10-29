@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenLPService } from '../../openlp.service';
+import { OpenLPService } from '../../services/openlp.service';
 
 @Component({
   selector: 'app-main-view',

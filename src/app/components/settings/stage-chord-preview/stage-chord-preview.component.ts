@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { SettingsProperties, SettingsService } from 'src/app/settings.service';
+import { SettingsProperties, SettingsService } from '../../../services/settings.service';
 
 @Component({
     selector: 'openlp-stage-chord-preview',

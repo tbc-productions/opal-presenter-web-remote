@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { OpenLPService } from '../../openlp.service';
-import { PageTitleService } from '../../page-title.service';
-import { SettingsProperties, SettingsPropertiesItem, SettingsService } from '../../settings.service';
+import { OpenLPService } from '../../services/openlp.service';
+import { PageTitleService } from '../../services/page-title.service';
+import { SettingsProperties, SettingsPropertiesItem, SettingsService } from '../../services/settings.service';
 
 @Component({
     selector: 'openlp-settings',

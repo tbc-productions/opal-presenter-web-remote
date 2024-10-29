@@ -6,8 +6,8 @@ import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, finalize, shareReplay, tap } from 'rxjs/operators';
-import { SentenceCasePipe } from './components/pipes/sentence-case.pipe';
-import { LoginComponent } from './components/login/login.component';
+import { SentenceCasePipe } from '../components/pipes/sentence-case.pipe';
+import { LoginComponent } from '../components/login/login.component';
 
 import {
   PluginDescription,
@@ -23,10 +23,10 @@ import {
   AuthToken,
   Message,
   MessageType
-} from './responses';
-import { environment } from '../environments/environment';
-import { createWebSocket } from './openlp-websocket';
-import { deserialize } from './utils';
+} from '../responses';
+import { environment } from '../../environments/environment';
+import { createWebSocket } from '../openlp-websocket';
+import { deserialize } from '../utils';
 
 const httpOptions = {
   headers: new HttpHeaders({
