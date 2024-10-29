@@ -3,15 +3,19 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { State, Display, DisplayMode } from './responses';
-import { OpenLPService, WebSocketStatus } from './services/openlp.service';
+import { State } from './models/state';
+import { Display } from './models/display';
+import { DisplayMode } from './enums/display-mode.enum';
+import { OpenLPService } from './services/openlp.service';
+import { WebSocketStatus } from './enums/web-socket-status.enum';
 import { WindowRef } from './services/window-ref.service';
 import { PageTitleService } from './services/page-title.service';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
-import { Shortcuts, ShortcutsService } from './services/shortcuts.service';
-import { ShortcutPipe } from './components/pipes/shortcut.pipe';
+import { Shortcuts } from './models/shortcuts';
+import { ShortcutsService } from './services/shortcuts.service';
+import { ShortcutPipe } from './pipes/shortcut.pipe';
 import { SettingsService } from './services/settings.service';
 import * as supportedBrowsers from '../assets/supportedBrowsers';
 

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../services/openlp.service';
 import { PageTitleService } from '../../services/page-title.service';
-import { ServiceItem } from '../../responses';
+import { ServiceItem } from '../../interfaces/service-item.interface';
 
 @Component({
   selector: 'openlp-service',

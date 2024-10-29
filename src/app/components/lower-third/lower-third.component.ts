@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SettingsService } from '../../services/settings.service';
 import { OpenLPService } from '../../services/openlp.service';
-import { ServiceItem, Slide } from '../../responses';
+import { ServiceItem } from '../../interfaces/service-item.interface';
+import { Slide } from '../../interfaces/slide.interface';
 
 @Component({
   selector: 'app-lower-third',

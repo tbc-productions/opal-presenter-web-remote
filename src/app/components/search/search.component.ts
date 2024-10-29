@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../services/openlp.service';
 import { PageTitleService } from '../../services/page-title.service';
-import { PluginDescription } from '../../responses';
+import { PluginDescription } from '../../interfaces/plugin-description.interface';
 import { SearchOptionsComponent } from './search-options/search-options.component';
 
 @Component({

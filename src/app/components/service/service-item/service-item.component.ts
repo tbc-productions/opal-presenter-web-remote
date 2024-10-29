@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import { OpenLPService } from '../../../services/openlp.service';
-import { ServiceItem } from '../../../responses';
+import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 @Component({
   selector: 'openlp-service-item',

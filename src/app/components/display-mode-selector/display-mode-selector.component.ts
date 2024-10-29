@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { Display, DisplayMode } from 'src/app/responses';
+import { Display } from '../../models/display';
+import { DisplayMode } from '../../enums/display-mode.enum';
 
 @Component({
     selector: 'openlp-display-mode-sheet',
