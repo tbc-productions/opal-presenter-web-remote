@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Slide } from '../../../responses';
+import { Slide } from '../../../interfaces/slide.interface';
 
 @Component({
   selector: 'openlp-slide-item',

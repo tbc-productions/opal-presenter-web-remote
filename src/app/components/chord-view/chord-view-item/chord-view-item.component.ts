@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Slide } from '../../../responses';
+import { Slide } from '../../../interfaces/slide.interface';
 
 @Component({
     selector: 'app-chord-view-item',

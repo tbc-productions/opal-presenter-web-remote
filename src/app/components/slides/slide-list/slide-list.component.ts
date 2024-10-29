@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Slide } from '../../../responses';
+import { Slide } from '../../../interfaces/slide.interface';
 import { OpenLPService } from '../../../services/openlp.service';
 
 @Component({

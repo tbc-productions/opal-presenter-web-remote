@@ -40,9 +40,9 @@ import { SearchOptionsComponent } from './components/search/search-options/searc
 import { SlidesComponent } from './components/slides/slides.component';
 import { ChordViewComponent } from './components/chord-view/chord-view.component';
 import { StageViewComponent } from './components/stage-view/stage-view.component';
-import { Nl2BrPipe } from './components/pipes/nl2br.pipe';
+import { Nl2BrPipe } from './pipes/nl2br.pipe';
 import { MainViewComponent } from './components/main-view/main-view.component';
-import { ChordProPipe } from './components/pipes/chordpro.pipe';
+import { ChordProPipe } from './pipes/chordpro.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { ThemesComponent } from './components/themes/themes.component';
 import { SlideListComponent } from './components/slides/slide-list/slide-list.component';
@@ -53,7 +53,7 @@ import { ServiceListComponent } from './components/service/service-list/service-
 import { ChordViewItemComponent } from './components/chord-view/chord-view-item/chord-view-item.component';
 import { StageViewItemComponent } from './components/stage-view/stage-view-item/stage-view-item.component';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
-import { SentenceCasePipe } from './components/pipes/sentence-case.pipe';
+import { SentenceCasePipe } from './pipes/sentence-case.pipe';
 import { SettingsComponent } from './components/settings/settings.component';
 import { StageChordPreviewComponent } from './components/settings/stage-chord-preview/stage-chord-preview.component';
 

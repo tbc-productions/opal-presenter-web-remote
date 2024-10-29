@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { OpenLPService } from '../../services/openlp.service';
 import { PageTitleService } from '../../services/page-title.service';
-import { Theme } from '../../responses';
+import { Theme } from '../../interfaces/theme.interface';
 
 @Component({
   selector: 'openlp-themes',

@@ -6,24 +6,22 @@ import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, finalize, shareReplay, tap } from 'rxjs/operators';
-import { SentenceCasePipe } from '../components/pipes/sentence-case.pipe';
+import { SentenceCasePipe } from '../pipes/sentence-case.pipe';
 import { LoginComponent } from '../components/login/login.component';
-
-import {
-  PluginDescription,
-  State,
-  Slide,
-  ServiceItem,
-  Theme,
-  Language,
-  MainView,
-  Shortcut,
-  SystemInformation,
-  Credentials,
-  AuthToken,
-  Message,
-  MessageType
-} from '../responses';
+import { PluginDescription } from '../interfaces/plugin-description.interface';
+import { State } from '../models/state';
+import { Slide } from '../interfaces/slide.interface';
+import { ServiceItem } from '../interfaces/service-item.interface'
+import { Theme } from '../interfaces/theme.interface';
+import { Language } from '../interfaces/language.interface';
+import { MainView } from '../interfaces/main-view.interface';
+import { Shortcut } from '../interfaces/shortcut.interface';
+import { SystemInformation } from '../interfaces/system-information.interface';
+import { Credentials } from '../interfaces/credentials.interface';
+import { AuthToken } from '../interfaces/auth-token.interface';
+import { Message } from '../models/message';
+import { MessageType } from '../interfaces/message-type.interface';
+import { WebSocketStatus } from '../enums/web-socket-status.enum';
 import { environment } from '../../environments/environment';
 import { createWebSocket } from '../openlp-websocket';
 import { deserialize } from '../utils';
@@ -36,10 +34,6 @@ const httpOptions = {
 };
 
 const WEBSOCKET_RECONNECT_TIMEOUT = 5 * 1000;
-
-export enum WebSocketStatus {
-  Open, Closed
-}
 
 @Injectable()
 export class OpenLPService {

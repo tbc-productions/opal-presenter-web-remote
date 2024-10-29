@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { Subscription } from 'rxjs';
 
 import { OpenLPService } from '../../../services/openlp.service';
-import { ServiceItem } from '../../../responses';
+import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 @Component({
   selector: 'openlp-service-list',

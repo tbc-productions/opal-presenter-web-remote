@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Slide } from '../../responses';
+import { Slide } from '../../interfaces/slide.interface';
 import { StageViewComponent } from '../stage-view/stage-view.component';
 
 @Component({

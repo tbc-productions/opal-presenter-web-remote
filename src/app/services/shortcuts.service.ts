@@ -3,17 +3,7 @@ import { EventEmitter, Inject, Injectable } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { OpenLPService } from './openlp.service';
-
-export class Shortcuts {
-  previousSlide = ['Up', 'PgUp'];
-  nextSlide = ['Down', 'PgDown'];
-  previousItem = ['Left'];
-  nextItem = ['Right'];
-  showDisplay = ['Space'];
-  themeDisplay = ['t'];
-  blankDisplay = ['.'];
-  desktopDisplay = ['d'];
-}
+import { Shortcuts } from '../models/shortcuts';
 
 interface Options {
   element: any;
