@@ -27,10 +27,11 @@ import { MatSliderModule } from '@angular/material/slider';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
-import { PageTitleService } from './page-title.service';
-import { OpenLPService } from './openlp.service';
-import { TranslationService } from './translation.service';
-import { WindowRef } from './window-ref.service';
+import { OpenLPService } from './services/openlp.service';
+import { PageTitleService } from './services/page-title.service';
+import { SettingsService } from './services/settings.service';
+import { ShortcutsService } from './services/shortcuts.service';
+import { TranslationService } from './services/translation.service';
 import { AppRoutingModule } from './app.routing';
 import { ServiceComponent } from './components/service/service.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -114,13 +115,14 @@ import { StageChordPreviewComponent } from './components/settings/stage-chord-pr
     })
   ],
   providers: [
-    PageTitleService,
     OpenLPService,
-    TranslationService,
+    PageTitleService,
     SentenceCasePipe,
+    SettingsService,
+    ShortcutsService,
     Title,
     TitleCasePipe,
-    WindowRef,
+    TranslationService,
     provideHttpClient(withInterceptorsFromDi()),
   ],
   bootstrap: [AppComponent]

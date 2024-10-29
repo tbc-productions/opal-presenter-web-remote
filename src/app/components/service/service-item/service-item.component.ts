@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { MatDialog } from '@angular/material/dialog';
 
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
-import { OpenLPService } from '../../../openlp.service';
+import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../responses';
 
 @Component({

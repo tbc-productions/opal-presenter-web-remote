@@ -20,7 +20,7 @@ interface Options {
   keys: string;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ShortcutsService {
   defaults: Partial<Options> = {
     element: this.document

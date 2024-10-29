@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
-import { OpenLPService } from '../../../openlp.service';
+import { OpenLPService } from '../../../services/openlp.service';
 
 @Component({
   selector: 'openlp-search-options',

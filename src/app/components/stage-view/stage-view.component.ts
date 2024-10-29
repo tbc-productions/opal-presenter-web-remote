@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SettingsProperties, SettingsService } from 'src/app/settings.service';
-import { OpenLPService } from '../../openlp.service';
+import { SettingsProperties, SettingsService } from '../../services/settings.service';
+import { OpenLPService } from '../../services/openlp.service';
 import { ServiceItem, Slide } from '../../responses';
 
 interface Tag {

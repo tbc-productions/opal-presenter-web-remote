@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { OpenLPService } from '../../openlp.service';
-import { PageTitleService } from '../../page-title.service';
+import { OpenLPService } from '../../services/openlp.service';
+import { PageTitleService } from '../../services/page-title.service';
 import { ServiceItem } from '../../responses';
 
 @Component({
