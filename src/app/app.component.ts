@@ -20,9 +20,10 @@ import { SettingsService } from './services/settings.service';
 import * as supportedBrowsers from '../assets/supportedBrowsers';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    standalone: false
 })
 export class AppComponent implements OnInit {
   // Make DisplayMode enum visible to HTML code.
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!(supportedBrowsers.test(navigator.userAgent))) {
+    if (!(supportedBrowsers.default.test(navigator.userAgent))) {
       window.location.replace("/assets/notsupported.html");
     }
     this.openlpService.retrieveSystemInformation().subscribe(res => {

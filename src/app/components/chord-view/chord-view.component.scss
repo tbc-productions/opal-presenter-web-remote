@@ -1,4 +1,4 @@
-@import '../overlay-common';
+@use '../overlay-common';
 
 .transpose {
     display: flex;
@@ -10,7 +10,7 @@
         transform: scale(1.5);
     }
 
-    @media screen and (min-width: $mobile-breakpoint) {
+    @media screen and (min-width: overlay-common.$mobile-breakpoint) {
         font-size: 3rem;
         mat-icon {
             transform: scale(2);

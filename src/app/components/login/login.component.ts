@@ -7,9 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { OpenLPService } from '../../services/openlp.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    standalone: false
 })
 export class LoginComponent {
   username: string;

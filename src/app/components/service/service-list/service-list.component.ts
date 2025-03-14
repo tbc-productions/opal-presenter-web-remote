@@ -5,9 +5,10 @@ import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 @Component({
-  selector: 'openlp-service-list',
-  templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.scss', '../../no-items.scss']
+    selector: 'openlp-service-list',
+    templateUrl: './service-list.component.html',
+    styleUrls: ['./service-list.component.scss', '../../no-items.scss'],
+    standalone: false
 })
 
 export class ServiceListComponent implements OnInit, OnDestroy {

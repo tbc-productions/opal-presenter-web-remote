@@ -3,11 +3,11 @@ import { Slide } from '../../interfaces/slide.interface';
 import { StageViewComponent } from '../stage-view/stage-view.component';
 
 @Component({
-  selector: 'app-chord-view',
-  templateUrl: './chord-view.component.html',
-  styleUrls: ['./chord-view.component.scss', '../overlay.scss', './chordpro.scss'],
-  encapsulation: ViewEncapsulation.None // needed for the chords to be displayed
-
+    selector: 'app-chord-view',
+    templateUrl: './chord-view.component.html',
+    styleUrls: ['./chord-view.component.scss', '../overlay.scss', './chordpro.scss'],
+    encapsulation: ViewEncapsulation.None, // needed for the chords to be displayed
+    standalone: false
 })
 export class ChordViewComponent extends StageViewComponent {
   // Map with the song id and transpose value so the chord-view remembers the value for each song

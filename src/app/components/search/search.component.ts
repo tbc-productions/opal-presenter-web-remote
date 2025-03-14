@@ -7,10 +7,11 @@ import { PluginDescription } from '../../interfaces/plugin-description.interface
 import { SearchOptionsComponent } from './search-options/search-options.component';
 
 @Component({
-  selector: 'openlp-search',
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.scss',
-  providers: [OpenLPService]
+    selector: 'openlp-search',
+    templateUrl: './search.component.html',
+    styleUrl: './search.component.scss',
+    providers: [OpenLPService],
+    standalone: false
 })
 export class SearchComponent implements OnInit, AfterViewInit {
   public searchPlugins: PluginDescription[] = [];

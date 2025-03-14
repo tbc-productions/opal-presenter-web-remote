@@ -6,7 +6,8 @@ import { DisplayMode } from '../../enums/display-mode.enum';
 @Component({
     selector: 'openlp-display-mode-sheet',
     templateUrl: 'display-mode-selector.component.html',
-    styleUrl: './display-mode-selector.component.scss'
+    styleUrl: './display-mode-selector.component.scss',
+    standalone: false
 })
 export class DisplayModeSelectorComponent {
   // Make DisplayMode enum visible in HTML template.

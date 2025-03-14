@@ -8,7 +8,8 @@ import { SettingsProperties, SettingsPropertiesItem, SettingsService } from '../
 @Component({
     selector: 'openlp-settings',
     templateUrl: './settings.component.html',
-    styleUrl: './settings.component.scss'
+    styleUrl: './settings.component.scss',
+    standalone: false
 })
 export class SettingsComponent implements OnDestroy {
   constructor(

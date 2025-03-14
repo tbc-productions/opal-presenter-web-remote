@@ -6,9 +6,10 @@ import { PageTitleService } from '../../services/page-title.service';
 import { SlideListItem } from './slide-list/slide-list.component';
 
 @Component({
-  selector: 'openlp-slides',
-  templateUrl: './slides.component.html',
-  styleUrl: './slides.component.scss',
+    selector: 'openlp-slides',
+    templateUrl: './slides.component.html',
+    styleUrl: './slides.component.scss',
+    standalone: false
 })
 
 export class SlidesComponent {

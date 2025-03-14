@@ -5,10 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { OpenLPService } from '../../../services/openlp.service';
 
 @Component({
-  selector: 'openlp-search-options',
-  templateUrl: './search-options.component.html',
-  styleUrl: './search-options.component.scss',
-  providers: [OpenLPService]
+    selector: 'openlp-search-options',
+    templateUrl: './search-options.component.html',
+    styleUrl: './search-options.component.scss',
+    providers: [OpenLPService],
+    standalone: false
 })
 export class SearchOptionsComponent {
   public selectedPlugin: string;
