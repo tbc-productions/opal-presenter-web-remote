@@ -6,10 +6,11 @@ import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 @Component({
-  selector: 'openlp-service-item',
-  templateUrl: './service-item.component.html',
-  styleUrl: './service-item.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'openlp-service-item',
+    templateUrl: './service-item.component.html',
+    styleUrl: './service-item.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class ServiceItemComponent {

@@ -1,4 +1,4 @@
-@import "./overlay-common";
+@use 'overlay-common';
 
 :root {
   --openlp-stage-font-scale: 1;
@@ -29,7 +29,7 @@
     min-height: calc(250px * var(--openlp-stage-image-scale));
   }
   .active-slide-img-text {
-    @include slide-font-size(0.75);
+    @include overlay-common.slide-font-size(0.75);
   }
   .next-slides-img {
     /* properly size thumbnail displayed in 2nd and subsequent slides */
@@ -39,7 +39,7 @@
   }
 
   .next-slides-text {
-    @include slide-font-size(0.5);
+    @include overlay-common.slide-font-size(0.5);
   }
 
   &-content {
@@ -60,9 +60,9 @@
       justify-content: flex-start;
       color: green;
       align-items: center;
-      @include slide-font-size(1);
+      @include overlay-common.slide-font-size(1);
 
-      @media screen and (min-width: $mobile-breakpoint) {
+      @media screen and (min-width: overlay-common.$mobile-breakpoint) {
         margin-top: 1rem;
         margin-bottom: 1rem;
         font-size: 3rem;
@@ -86,14 +86,13 @@
     overflow-y: auto;
 
     .notes {
-      @include slide-font-size(0.9);
       line-height: 1;
-
       color: salmon;
       text-align: right;
+      @include overlay-common.slide-font-size(0.9);      
     }
 
-    @media screen and (min-width: $mobile-breakpoint) {
+    @media screen and (min-width: overlay-common.$mobile-breakpoint) {
       margin-top: 4rem;
     }
 
@@ -123,7 +122,7 @@
       margin-top: 1rem;
     }
 
-    @include slide-font-size();
+    @include overlay-common.slide-font-size();
   }
 
 }
@@ -141,7 +140,7 @@
     color: #000;
   }
 
-  @media screen and (max-width: ($mobile-breakpoint - 0.125px)){
+  @media screen and (max-width: (overlay-common.$mobile-breakpoint - 0.125px)){
     position: absolute;
     bottom: 0;
     left: 0;
@@ -151,13 +150,13 @@
     padding: 0.6rem;
   }
 
-  @media screen and (min-width: $mobile-breakpoint) {
+  @media screen and (min-width: overlay-common.$mobile-breakpoint) {
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  @media screen and (max-width: ($mobile-breakpoint - 0.125px)) and (orientation: landscape) {
+  @media screen and (max-width: (overlay-common.$mobile-breakpoint - 0.125px)) and (orientation: landscape) {
     left: auto;
     border-top-left-radius: 0.5rem;
   }
@@ -178,7 +177,7 @@
   padding-right: 0.8rem;
   font-size: 2rem;
 
-  @media screen and (min-width: $mobile-breakpoint) {
+  @media screen and (min-width: overlay-common.$mobile-breakpoint) {
     font-size: 3rem;
   }
 }
@@ -192,6 +191,6 @@
   color: grey;
 
   .slide {
-    @include slide-font-size(0.75);
+    @include overlay-common.slide-font-size(0.75);
   }
 }

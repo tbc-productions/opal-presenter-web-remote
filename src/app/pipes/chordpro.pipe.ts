@@ -12,7 +12,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-@Pipe({ name: 'chordpro' })
+@Pipe({
+    name: 'chordpro',
+    standalone: false
+})
 
 export class ChordProPipe implements PipeTransform {
     /**

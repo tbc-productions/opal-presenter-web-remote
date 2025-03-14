@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'shortcut'})
+@Pipe({
+    name: 'shortcut',
+    standalone: false
+})
 export class ShortcutPipe implements PipeTransform {
     transform(value: string): string {
       if (!value) {

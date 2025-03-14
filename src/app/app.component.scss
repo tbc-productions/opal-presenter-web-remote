@@ -13,16 +13,16 @@ $small-toolbar-breakpoint: 500px;
 
 // To allow the inner overlay (and other items) to use z-indexes greater than 1.
 .mat-sidenav {
-  &-container, &-content {
-    z-index: auto;
-  }
   // This rule is to avoid the left menu scrolling with the page itself.
   position: fixed;
   padding-top: 64px;
+  width: 12rem;
   @media screen and (max-width: 600px) {
     padding-top: 56px; 
   }
-  width: 12rem;
+  &-container, &-content {
+    z-index: auto;
+  }
 }
 
 mat-toolbar {

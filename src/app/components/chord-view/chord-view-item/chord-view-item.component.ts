@@ -4,7 +4,8 @@ import { Slide } from '../../../interfaces/slide.interface';
 @Component({
     selector: 'app-chord-view-item',
     templateUrl: './chord-view-item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ChordViewItemComponent {
     @Input() slide: Slide;

@@ -12,10 +12,11 @@ interface Tag {
 }
 
 @Component({
-  selector: 'app-stage-view',
-  templateUrl: './stage-view.component.html',
-  styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-stage-view',
+    templateUrl: './stage-view.component.html',
+    styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class StageViewComponent implements OnInit, OnDestroy {
   @Input() embedded = false;

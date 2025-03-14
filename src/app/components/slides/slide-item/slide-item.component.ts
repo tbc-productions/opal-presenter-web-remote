@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Slide } from '../../../interfaces/slide.interface';
 
 @Component({
-  selector: 'openlp-slide-item',
-  templateUrl: './slide-item.component.html',
-  styleUrl: './slide-item.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'openlp-slide-item',
+    templateUrl: './slide-item.component.html',
+    styleUrl: './slide-item.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class SlideItemComponent {

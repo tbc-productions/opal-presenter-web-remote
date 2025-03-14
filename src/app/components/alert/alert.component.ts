@@ -7,10 +7,11 @@ import { PageTitleService } from '../../services/page-title.service';
 import { OpenLPService } from '../../services/openlp.service';
 
 @Component({
-  selector: 'openlp-alert',
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss',
-  providers: [OpenLPService]
+    selector: 'openlp-alert',
+    templateUrl: './alert.component.html',
+    styleUrl: './alert.component.scss',
+    providers: [OpenLPService],
+    standalone: false
 })
 
 export class AlertComponent {

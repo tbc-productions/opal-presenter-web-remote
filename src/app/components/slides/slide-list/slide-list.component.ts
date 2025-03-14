@@ -5,9 +5,10 @@ import { Slide } from '../../../interfaces/slide.interface';
 import { OpenLPService } from '../../../services/openlp.service';
 
 @Component({
-  selector: 'openlp-slide-list',
-  templateUrl: './slide-list.component.html',
-  styleUrls: ['./slide-list.component.scss', '../../no-items.scss'],
+    selector: 'openlp-slide-list',
+    templateUrl: './slide-list.component.html',
+    styleUrls: ['./slide-list.component.scss', '../../no-items.scss'],
+    standalone: false
 })
 
 export class SlideListComponent implements OnInit, OnDestroy {

@@ -7,10 +7,11 @@ import { ServiceItem } from '../../interfaces/service-item.interface';
 import { Slide } from '../../interfaces/slide.interface';
 
 @Component({
-  selector: 'app-lower-third',
-  templateUrl: './lower-third.component.html',
-  styleUrl: './lower-third.component.scss',
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-lower-third',
+    templateUrl: './lower-third.component.html',
+    styleUrl: './lower-third.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class LowerThirdComponent implements OnInit, OnDestroy {
   @Input() embedded = false;

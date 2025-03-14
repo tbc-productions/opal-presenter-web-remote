@@ -6,10 +6,11 @@ import { PageTitleService } from '../../services/page-title.service';
 import { Theme } from '../../interfaces/theme.interface';
 
 @Component({
-  selector: 'openlp-themes',
-  templateUrl: './themes.component.html',
-  styleUrl: './themes.component.scss',
-  providers: [OpenLPService]
+    selector: 'openlp-themes',
+    templateUrl: './themes.component.html',
+    styleUrl: './themes.component.scss',
+    providers: [OpenLPService],
+    standalone: false
 })
 export class ThemesComponent implements OnInit {
   private _theme = null;

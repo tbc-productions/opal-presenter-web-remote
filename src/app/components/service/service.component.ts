@@ -7,9 +7,10 @@ import { PageTitleService } from '../../services/page-title.service';
 import { ServiceItem } from '../../interfaces/service-item.interface';
 
 @Component({
-  selector: 'openlp-service',
-  templateUrl: './service.component.html',
-  styleUrl: './service.component.scss',
+    selector: 'openlp-service',
+    templateUrl: './service.component.html',
+    styleUrl: './service.component.scss',
+    standalone: false
 })
 
 export class ServiceComponent {
