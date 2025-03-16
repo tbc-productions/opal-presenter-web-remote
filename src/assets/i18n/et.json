@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Luba Suured Kuvanupud",
   "ENABLE_DARK_THEME": "Luba Tume Teema",
   "ENABLE_FAST_SWITCHING_PANEL": "Luba Kiire Lülituspaneel",
+  "ENABLE_WAKE_LOCK": "Vältige ekraani unerežiimi ja lubage äratuslukk kõigis Androidi ja iOS-i veebibrauserites",
   "FONT_SCALE": "Fondi Mastaap",
   "GLOBAL": "Ülemaailmne",
   "GO_BACK_TO_CONTROLLER": "Tagasi Kontrolleri Juurde",

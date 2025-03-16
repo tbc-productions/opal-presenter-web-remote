@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Activer les Gros Boutons d’Afichage",
   "ENABLE_DARK_THEME": "Activer le Thème Sombre",
   "ENABLE_FAST_SWITCHING_PANEL": "Activer le Panneau de Commutation Rapide",
+  "ENABLE_WAKE_LOCK": "Empêcher la mise en veille de l’écran et activer le verrouillage de réveil dans tous les navigateurs Web Android et iOS",
   "FONT_SCALE": "Échelle de Police",
   "GLOBAL": "Global",
   "GO_BACK_TO_CONTROLLER": "Retour au Contrôleur",

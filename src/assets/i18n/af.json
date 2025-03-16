@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktiveer Grootskermknoppies",
   "ENABLE_DARK_THEME": "Aktiveer Donker Tema",
   "ENABLE_FAST_SWITCHING_PANEL": "Aktiveer Vinnige Skakelpaneel",
+  "ENABLE_WAKE_LOCK": "Voorkom vertoonslaap en aktiveer wakkerslot in alle Android- en iOS-webblaaiers", 
   "FONT_SCALE": "Lettertipe Skaal",
   "GLOBAL": "Globale",
   "GO_BACK_TO_CONTROLLER": "Gaan Terug na Kontroleerder",

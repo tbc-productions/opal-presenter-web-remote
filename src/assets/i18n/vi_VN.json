@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Bật nút Hiển thị lớn",
   "ENABLE_DARK_THEME": "Bật giao diện tối",
   "ENABLE_FAST_SWITCHING_PANEL": "Bật bảng chuyển đổi nhanh",
+  "ENABLE_WAKE_LOCK": "Ngăn màn hình ngủ và bật khóa đánh thức trong tất cả các trình duyệt web Android và iOS",
   "FONT_SCALE": "Tỷ lệ phông chữ",
   "GLOBAL": "Toàn cầu",
   "GO_BACK_TO_CONTROLLER": "Quay lại Bộ điều khiển",

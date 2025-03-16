@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Povolit Velká Tlačítka na Displeji",
   "ENABLE_DARK_THEME": "Povolit Tmavý Motiv",
   "ENABLE_FAST_SWITCHING_PANEL": "ovolit Rychlý Přepínač Panelu",
+  "ENABLE_WAKE_LOCK": "Zabraňte spánku displeje a povolte blokování přechodu do režimu spánku ve všech webových prohlížečích Android a iOS",
   "FONT_SCALE": "Měřítko Písma",
   "GLOBAL": "Globální",
   "GO_BACK_TO_CONTROLLER": "Vrátit se Zpět k Ovladači",

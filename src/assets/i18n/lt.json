@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Įjungti Didelius Rodymo Mygtukus",
   "ENABLE_DARK_THEME": "Įgalinti Tamsiąją Temą",
   "ENABLE_FAST_SWITCHING_PANEL": "Įjungti Greito Perjungimo Skydelį",
+  "ENABLE_WAKE_LOCK": "Apsaugokite ekrano miego režimą ir įgalinkite pažadinimo užraktą visose Android ir iOS žiniatinklio naršyklėse",
   "FONT_SCALE": "Šrifto Mastelis",
   "GLOBAL": "Visuotinis",
   "GO_BACK_TO_CONTROLLER": "Grįžti į Valdiklį",

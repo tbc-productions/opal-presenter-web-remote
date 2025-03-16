@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "大きな表示ボタンを有効にする",
   "ENABLE_DARK_THEME": "ダークテーマを有効にする",
   "ENABLE_FAST_SWITCHING_PANEL": "高速切り替えパネルを有効にする",
+  "ENABLE_WAKE_LOCK": "すべてのAndroidおよびiOSのWebブラウザーでディスプレイのスリープを防止し、ウェイクロックを有効にします。",
   "FONT_SCALE": "フォントスケール",
   "GLOBAL": "グローバル",
   "GO_BACK_TO_CONTROLLER": "コントローラーに戻る",

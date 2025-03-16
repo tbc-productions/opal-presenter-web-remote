@@ -17,7 +17,9 @@ import { Shortcuts } from './models/shortcuts';
 import { ShortcutsService } from './services/shortcuts.service';
 import { ShortcutPipe } from './pipes/shortcut.pipe';
 import { SettingsService } from './services/settings.service';
+
 import * as supportedBrowsers from '../assets/supportedBrowsers';
+import NoSleep from 'nosleep.js';
 
 @Component({
     selector: 'app-root',
@@ -29,6 +31,7 @@ export class AppComponent implements OnInit {
   // Make DisplayMode enum visible to HTML code.
   DisplayMode = DisplayMode;
 
+  noSleep = new NoSleep();
   state = new State();
   showLogin: boolean;
   pageTitle = 'OpenLP Remote';
@@ -36,6 +39,7 @@ export class AppComponent implements OnInit {
   webSocketOpen = false;
   fastSwitching = false;
   bigDisplayButtons = false;
+  wakeLock = false;
   darkTheme = false;
   useShortcutsFromOpenlp = false;
   useLanguageFromOpenlp = false;
@@ -79,9 +83,22 @@ export class AppComponent implements OnInit {
     this.fastSwitching = this.settingsService.get('fastSwitching');
     this.settingsService.onPropertyChanged('fastSwitching').subscribe((value: boolean) => this.fastSwitching = value);
     this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons');
+    this.wakeLock = this.settingsService.get('wakeLock');
     this.darkTheme = this.settingsService.get('darkTheme');
     this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe((value: boolean) => this.bigDisplayButtons = value);
+    this.settingsService.onPropertyChanged('wakeLock').subscribe((value: boolean) => {
+      this.wakeLock = value
+      if (this.wakeLock) {
+        this.noSleep.enable()
+      } else {
+        this.noSleep.disable()
+      }
+    });
     this.settingsService.onPropertyChanged('darkTheme').subscribe((value: boolean) => this.darkTheme = value);
+
+    if (this.wakeLock) {
+      this.noSleep.enable()
+    }
   }
 
   addShortcuts(shortcuts: Shortcuts): void {

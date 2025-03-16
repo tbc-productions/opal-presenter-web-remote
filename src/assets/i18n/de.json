@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Große Anzeige-Schaltflächen Aktivieren",
   "ENABLE_DARK_THEME": "Dunkles Design Aktivieren",
   "ENABLE_FAST_SWITCHING_PANEL": "Schnelles Umschalten Aktivieren",
+  "ENABLE_WAKE_LOCK": "Verhindern des Ruhezustands des Bildschirms und Aktivieren der Aktivierungssperre in allen Android- und iOS-Webbrowsern",
   "FONT_SCALE": "Schriftgrad",
   "GLOBAL": "Global",
   "GO_BACK_TO_CONTROLLER": "Zurück zum Controller",

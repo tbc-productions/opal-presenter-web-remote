@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Omogoči Velike Gumbe",
   "ENABLE_DARK_THEME": "Omogočanje Temne Teme",
   "ENABLE_FAST_SWITCHING_PANEL": "Omogoči Priročno Vrstico",
+  "ENABLE_WAKE_LOCK": "Preprečite stanje pripravljenosti zaslona in omogočite zaklepanje bujenja v vseh spletnih brskalnikih Android in iOS",
   "FONT_SCALE": "Velikost Pisave",
   "GLOBAL": "Obče",
   "GO_BACK_TO_CONTROLLER": "Vrni se na Upravljalnik",

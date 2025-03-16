@@ -23,6 +23,14 @@
       <div class="settings-item">
         <mat-slide-toggle
           color="primary"
+          [checked]="settings.wakeLock"
+          (change)="setSetting('wakeLock', $event.checked)">
+          {{ 'ENABLE_WAKE_LOCK' | translate | sentencecase }}
+        </mat-slide-toggle>
+      </div>
+      <div class="settings-item">
+        <mat-slide-toggle
+          color="primary"
           [checked]="settings.darkTheme"
           (change)="setSetting('darkTheme', $event.checked)">
           {{ 'ENABLE_DARK_THEME' | translate | sentencecase }}
