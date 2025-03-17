@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "啟用大型顯示按鈕",
   "ENABLE_DARK_THEME": "啟用深色主題",
   "ENABLE_FAST_SWITCHING_PANEL": "啟用快速切換面板",
+  "ENABLE_WAKE_LOCK": "防止顯示器休眠並在所有 Android 和 iOS Web 瀏覽器中啟用喚醒鎖定",
   "FONT_SCALE": "字型縮放",
   "GLOBAL": "全域",
   "GO_BACK_TO_CONTROLLER": "返回控制器",

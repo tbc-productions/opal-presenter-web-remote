@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Włącz Duże Przyciski Wyświetlania",
   "ENABLE_DARK_THEME": "Włącz Ciemny Motyw",
   "ENABLE_FAST_SWITCHING_PANEL": "Włącz Szybki Panel Przełączania",
+  "ENABLE_WAKE_LOCK": "Zapobiegaj uśpieniu wyświetlacza i włącz blokadę uśpienia we wszystkich przeglądarkach internetowych na Androida i iOS",
   "FONT_SCALE": "Skala Czcionki",
   "GLOBAL": "Globalny",
   "GO_BACK_TO_CONTROLLER": "Wróć do Kontrolera",

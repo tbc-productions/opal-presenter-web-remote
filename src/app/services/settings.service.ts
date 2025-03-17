@@ -6,6 +6,7 @@ export class SettingsProperties {
     stageFontScale = 100;
     chordsFontScale = 100;
     bigDisplayButtons = false;
+    wakeLock = false;
     darkTheme = false;
 }
 

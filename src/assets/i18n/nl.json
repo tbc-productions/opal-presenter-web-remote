@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Activeer Grote Beeldschermknoppen",
   "ENABLE_DARK_THEME": "Activeer Donker Thema",
   "ENABLE_FAST_SWITCHING_PANEL": "Activeer Snel Wisselpaneel",
+  "ENABLE_WAKE_LOCK": "Voorkom de slaapstand van het scherm en schakel wake lock in alle Android- en iOS-webbrowsers in",
   "FONT_SCALE": "Schaal Lettertype",
   "GLOBAL": "Globaal",
   "GO_BACK_TO_CONTROLLER": "Ga Terug naar Controller",

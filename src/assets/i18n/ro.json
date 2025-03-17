@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Activați Butoanele de Afișare Mare",
   "ENABLE_DARK_THEME": "Activați Tema întunecată",
   "ENABLE_FAST_SWITCHING_PANEL": "Activați Panoul de Comutare Rapidă",
+  "ENABLE_WAKE_LOCK": "Împiedicați repausul afișajului și activați blocarea activării în toate browserele web Android și iOS",
   "FONT_SCALE": "Scară Font",
   "GLOBAL": "Global",
   "GO_BACK_TO_CONTROLLER": "Înapoi la Controler",

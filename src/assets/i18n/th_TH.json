@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "เปิดใช้งานปุ่มแสดงผลขนาดใหญ่",
   "ENABLE_DARK_THEME": "เปิดใช้งานธีมสีเข้ม",
   "ENABLE_FAST_SWITCHING_PANEL": "เปิดใช้งานแผงสลับรวดเร็ว",
+  "ENABLE_WAKE_LOCK": "காட்சி தூக்கத்தைத் தடுக்கவும் மற்றும் அனைத்து Android மற்றும் iOS இணைய உலாவிகளிலும் விழிப்பு பூட்டை இயக்கவும்",
   "FONT_SCALE": "ขนาดตัวอักษร",
   "GLOBAL": "ระดับโลก",
   "GO_BACK_TO_CONTROLLER": "กลับไปที่ควบคุม",

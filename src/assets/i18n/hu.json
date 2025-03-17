@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Nagy Kijelzőgombok Engedélyezése",
   "ENABLE_DARK_THEME": "Sötét Téma Engedélyezése",
   "ENABLE_FAST_SWITCHING_PANEL": "Gyors Váltás Engedélyezése Panel",
+  "ENABLE_WAKE_LOCK": "Megakadályozza a kijelző alvó állapotát, és engedélyezze az ébresztészárat minden Android és iOS webböngészőben",
   "FONT_SCALE": "Betűméret",
   "GLOBAL": "Globális",
   "GO_BACK_TO_CONTROLLER": "Vissza a Kontrollerhez",

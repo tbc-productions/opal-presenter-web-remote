@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktiver Store Visningsknapper",
   "ENABLE_DARK_THEME": "Aktiver Mørkt Tema",
   "ENABLE_FAST_SWITCHING_PANEL": "Aktiver Rask Byttepanel",
+  "ENABLE_WAKE_LOCK": "Forhindre skjermdvale og aktiver vekkelås i alle Android- og iOS-nettlesere",
   "FONT_SCALE": "Skriftstørrelse",
   "GLOBAL": "Global",
   "GO_BACK_TO_CONTROLLER": "Gå Tilbake til Kontrolleren",
