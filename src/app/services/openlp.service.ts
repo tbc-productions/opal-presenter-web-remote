@@ -124,15 +124,19 @@ export class OpenLPService {
     return this.doGet<PluginDescription[]>(`${this.apiURL}/core/plugins`);
   }
 
-  search(plugin, text): Observable<any> {
+  search(plugin: string, text: string): Observable<any> {
     return this.doGet(`${this.apiURL}/plugins/${plugin}/search?text=${text}`);
   }
 
-  getSearchOptions(plugin): Observable<any> {
+  searchAll(plugin: string): Observable<any> {
+    return this.doGet(`${this.apiURL}/plugins/${plugin}/search`);
+  }
+
+  getSearchOptions(plugin: string): Observable<any> {
     return this.doGet(`${this.apiURL}/plugins/${plugin}/search-options`);
   }
 
-  setSearchOption(plugin, option, value): Observable<any> {
+  setSearchOption(plugin: string, option: any, value: any): Observable<any> {
     return this.doPost(`${this.apiURL}/plugins/${plugin}/search-options`, {option, value});
   }
 
@@ -212,11 +216,11 @@ export class OpenLPService {
     return this.doPost(`${this.apiURL}/plugins/alerts`, {text});
   }
 
-  sendItemLive(plugin, id): Observable<any> {
+  sendItemLive(plugin: string, id: any): Observable<any> {
     return this.doPost(`${this.apiURL}/plugins/${plugin}/live`, {id});
   }
 
-  addItemToService(plugin, id): Observable<any> {
+  addItemToService(plugin: string, id: any): Observable<any> {
     return this.doPost(`${this.apiURL}/plugins/${plugin}/add`, {id});
   }
 
@@ -224,7 +228,7 @@ export class OpenLPService {
     return this.doPost(`${this.apiURL}/service/delete_item`, {});
   }
 
-  transposeSong(transpose_value, return_format = 'default'): Observable<any> {
+  transposeSong(transpose_value: string, return_format = 'default'): Observable<any> {
     return this.doGet(`${this.apiURL}/plugins/songs/transpose-live-item/${transpose_value}?response_format=${return_format}`);
   }
 

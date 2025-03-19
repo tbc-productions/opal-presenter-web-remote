@@ -32,9 +32,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onSubmit() {
+  onSearch() {
     this.currentPlugin = this.selectedPlugin;
     this.openlpService.search(this.currentPlugin, this.searchText).subscribe(items => this.searchResults = items);
+  }
+
+  onSearchAll() {
+    this.currentPlugin = this.selectedPlugin;
+    this.openlpService.searchAll(this.currentPlugin).subscribe(items => this.searchResults = items);
   }
 
   // Used to display search-options for certain plugins
@@ -51,11 +56,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     localStorage.setItem('selectedPlugin', this.selectedPlugin);
   }
 
-  sendLive(id) {
+  sendLive(id: number) {
     this.openlpService.sendItemLive(this.currentPlugin, id).subscribe(() => {});
   }
 
-  addToService(id) {
+  addToService(id: number) {
     this.openlpService.addItemToService(this.currentPlugin, id).subscribe(() => {});
   }
 

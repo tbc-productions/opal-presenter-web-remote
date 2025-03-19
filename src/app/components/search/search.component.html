@@ -31,10 +31,20 @@
   <button
     mat-raised-button
     id="searchButton"
+    class="searchButton"
     color="primary"
     [disabled]="!searchForm.form.valid"
-    (click)="onSubmit()">
+    (click)="onSearch()">
     {{ 'SEARCH' | translate | titlecase }}
+  </button>
+  <button
+    mat-raised-button
+    id="searchAllButton"
+    class="searchButton"
+    color="primary"
+    [disabled]="searchForm.form.valid"
+    (click)="onSearchAll()">
+    {{ 'SEARCH_ALL' | translate | titlecase }}
   </button>
 </form>
 @if (searchResults) {
