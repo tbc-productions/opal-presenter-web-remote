@@ -1,6 +1,13 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.0
+-------------
+
+* Add setting to prevent display sleep and enable wake lock in all Android and iOS web browsers.
+* Add search all button.
+* Updated dependencies including Angular.
+
 Version 1.1.1
 -------------
 
