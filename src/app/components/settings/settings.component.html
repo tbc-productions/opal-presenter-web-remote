@@ -25,7 +25,7 @@
           color="primary"
           [checked]="settings.wakeLock"
           (change)="setSetting('wakeLock', $event.checked)">
-          {{ 'ENABLE_WAKE_LOCK' | translate | sentencecase }}
+          {{ 'ENABLE_WAKE_LOCK' | translate }}
         </mat-slide-toggle>
       </div>
       <div class="settings-item">
