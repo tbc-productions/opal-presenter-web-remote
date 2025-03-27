@@ -1,6 +1,11 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.2
+-------------
+
+* Prevent browser console error during start by making the setting to prevent display sleep and enable wake lock in all Android and iOS web browsers non-persistent.
+
 Version 1.2.1
 -------------
 
