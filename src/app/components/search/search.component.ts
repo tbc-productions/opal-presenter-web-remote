@@ -15,8 +15,9 @@ import { SearchOptionsComponent } from './search-options/search-options.componen
 })
 export class SearchComponent implements OnInit, AfterViewInit {
   public searchPlugins: PluginDescription[] = [];
-  public searchText = null;
+  public searchText: string = null;
   public searchResults = null;
+  public isSearchButttonDisabled = true;
   public selectedPlugin: string;
   public currentPlugin: string;
   public displaySearchOptions = false;
@@ -40,6 +41,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onSearchAll() {
     this.currentPlugin = this.selectedPlugin;
     this.openlpService.searchAll(this.currentPlugin).subscribe(items => this.searchResults = items);
+  }
+
+  onSearchTextChange() {
+    this.isSearchButttonDisabled = this.searchText.trim() === '';
   }
 
   // Used to display search-options for certain plugins
