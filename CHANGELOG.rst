@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.4
+-------------
+
+* Updated dependencies including Angular.
+* Make input field for search text optional to prevent an invalid form when using the search all button.
+
 Version 1.2.3
 -------------
 
