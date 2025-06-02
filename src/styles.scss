@@ -5,6 +5,7 @@
 @use './assets/themes/_header-theme.scss' as header;
 @use './assets/themes/_fast-switcher-theme.scss' as fast-switcher;
 @use './assets/themes/_slide-item-theme.scss' as slide-item;
+@use './assets/themes/_page-not-found-theme.scss' as page-not-found;
 @include mat.core();
 
 * {
@@ -17,6 +18,7 @@
   @include header.theme(openlp-dark-theme.$dark-theme);
   @include fast-switcher.theme(openlp-dark-theme.$dark-theme);
   @include slide-item.theme(openlp-dark-theme.$dark-theme);
+  @include page-not-found.theme(openlp-dark-theme.$dark-theme);
 }
 
 html {
@@ -24,6 +26,7 @@ html {
   @include header.theme(openlp-light-theme.$light-theme);
   @include fast-switcher.theme(openlp-light-theme.$light-theme);
   @include slide-item.theme(openlp-light-theme.$light-theme);
+  @include page-not-found.theme(openlp-light-theme.$light-theme);
 }
 
 html,
