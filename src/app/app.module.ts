@@ -28,7 +28,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { AlertComponent } from './components/alert/alert.component';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
 import { ChordProPipe } from './pipes/chordpro.pipe';
 import { ChordViewComponent } from './components/chord-view/chord-view.component';
 import { ChordViewItemComponent } from './components/chord-view/chord-view-item/chord-view-item.component';
@@ -40,6 +39,7 @@ import { Nl2BrPipe } from './pipes/nl2br.pipe';
 import { OpenLPService } from './services/openlp.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PageTitleService } from './services/page-title.service';
+import { RoutingModule } from './routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { SearchOptionsComponent } from './components/search/search-options/search-options.component';
 import { SentenceCasePipe } from './pipes/sentence-case.pipe';
@@ -87,7 +87,6 @@ import { TranslationService } from './services/translation.service';
     ThemesComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -109,6 +108,7 @@ import { TranslationService } from './services/translation.service';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    RoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
