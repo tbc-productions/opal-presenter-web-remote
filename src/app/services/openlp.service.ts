@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { EventEmitter, inject, Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,8 +35,20 @@ const httpOptions = {
 
 const WEBSOCKET_RECONNECT_TIMEOUT = 5 * 1000;
 
-@Injectable()
-export class OpenLPService {
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
+export class OpenLPService implements OnDestroy {
+  private http: HttpClient = inject(HttpClient);
+  private dialog: MatDialog = inject(MatDialog);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+  private titleCasePipe: TitleCasePipe = inject(TitleCasePipe);
+  private sentenceCasePipe: SentenceCasePipe = inject(SentenceCasePipe);
+  private subscriptions: Subscription[] = [];
+  private translateService: TranslateService = inject(TranslateService);
+
   private apiURL: string;
   public apiVersion: number | null;
   public apiRevision: number | null;
@@ -45,7 +57,7 @@ export class OpenLPService {
   public messageReceived$: EventEmitter<Message<MessageType>>;
   public webSocketStateChanged$: EventEmitter<WebSocketStatus>;
   public isLoggedInChanged$: EventEmitter<boolean> = new EventEmitter<boolean>();
-  private isTwelveHourTime = true;
+  private isTwelveHourTime: boolean = true;
   loginMessage: string;
   unauthorizedMessage: string;
   
@@ -54,11 +66,7 @@ export class OpenLPService {
   private _messageWebSocketSubscription: Subscription;
   private _retrieveSystemInformationSubscription: Subscription;
 
-  constructor(
-    private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar,
-    private titleCasePipe: TitleCasePipe, private sentenceCasePipe: SentenceCasePipe,
-    private translateService: TranslateService
-  ) {
+  constructor() {
     const protocol = window.location.protocol;
     const host = window.location.hostname;
     let port: string;
@@ -74,19 +82,28 @@ export class OpenLPService {
     this.webSocketStateChanged$ = new EventEmitter<WebSocketStatus>();
     this.messageReceived$ = new EventEmitter<Message<MessageType>>();
     this.createWebSocket();
-    this.translateService.stream('LOGIN').subscribe((res: string) => {
-      this.loginMessage = this.titleCasePipe.transform(res);
-    });
-    this.translateService.stream('UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION').subscribe((res: string) => {
-      this.unauthorizedMessage = this.sentenceCasePipe.transform(res);
-    });
+    const loginMessageSubscription = this.translateService.stream('LOGIN').subscribe(
+      (res: string) => {
+        this.loginMessage = this.titleCasePipe.transform(res);
+      }
+    );
+    const unauthorizedMessageSubscription = this.translateService.stream('UNAUTHORIZED_YOU_SHOULD_LOGIN_FIRST_TO_PERFORM_THIS_ACTION').subscribe(
+      (res: string) => {
+        this.unauthorizedMessage = this.sentenceCasePipe.transform(res);
+      }
+    );
+    this.subscriptions.push(loginMessageSubscription, unauthorizedMessageSubscription);
   }
 
-  assertApiVersionExact(version: number, revision: number) {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  assertApiVersionExact(version: number, revision: number): boolean {
     return version === this.apiVersion && revision === this.apiRevision;
   }
 
-  assertApiVersionMinimum(version: number, revision: number) {
+  assertApiVersionMinimum(version: number, revision: number): boolean {
     return this.apiVersion >= version && this.apiRevision >= revision;
   }
 
@@ -236,7 +253,7 @@ export class OpenLPService {
     return this.doPost<AuthToken>(`${this.apiURL}/core/login`, credentials);
   }
 
-  private handleError<T>(result?: T) {
+  private handleError<T>(result?: T): (error: any) => Observable<T> {
     return (error: any): Observable<T> => {
       if (error.status == HttpStatusCode.Unauthorized) {
         const snackBarRef = this.snackBar.open(this.unauthorizedMessage, this.loginMessage, {
@@ -251,7 +268,7 @@ export class OpenLPService {
     };
   }
 
-  public openLoginDialog() {
+  public openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '250px'
     });
@@ -284,13 +301,13 @@ export class OpenLPService {
     return WebSocketStatus.Open;
   }
 
-  reconnectWebSocketIfNeeded() {
+  reconnectWebSocketIfNeeded(): void {
     if (this.webSocketStatus === WebSocketStatus.Closed) {
       this.createWebSocket();
     }
   }
 
-  createWebSocket() {
+  createWebSocket(): void {
     this.clearWebSocketTimeoutHandle();
     if (this._retrieveSystemInformationSubscription) {
       // Cancels ongoing request to avoid connection flooding
@@ -313,7 +330,7 @@ export class OpenLPService {
       });
   }
 
-  private createStateWebsocketConnection(websocketPort: number) {
+  private createStateWebsocketConnection(websocketPort: number): void {
     if (this._stateWebSocketSubscription) {
       this._stateWebSocketSubscription.unsubscribe();
     }
@@ -343,7 +360,7 @@ export class OpenLPService {
     });
   }
 
-  private createMessageWebsocketConnection(websocketPort: number) {
+  private createMessageWebsocketConnection(websocketPort: number): void {
     if (this._messageWebSocketSubscription) {
       this._messageWebSocketSubscription.unsubscribe();
     }
@@ -360,25 +377,25 @@ export class OpenLPService {
     });
   }
 
-  private reconnectWebSocket = () => {
+  private reconnectWebSocket = (): void => {
     this.clearWebSocketTimeoutHandle();
     this.webSocketTimeoutHandle = setTimeout(() => {
       this.createWebSocket();
     }, WEBSOCKET_RECONNECT_TIMEOUT);
   };
 
-  private clearWebSocketTimeoutHandle() {
+  private clearWebSocketTimeoutHandle(): void {
     if (this.webSocketTimeoutHandle) {
       clearTimeout(this.webSocketTimeoutHandle);
     }
   }
 
-  handleStateChange(state: State) {
+  handleStateChange(state: State): void {
     this.isTwelveHourTime = state.twelve;
     this.stateChanged$.emit(state);
   }
 
-  handleMessage(message: Message<MessageType>) {
+  handleMessage(message: Message<MessageType>): void {
     this.messageReceived$.emit(message);
   }
 }

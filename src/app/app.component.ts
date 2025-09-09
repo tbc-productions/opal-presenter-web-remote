@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+
+import { Subscription } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,45 +30,43 @@ import * as supportedBrowsers from '../assets/supportedBrowsers';
     styleUrl: './app.component.scss',
     standalone: false
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private bottomSheet: MatBottomSheet = inject(MatBottomSheet); 
+  private openlpService: OpenLPService = inject(OpenLPService);
+  private pageTitleService: PageTitleService = inject(PageTitleService);
+  private settingsService: SettingsService = inject(SettingsService);  
+  private shortcutsService: ShortcutsService = inject(ShortcutsService);
+  private subscriptions: Subscription[] = [];
+  private translateService: TranslateService = inject(TranslateService);
+  private windowRef: WindowRef = inject(WindowRef);
+  
   // Make DisplayMode enum visible to HTML code.
-  DisplayMode = DisplayMode;
-
-  noSleep = new NoSleep();
-  state = new State();
+  displayMode: typeof DisplayMode = DisplayMode;
+  
+  noSleep: NoSleep = new NoSleep();
+  state: State = new State();
   showLogin: boolean;
-  pageTitle = 'OpenLP Remote';
-  appVersion = '0.0';
-  webSocketOpen = false;
-  fastSwitching = false;
-  bigDisplayButtons = false;
-  darkTheme = false;
-  useShortcutsFromOpenlp = false;
-  useLanguageFromOpenlp = false;
-
-  constructor(private translateService: TranslateService, private pageTitleService: PageTitleService,
-              private openlpService: OpenLPService, private bottomSheet: MatBottomSheet,
-              private windowRef: WindowRef, private shortcutsService: ShortcutsService, private settingsService: SettingsService) {
-    this.pageTitleService.pageTitleChanged$.subscribe(pageTitle => this.pageTitle = pageTitle);
-    this.openlpService.stateChanged$.subscribe(item => this.state = item);
-    this.openlpService.webSocketStateChanged$.subscribe(status => this.webSocketOpen = status === WebSocketStatus.Open);
-    this.shortcutsService.shortcutsChanged$.subscribe(shortcuts => this.addShortcuts(shortcuts));
-    this.openlpService.isLoggedInChanged$.subscribe(result => this.showLogin = !result);
-    this.appVersion = this.windowRef.nativeWindow.appVersion || '0.0';
-
-    this.webSocketOpen = openlpService.webSocketStatus === WebSocketStatus.Open;
-    // Try to force websocket reconnection as user is now focused on window and will try to interact soon
-    // Adding a debounce to avoid event flooding
-    fromEvent(window, 'focus')
-      .pipe(debounceTime(300))
-      .subscribe(() => this.forceWebSocketReconnection());
-  }
+  pageTitle: string = 'OpenLP Remote';
+  appVersion: string = '0.0';
+  webSocketOpen: boolean = false;
+  fastSwitching: boolean = false;
+  bigDisplayButtons: boolean = false;
+  darkTheme: boolean = false;
+  useShortcutsFromOpenlp: boolean = false;
+  useLanguageFromOpenlp: boolean = false;
 
   ngOnInit(): void {
+    this.appVersion = this.windowRef.nativeWindow.appVersion || '0.0';
+    this.webSocketOpen = this.openlpService.webSocketStatus === WebSocketStatus.Open;
     if (!(supportedBrowsers.default.test(navigator.userAgent))) {
       window.location.replace("/assets/notsupported.html");
     }
-    this.openlpService.retrieveSystemInformation().subscribe(res => {
+    // Try to force websocket reconnection as user is now focused on window and will try to interact soon
+    // Adding a debounce to avoid event flooding
+    const webSocketReconnectionSubscription = fromEvent(window, 'focus')
+      .pipe(debounceTime(300))
+      .subscribe(() => this.forceWebSocketReconnection());
+    const retrieveSystemInformationSubscription =this.openlpService.retrieveSystemInformation().subscribe(res => {
         this.showLogin = res.login_required
         this.useLanguageFromOpenlp = this.openlpService.assertApiVersionMinimum(2, 5)
         if (this.useLanguageFromOpenlp) {
@@ -80,20 +80,55 @@ export class AppComponent implements OnInit {
         this.shortcutsService.getShortcuts(this.useShortcutsFromOpenlp);
       }
     );
+    const stateChangedSubscription = this.openlpService.stateChanged$.subscribe(
+      (state: State) => this.state = state
+    );
+    const webSocketStateChangedSubscription = this.openlpService.webSocketStateChanged$.subscribe(
+      (status: WebSocketStatus) => this.webSocketOpen = status === WebSocketStatus.Open
+    );
     this.fastSwitching = this.settingsService.get('fastSwitching');
-    this.settingsService.onPropertyChanged('fastSwitching').subscribe((value: boolean) => this.fastSwitching = value);
+    const fastSwitchingOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('fastSwitching').subscribe(
+      (value: boolean) => this.fastSwitching = value
+    );
     this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons');
     this.darkTheme = this.settingsService.get('darkTheme');
-    this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe((value: boolean) => this.bigDisplayButtons = value);
+    const bigDisplayButtonsOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe(
+      (value: boolean) => this.bigDisplayButtons = value
+    );
     this.settingsService.set('wakeLock', false);
-    this.settingsService.onPropertyChanged('wakeLock').subscribe((value: boolean) => {
-      if (value) {
-        this.noSleep.enable()
-      } else {
-        this.noSleep.disable()
+    const wakeLockOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('wakeLock').subscribe(
+      (value: boolean) => {
+        if (value) {
+          this.noSleep.enable()
+        } else {
+          this.noSleep.disable()
+        }
       }
-    });
-    this.settingsService.onPropertyChanged('darkTheme').subscribe((value: boolean) => this.darkTheme = value);
+    );
+    const darkThemeOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('darkTheme').subscribe(
+      (value: boolean) => this.darkTheme = value);
+    const shortcutsChangedSubscription = this.shortcutsService.shortcutsChanged$.subscribe(
+      (shortcuts: Shortcuts) => this.addShortcuts(shortcuts)
+    );
+    const isLoggedInChangedSubscription = this.openlpService.isLoggedInChanged$.subscribe(
+      (result: boolean) => this.showLogin = !result
+    );
+    this.subscriptions.push(
+      webSocketReconnectionSubscription,
+      retrieveSystemInformationSubscription,
+      stateChangedSubscription,
+      webSocketStateChangedSubscription,
+      fastSwitchingOnPropertyChangedSubscription,
+      bigDisplayButtonsOnPropertyChangedSubscription,
+      wakeLockOnPropertyChangedSubscription,
+      darkThemeOnPropertyChangedSubscription,
+      shortcutsChangedSubscription,
+      isLoggedInChangedSubscription
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   addShortcuts(shortcuts: Shortcuts): void {
@@ -161,43 +196,43 @@ export class AppComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     this.openlpService.openLoginDialog();
   }
 
-  nextItem() {
+  nextItem(): void {
     this.openlpService.nextItem().subscribe();
   }
 
-  previousItem() {
+  previousItem(): void {
     this.openlpService.previousItem().subscribe();
   }
 
-  nextSlide() {
+  nextSlide(): void {
     this.openlpService.nextSlide().subscribe();
   }
 
-  previousSlide() {
+  previousSlide(): void {
     this.openlpService.previousSlide().subscribe();
   }
 
-  blankDisplay() {
+  blankDisplay(): void {
     this.openlpService.blankDisplay().subscribe();
   }
 
-  themeDisplay() {
+  themeDisplay(): void {
     this.openlpService.themeDisplay().subscribe();
   }
 
-  desktopDisplay() {
+  desktopDisplay(): void {
     this.openlpService.desktopDisplay().subscribe();
   }
 
-  showDisplay() {
+  showDisplay(): void {
     this.openlpService.showDisplay().subscribe();
   }
 
-  forceWebSocketReconnection() {
+  forceWebSocketReconnection(): void {
     this.openlpService.reconnectWebSocketIfNeeded();
   }
 }

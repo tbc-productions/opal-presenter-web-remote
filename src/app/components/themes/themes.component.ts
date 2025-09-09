@@ -1,34 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
+import { Subscription } from 'rxjs/internal/Subscription';
 
 import { OpenLPService } from '../../services/openlp.service';
 import { PageTitleService } from '../../services/page-title.service';
 import { Theme } from '../../interfaces/theme.interface';
 
 @Component({
-    selector: 'openlp-themes',
-    templateUrl: './themes.component.html',
-    styleUrl: './themes.component.scss',
-    providers: [OpenLPService],
-    standalone: false
+  selector: 'openlp-themes',
+  templateUrl: './themes.component.html',
+  styleUrl: './themes.component.scss',
+  providers: [OpenLPService],
+  standalone: false
 })
-export class ThemesComponent implements OnInit {
-  private _theme = null;
-  private _themeList = [];
-  private _themeLevel = null;
+export class ThemesComponent implements OnInit, OnDestroy {
+  private openlpService: OpenLPService = inject(OpenLPService);
+  private pageTitleService: PageTitleService = inject(PageTitleService);
+  private subscriptions: Subscription[] = [];
+  private translateService: TranslateService = inject(TranslateService);
 
-  constructor(
-    private pageTitleService: PageTitleService,
-    private openlpService: OpenLPService,
-    private translateService: TranslateService) {
-    this.translateService.stream('THEMES').subscribe(res => {
-      this.pageTitleService.changePageTitle(res);
-    });
-  }
+  private _theme: string | null = null;
+  private _themeList: Theme[] = [];
+  private _themeLevel: string | null = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const changePageTitleSubscription = this.translateService.stream('THEMES').subscribe(
+      (res: string) => {
+        this.pageTitleService.changePageTitle(res);
+      }
+    );
+    this.subscriptions.push(changePageTitleSubscription);
     this.getThemeLevel();
     this.getThemes();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   get themeList(): Array<Theme> {
@@ -41,34 +49,47 @@ export class ThemesComponent implements OnInit {
 
   set themeLevel(level: string) {
     this._themeLevel = level;
-    this.openlpService.setThemeLevel(level).subscribe(() => this.getTheme());
+    this.openlpService.setThemeLevel(level).subscribe(
+      () => this.getTheme()
+    );
   }
 
   isThemeLevelSupported(): boolean {
     return this._themeLevel !== 'song';
   }
 
-  getThemeLevel() {
-    this.openlpService.getThemeLevel().subscribe(themeLevel => this._themeLevel = themeLevel);
+  getThemeLevel(): void {
+    this.openlpService.getThemeLevel().subscribe(
+      (themeLevel: string) => this._themeLevel = themeLevel
+    );
   }
 
-  getThemes() {
-    this.openlpService.getThemes().subscribe(themeList => this._themeList = themeList);
+  getThemes(): void {
+    this.openlpService.getThemes().subscribe(
+      (themeList: Theme[]) => this._themeList = themeList
+    );
   }
 
-  getTheme() {
-    this.openlpService.getTheme().subscribe(theme => {
-      this._theme = theme;
-      // Modify the theme list with the current theme. We do this instead of getting all the themes again
-      // We do this here to ensure that the program is the only source of truth for the current theme
-      for (const i of this._themeList) {
-        if ((i.name === theme) && (i.selected === false)) { i.selected = true; }
-        else if ((i.name !== theme) && (i.selected === true)) { i.selected = false; }
+  getTheme(): void {
+    this.openlpService.getTheme().subscribe(
+      (theme: string) => {
+        this._theme = theme;
+        // Modify the theme list with the current theme. We do this instead of getting all the themes again
+        // We do this here to ensure that the program is the only source of truth for the current theme
+        for (const i of this._themeList) {
+          if ((i.name === theme) && (i.selected === false)) {
+            i.selected = true;
+          } else if ((i.name !== theme) && (i.selected === true)) {
+            i.selected = false;
+          }
+        }
       }
-    });
+    );
   }
 
-  setTheme(themeName: string) {
-    this.openlpService.setTheme(themeName).subscribe(() => this.getTheme());
+  setTheme(themeName: string): void {
+    this.openlpService.setTheme(themeName).subscribe(
+      () => this.getTheme()
+    );
   }
 }

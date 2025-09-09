@@ -1,7 +1,7 @@
-import { DOCUMENT } from '@angular/common';
-import { EventEmitter, Inject, Injectable } from '@angular/core';
+
+import { DOCUMENT, EventEmitter, inject, Injectable, OnDestroy } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { OpenLPService } from './openlp.service';
 import { Shortcuts } from '../models/shortcuts';
 
@@ -10,26 +10,36 @@ interface Options {
   keys: string;
 }
 
-@Injectable()
-export class ShortcutsService {
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
+export class ShortcutsService implements OnDestroy {
+  private document: Document = inject<Document>(DOCUMENT);
+  private eventManager: EventManager = inject(EventManager);
+  private openlpService: OpenLPService = inject(OpenLPService);
+  private subscriptions: Subscription[] = [];
+
   defaults: Partial<Options> = {
     element: this.document
   };
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private eventManager: EventManager,
-    private openlpService: OpenLPService) {
-      this.shortcutsChanged$ = new EventEmitter<Shortcuts>();
-    }
-
   private shortcuts: Shortcuts
   public shortcutsChanged$: EventEmitter<Shortcuts>;
 
-  getShortcuts(useShortcutsFromOpenlp: boolean) {
+  constructor() {
+    this.shortcutsChanged$ = new EventEmitter<Shortcuts>();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  getShortcuts(useShortcutsFromOpenlp: boolean): void {
     const shortcuts: Shortcuts = new Shortcuts()
     if (useShortcutsFromOpenlp) {
-      this.openlpService.getShortcuts().subscribe(res => {
+      const getShortcutsSubscription = this.openlpService.getShortcuts().subscribe(res => {
         res.forEach((shortcut) => {
           switch (shortcut.action) {
             case 'blankScreen':
@@ -60,13 +70,13 @@ export class ShortcutsService {
         })
         this._handleShortcutsChanged(shortcuts);
       })
+      this.subscriptions.push(getShortcutsSubscription);
     } else {
       this._handleShortcutsChanged(shortcuts);
     }
   }
 
- 
-  addShortcut(options: Partial<Options>) {
+  addShortcut(options: Partial<Options>): Observable<KeyboardEvent> {
     const merged = { ...this.defaults, ...options };
     const event = `keydown.${merged.keys}`;
 
@@ -92,7 +102,7 @@ export class ShortcutsService {
     });
   }
 
-  protected _handleShortcutsChanged(shortcuts: Shortcuts) {
+  protected _handleShortcutsChanged(shortcuts: Shortcuts): void {
     this.shortcuts = shortcuts;
     this.shortcutsChanged$.emit(this.shortcuts);
   }

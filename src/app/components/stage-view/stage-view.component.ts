@@ -1,6 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Subscription } from 'rxjs';
+
 import { SettingsProperties, SettingsService } from '../../services/settings.service';
 import { OpenLPService } from '../../services/openlp.service';
 import { ServiceItem } from '../../interfaces/service-item.interface';
@@ -12,44 +14,45 @@ interface Tag {
 }
 
 @Component({
-    selector: 'app-stage-view',
-    templateUrl: './stage-view.component.html',
-    styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'app-stage-view',
+  templateUrl: './stage-view.component.html',
+  styleUrls: ['./stage-view.component.scss', '../overlay.scss'],
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class StageViewComponent implements OnInit, OnDestroy {
-  @Input() embedded = false;
+  private subscriptions: Subscription[] = [];
+  openlpService: OpenLPService = inject(OpenLPService);
+  protected changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  protected route: ActivatedRoute = inject(ActivatedRoute);
+  protected settingsService: SettingsService = inject(SettingsService);
+  
+  @Input() embedded: boolean = false;
   serviceItem: ServiceItem = null;
-  nextServiceItemTitle = '';
-  notes = '';
+  nextServiceItemTitle: string = '';
+  notes: string = '';
   currentSlides: Slide[] = [];
-  activeSlide = 0;
+  activeSlide: number = 0;
   tags: Tag[] = [];
-  time = new Date();
-  showNotes = true;
+  time: Date = new Date();
+  showNotes: boolean = true;
   fontScale: number;
 
   serviceItemSubscription$: Subscription = null;
   fontScaleSubscription$: Subscription;
 
-  stageProperty = 'stage';
+  stageProperty: string = 'stage';
 
-  constructor(
-    public openlpService: OpenLPService,
-    protected route: ActivatedRoute,
-    protected settingsService: SettingsService,
-    protected ref: ChangeDetectorRef
-  ) {
+  constructor() {
     setInterval(() => this.time = new Date(), 1000);
   }
 
   nextSlides: Slide[] = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.updateCurrentSlides(null, null);
-    this.openlpService.stateChanged$.subscribe((item: { item: string; slide: number }) =>
-      this.updateCurrentSlides(item.item, item.slide)
+    const stateChangedSubscription = this.openlpService.stateChanged$.subscribe(
+      (item: { item: string; slide: number }) => this.updateCurrentSlides(item.item, item.slide)
     );
     this.fontScale = this.settingsService.get(
       this.stageProperty + 'FontScale' as keyof SettingsProperties
@@ -57,45 +60,54 @@ export class StageViewComponent implements OnInit, OnDestroy {
 
     this.fontScaleSubscription$ = this.settingsService
       .onPropertyChanged(this.stageProperty + 'FontScale' as keyof SettingsProperties)
-      .subscribe(value => {
-        this.fontScale = value as number / 100;
-        this.ref.detectChanges();
-      });
+      .subscribe(
+        (value: number) => {
+          this.fontScale = value / 100;
+          this.changeDetectorRef.detectChanges();
+        }
+      );
+    this.subscriptions.push(stateChangedSubscription, this.fontScaleSubscription$);
   }
 
   ngOnDestroy(): void {
-    this.fontScaleSubscription$?.unsubscribe();
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   updateCurrentSlides(_serviceItemId: string, currentSlide: number): void {
-    this.serviceItemSubscription$?.unsubscribe();
-    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(currentServiceItem => {
-      this.serviceItem = currentServiceItem;
-      if (currentServiceItem instanceof Array) {
-        this.setNewSlides(currentServiceItem, currentSlide);
+    this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(
+      (currentServiceItem: any) => {
+        this.serviceItem = currentServiceItem;
+        if (currentServiceItem instanceof Array) {
+          this.setNewSlides(currentServiceItem, currentSlide);
+        } else {
+          this.setNewSlides(currentServiceItem.slides, currentSlide);
+          this.setNotes(currentServiceItem.notes);
+        }
+        this.getNextServiceItemTitle();
       }
-      else {
-        this.setNewSlides(currentServiceItem.slides, currentSlide);
-        this.setNotes(currentServiceItem.notes);
-      }
-      this.getNextServiceItemTitle();
-    });
+    );
+    this.subscriptions.push(this.serviceItemSubscription$);
   }
 
   getNextServiceItemTitle(): void {
     this.nextServiceItemTitle = '';
-    let doStoreServiceItemTitle = false;
-    this.openlpService.getServiceItems().subscribe(serviceItems => {
-      serviceItems.forEach((serviceItem) => {
-        if (doStoreServiceItemTitle) {
-          this.nextServiceItemTitle = serviceItem.title;
-          doStoreServiceItemTitle = false;
-        }
-        if (serviceItem.id === this.serviceItem.id) {
-          doStoreServiceItemTitle = true;
-        }
-      });
-    });
+    let doStoreServiceItemTitle: boolean = false;
+    const getServiceItemsSubscription = this.openlpService.getServiceItems().subscribe(
+      (serviceItems: any) => {
+        serviceItems.forEach(
+            (serviceItem: any) => {
+              if (doStoreServiceItemTitle) {
+                this.nextServiceItemTitle = serviceItem.title;
+                doStoreServiceItemTitle = false;
+              }
+              if (serviceItem.id === this.serviceItem.id) {
+                doStoreServiceItemTitle = true;
+              }
+            }
+        );
+      }
+    );
+    this.subscriptions.push(getServiceItemsSubscription);
   }
 
   setNewSlides(slides: Slide[], _currentSlide: number): void { /* eslint-disable-line @typescript-eslint/no-unused-vars */
@@ -151,7 +163,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackByIndex(index: number) {
+  trackByIndex(index: number): number {
     return index;
   }
 }

@@ -14,22 +14,22 @@ import { StageViewComponent } from './components/stage-view/stage-view.component
 import { ThemesComponent } from './components/themes/themes.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/service', pathMatch: 'full' },
-    { path: 'service', component: ServiceComponent },
-    { path: 'slides', component: SlidesComponent },
-    { path: 'alerts', component: AlertComponent },
-    { path: 'search', component: SearchComponent },
-    { path: 'chords', component: ChordViewComponent },
-    { path: 'main', component: MainViewComponent },
-    { path: 'stage', component: StageViewComponent },
-    { path: 'themes', component: ThemesComponent },
-    { path: 'lower-third', component: LowerThirdComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: '**', component: PageNotFoundComponent }
+  { path: '', redirectTo: '/service', pathMatch: 'full' },
+  { path: 'service', component: ServiceComponent },
+  { path: 'slides', component: SlidesComponent },
+  { path: 'alerts', component: AlertComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'chords', component: ChordViewComponent },
+  { path: 'main', component: MainViewComponent },
+  { path: 'stage', component: StageViewComponent },
+  { path: 'themes', component: ThemesComponent },
+  { path: 'lower-third', component: LowerThirdComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
 export class RoutingModule { }

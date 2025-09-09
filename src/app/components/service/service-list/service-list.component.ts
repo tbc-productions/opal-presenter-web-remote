@@ -1,47 +1,51 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 @Component({
-    selector: 'openlp-service-list',
-    templateUrl: './service-list.component.html',
-    styleUrls: ['./service-list.component.scss', '../../no-items.scss'],
-    standalone: false
+  selector: 'openlp-service-list',
+  templateUrl: './service-list.component.html',
+  styleUrls: ['./service-list.component.scss', '../../no-items.scss'],
+  standalone: false
 })
 
 export class ServiceListComponent implements OnInit, OnDestroy {
+  private openlpService: OpenLPService = inject(OpenLPService);
+  private subscriptions: Subscription[] = [];
+
   items: ServiceItem[] = [];
-  _subscription: Subscription;
-  loading = false;
+  loading: boolean = false;
 
   @Output() itemSelected = new EventEmitter<ServiceItem>();
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const stateChangedSubscription = this.openlpService.stateChanged$.subscribe(
+      () => {
+        this.fetchServiceItems();
+      }
+    );
+    this.subscriptions.push(stateChangedSubscription);
     this.fetchServiceItems();
   }
 
-  onItemSelected(item: ServiceItem) {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  onItemSelected(item: ServiceItem): void {
     this.itemSelected.emit(item);
   }
 
-  fetchServiceItems() {
+  fetchServiceItems(): void  {
     this.loading = true;
-    this.openlpService.getServiceItems().subscribe(items => {
-      this.items = items;
-      this.loading = false;
-    });
-  }
-
-  constructor(private openlpService: OpenLPService) {
-    this._subscription = openlpService.stateChanged$.subscribe(() => {
-      this.fetchServiceItems();
-    });
-  }
-
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
+    const getServiceItemsSubscription = this.openlpService.getServiceItems().subscribe(
+      (items: ServiceItem[]) => {
+        this.items = items;
+        this.loading = false;
+      }
+    );
+    this.subscriptions.push(getServiceItemsSubscription);
   }
 }
-
