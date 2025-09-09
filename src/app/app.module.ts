@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -36,9 +35,7 @@ import { DisplayModeSelectorComponent } from './components/display-mode-selector
 import { LoginComponent } from './components/login/login.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { Nl2BrPipe } from './pipes/nl2br.pipe';
-import { OpenLPService } from './services/openlp.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { PageTitleService } from './services/page-title.service';
 import { RoutingModule } from './routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { SearchOptionsComponent } from './components/search/search-options/search-options.component';
@@ -47,8 +44,6 @@ import { ServiceComponent } from './components/service/service.component';
 import { ServiceItemComponent } from './components/service/service-item/service-item.component';
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { SettingsService } from './services/settings.service';
-import { ShortcutsService } from './services/shortcuts.service';
 import { SlideItemComponent } from './components/slides/slide-item/slide-item.component';
 import { SlideListComponent } from './components/slides/slide-list/slide-list.component';
 import { SlidesComponent } from './components/slides/slides.component';
@@ -87,7 +82,6 @@ import { TranslationService } from './services/translation.service';
     ThemesComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     MatBottomSheetModule,
@@ -117,14 +111,9 @@ import { TranslationService } from './services/translation.service';
     })
   ],
   providers: [
-    OpenLPService,
-    PageTitleService,
     SentenceCasePipe,
-    SettingsService,
-    ShortcutsService,
     Title,
     TitleCasePipe,
-    TranslationService,
     provideHttpClient(withInterceptorsFromDi()),
   ],
   bootstrap: [AppComponent]

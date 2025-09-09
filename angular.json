@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
             "allowedCommonJsDependencies": [
               "nosleep.js"
@@ -24,8 +24,10 @@
               "src/assets"
             ],
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "outputPath": "dist/web-remote",
+            "outputPath": {
+              "base": "dist/web-remote",
+              "browser": ""
+            },
             "polyfills": [
               "src/polyfills.ts"
             ],
@@ -35,12 +37,12 @@
               "node_modules/material-icons/iconfont/filled.css",
               "node_modules/@fontsource/roboto/400.css"
             ],
-            "tsConfig": "src/tsconfig.app.json"
+            "tsConfig": "src/tsconfig.app.json",
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
               "aot": true,
-              "buildOptimizer": true,
               "extractLicenses": true,
               "fileReplacements": [
                 {
@@ -51,21 +53,18 @@
               "namedChunks": false,
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "vendorChunk": false
+              "sourceMap": false
             },
             "development": {
-              "buildOptimizer": false,
               "extractLicenses": false,
               "namedChunks": true,
               "optimization": false,
-              "sourceMap": true,
-              "vendorChunk": true
+              "sourceMap": true
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "@openlp/web-remote:build"
           },
@@ -80,16 +79,18 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "@openlp/web-remote:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
@@ -131,5 +132,31 @@
   },
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

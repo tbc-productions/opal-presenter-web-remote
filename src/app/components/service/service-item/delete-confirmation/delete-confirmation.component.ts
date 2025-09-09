@@ -1,22 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-    selector: 'app-delete-confirmation',
-    templateUrl: './delete-confirmation.component.html',
-    styleUrl: './delete-confirmation.component.scss',
-    standalone: false
+  selector: 'app-delete-confirmation',
+  templateUrl: './delete-confirmation.component.html',
+  styleUrl: './delete-confirmation.component.scss',
+  standalone: false
 })
 export class DeleteConfirmationComponent {
-  constructor(
-    private dialogRef: MatDialogRef<DeleteConfirmationComponent>
-  ) { }
+  private dialogRef: MatDialogRef<DeleteConfirmationComponent> = inject(MatDialogRef<DeleteConfirmationComponent>);
 
-  cancel() {
+  cancel(): void {
     this.dialogRef.close(false);
   }
 
-  delete() {
+  delete(): void {
     this.dialogRef.close(true);
   }
 }
