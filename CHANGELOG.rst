@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.5
+-------------
+
+* Updated dependencies including Angular.
+* Add default route displaying "page could not be found" error.
+
 Version 1.2.4
 -------------
 
