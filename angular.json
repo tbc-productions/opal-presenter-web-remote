@@ -21,7 +21,17 @@
               "nosleep.js"
             ],
             "assets": [
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/latin-400.css",
+                "input": "node_modules/@fontsource/roboto",
+                "output": "assets/media"
+              },
+              {
+                "glob": "**/filled.css",
+                "input": "node_modules/material-icons/iconfont",
+                "output": "assets/media"
+              }              
             ],
             "index": "src/index.html",
             "outputPath": {
@@ -33,9 +43,7 @@
             ],
             "scripts": [],
             "styles": [
-              "src/styles.scss",
-              "node_modules/material-icons/iconfont/filled.css",
-              "node_modules/@fontsource/roboto/400.css"
+              "src/styles.scss"
             ],
             "tsConfig": "src/tsconfig.app.json",
             "browser": "src/main.ts"
