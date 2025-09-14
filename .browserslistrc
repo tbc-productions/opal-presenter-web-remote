@@ -1,27 +1,4 @@
 # After changes are made to this file run the script 'supportedBrowsers' to update the JS file, 
 # see: https://www.npmjs.com/package/browserslist-useragent-regexp?activeTab=readme
+defaults
 fully supports resizeobserver
-not and_qq <= 14.9
-not and_uc <= 15.5
-not android <= 139
-not baidu <= 13.52
-not chrome 143
-not chrome 142
-not chrome 141
-not chrome <= 140
-not edge <= 106
-not firefox 145
-not firefox 144
-not firefox 143
-not firefox <= 142
-not ios_saf 26.0
-not ios_saf <= 26.0
-not kaios <= 3.1
-not op_mini all
-not op_mob <= 80
-not opera 122
-not opera <= 121
-not safari TP
-not safari 26.0
-not safari <= 26.0
-not samsung <= 28
