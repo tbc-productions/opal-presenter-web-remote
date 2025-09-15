@@ -1,6 +1,13 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.6
+-------------
+
+* Updated dependencies including Angular.
+* Fix for not found fonts since the upgrade to Angular 20.
+* Fix for locked out browser versions since the upgrade to Angular 20.
+
 Version 1.2.5
 -------------
 
