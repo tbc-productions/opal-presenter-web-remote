@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
 
@@ -115,6 +115,7 @@ import { TranslationService } from './services/translation.service';
     Title,
     TitleCasePipe,
     provideHttpClient(withInterceptorsFromDi()),
+    provideZoneChangeDetection(),
   ],
   bootstrap: [AppComponent]
 })
