@@ -24,9 +24,10 @@ lint:
 
 test:
   stage: test
+  image: mcr.microsoft.com/playwright:v1.57.0-noble
   script:
     - yarn install
-    - yarn test --no-progress --no-watch --browsers=ChromiumHeadlessCI
+    - yarn test --no-progress --no-watch --browsers=chromiumHeadless
   rules:
     - when: always
 
