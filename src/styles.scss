@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@use 'material-icons/iconfont/material-icons.scss';
 @use './assets/themes/openlp-light-theme.scss';
 @use './assets/themes/openlp-dark-theme.scss';
 @use './assets/themes/_header-theme.scss' as header;

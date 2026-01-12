@@ -21,17 +21,7 @@
               "nosleep.js"
             ],
             "assets": [
-              "src/assets",
-              {
-                "glob": "**/latin-400.css",
-                "input": "node_modules/@fontsource/roboto",
-                "output": "assets/media"
-              },
-              {
-                "glob": "**/filled.css",
-                "input": "node_modules/material-icons/iconfont",
-                "output": "assets/media"
-              }              
+              "src/assets"
             ],
             "index": "src/index.html",
             "outputPath": {
