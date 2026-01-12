@@ -48,6 +48,8 @@ build-branch:
     - yarn build --no-progress --configuration production --aot
     - export APP_VERSION=`git describe --dirty --tags --long --match '*[0-9]*'`
     - 'echo "window.appVersion = \"$APP_VERSION\";" > dist/web-remote/assets/version.js'
+    - mv dist/web-remote/media dist/web-remote/assets
+    - sed --in-place 's|"./media/|"./assets/media/|g' dist/web-remote/styles-*.css
   artifacts:
     paths:
       - dist/
