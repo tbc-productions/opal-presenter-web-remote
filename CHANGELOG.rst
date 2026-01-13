@@ -1,6 +1,11 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.9
+-------------
+
+* Fix for missing Angular icons.
+
 Version 1.2.8
 -------------
 
