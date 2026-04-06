@@ -8,8 +8,8 @@ stages:
 audit:
   stage: test
   script: |
-    yarn install
-    yarn audit
+    pnpm install
+    pnpm audit
   rules:
     - when: always
   allow_failure: true
@@ -17,26 +17,26 @@ audit:
 lint:
   stage: test
   script: |
-    yarn install
-    yarn lint
+    pnpm install
+    pnpm lint
   rules:
     - when: always
 
 test:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.57.0-noble
+  image: mcr.microsoft.com/playwright:v1.59.1-noble
   script: |
-    yarn install
-    yarn test --no-progress --no-watch --browsers=chromiumHeadless
+    npm install -g pnpm
+    pnpm install
+    pnpm test --no-progress --no-watch --browsers=chromiumHeadless
   rules:
     - when: always
 
 push-i18n-source:
   stage: build
   script: |
-    apk add npm
-    npm install @transifex/api
-    npm run tx push
+    pnpm install @transifex/api
+    pnpm run tx push
   rules:
     - changes:
         - src/assets/en.json
@@ -44,8 +44,8 @@ push-i18n-source:
 build:
   stage: build
   script: |
-    yarn install
-    yarn build --no-progress --configuration production --aot
+    pnpm install
+    pnpm build --no-progress --configuration production --aot
     if [ "$CI_COMMIT_TAG" != "" ]; then
       APP_VERSION="${CI_COMMIT_TAG}"
     else
