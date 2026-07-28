@@ -71,15 +71,16 @@
   let-prefix="prefix">
   <div class="stage-settings">
     <div class="settings-item">
-      <label>{{ 'FONT_SCALE' | translate | sentencecase }}: {{settings[prefix + 'FontScale'] ?? 100}}%</label>
+      <label for="fontScaleSlider">{{ 'FONT_SCALE' | translate | sentencecase }}: {{ getFontScale(prefix) }}%</label>
       <mat-slider
          min="25"
          max="200"
          step="6.25">
          <input
             matSliderThumb
-            [value]="settings[prefix + 'FontScale']"
-            (valueChange)="setSetting(prefix + 'FontScale', $event)">
+            id="fontScaleSlider"
+            [value]="getFontScale(prefix)"
+            (valueChange)="setFontScale(prefix, $event)">
       </mat-slider>
     </div>
   </div>

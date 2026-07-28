@@ -29,7 +29,7 @@
               "browser": ""
             },
             "polyfills": [
-              "src/polyfills.ts"
+              "zone.js"
             ],
             "scripts": [],
             "styles": [

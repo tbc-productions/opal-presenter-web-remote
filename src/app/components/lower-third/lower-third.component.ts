@@ -19,14 +19,14 @@ export class LowerThirdComponent implements OnInit, OnDestroy {
   protected settingsService: SettingsService = inject(SettingsService);
   
   @Input() embedded: boolean = false;
-  serviceItem: ServiceItem = null;
+  serviceItem: ServiceItem = {} as ServiceItem;
   currentSlides: Slide[] = [];
   activeSlide: number = 0;
   fontSize: string = '29pt';
-  fontFamily: string = null;
+  fontFamily: string = '';
 
   private subscriptions: Subscription[] = [];
-  serviceItemSubscription$: Subscription = null;
+  serviceItemSubscription$: Subscription | null = null;
 
   ngOnInit(): void {
     const queryParamsSubscription = this.route.queryParams.subscribe(

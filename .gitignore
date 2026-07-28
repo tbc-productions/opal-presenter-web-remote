@@ -22,10 +22,6 @@
 
 # IDE - VSCode
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-.vscode/launch.json
-!.vscode/extensions.json
 
 # misc
 /.nx
@@ -38,6 +34,7 @@ yarn-error.log
 testem.log
 /typings
 /.angular/cache
+yarn.lock
 
 # System Files
 .DS_Store

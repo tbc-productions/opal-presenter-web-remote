@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { finalize, Subscription } from 'rxjs';
 
 import { Slide } from '../../../interfaces/slide.interface';
 import { OpenLPService } from '../../../services/openlp.service';
@@ -13,8 +13,9 @@ import { OpenLPService } from '../../../services/openlp.service';
 
 export class SlideListComponent implements OnInit, OnDestroy {
   private openlpService: OpenLPService = inject(OpenLPService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  slides: Slide[] = null;
+  slides: Slide[] = [];
   @Output() slideSelected = new EventEmitter<SlideListItem>();
   private subscriptions: Subscription[] = [];
   loading: boolean = false;
@@ -35,21 +36,30 @@ export class SlideListComponent implements OnInit, OnDestroy {
     this.slideSelected.emit({slide, index});
   }
 
+  private normalizeSlides(serviceItem: { slides?: Slide[] } | Slide[] | null | undefined): Slide[] {
+    if (Array.isArray(serviceItem)) {
+      return serviceItem;
+    }
+    if (Array.isArray(serviceItem?.slides)) {
+      return serviceItem.slides;
+    }
+    return [];
+  }
+
   fetchSlides(): void {
     this.loading = true;
-    const getServiceItemSubscription = this.openlpService.getServiceItem().subscribe({
-      next: (serviceItem: any) => {
+    const getServiceItemSubscription = this.openlpService.getServiceItem()
+      .pipe(finalize(() => {
         this.loading = false;
-        if (serviceItem instanceof Array) {
-          this.slides = serviceItem;
-        } else {
-          this.slides = serviceItem.slides;
+        this.changeDetectorRef.detectChanges();
+      }))
+      .subscribe({
+        next: (serviceItem: { slides?: Slide[] } | Slide[] | null | undefined) => {
+          this.slides = this.normalizeSlides(serviceItem);
+          this.changeDetectorRef.detectChanges();
+          setTimeout(() => this.scrollToCurrentItem(), 25);
         }
-      },
-      complete: () => {
-        setTimeout(() => this.scrollToCurrentItem(), 25);
-      }
-    });
+      });
     this.subscriptions.push(getServiceItemSubscription);
   }
 

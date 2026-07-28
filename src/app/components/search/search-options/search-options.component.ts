@@ -19,10 +19,10 @@ export class SearchOptionsComponent implements OnDestroy {
   private titleCasePipe: TitleCasePipe = inject(TitleCasePipe);
   private translateService = inject(TranslateService);
 
-  public selectedPlugin: string;
-  public searchOptions: Array<string>;
-  public selectedSearchOption: string;
-  public searchOptionsTitle: string;
+  public selectedPlugin: string = '';
+  public searchOptions: Array<string> = [];
+  public selectedSearchOption: string = '';
+  public searchOptionsTitle: string = '';
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

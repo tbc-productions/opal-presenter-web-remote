@@ -28,7 +28,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
   protected settingsService: SettingsService = inject(SettingsService);
   
   @Input() embedded: boolean = false;
-  serviceItem: ServiceItem = null;
+  serviceItem: ServiceItem = {} as ServiceItem;
   nextServiceItemTitle: string = '';
   notes: string = '';
   currentSlides: Slide[] = [];
@@ -36,10 +36,10 @@ export class StageViewComponent implements OnInit, OnDestroy {
   tags: Tag[] = [];
   time: Date = new Date();
   showNotes: boolean = true;
-  fontScale: number;
+  fontScale: number = 1;
 
-  serviceItemSubscription$: Subscription = null;
-  fontScaleSubscription$: Subscription;
+  serviceItemSubscription$: Subscription | null = null;
+  fontScaleSubscription$: Subscription | null = null;
 
   stageProperty: string = 'stage';
 
@@ -50,7 +50,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
   nextSlides: Slide[] = [];
 
   ngOnInit(): void {
-    this.updateCurrentSlides(null, null);
+    this.updateCurrentSlides('', 0);
     const stateChangedSubscription = this.openlpService.stateChanged$.subscribe(
       (item: { item: string; slide: number }) => this.updateCurrentSlides(item.item, item.slide)
     );

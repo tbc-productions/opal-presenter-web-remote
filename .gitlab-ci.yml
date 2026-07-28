@@ -24,10 +24,18 @@ lint:
 
 test:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.59.1-noble
+  image: mcr.microsoft.com/playwright:v1.61.0-noble
   script: |
+    export NVM_DIR="$HOME/.nvm"
+    mkdir -p $NVM_DIR
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install 22
+    nvm alias default
+    nvm use default
     npm install -g pnpm
     pnpm install
+    npx playwright install chromium-headless-shell
     pnpm test --no-progress --no-watch --browsers=chromiumHeadless
   rules:
     - when: always

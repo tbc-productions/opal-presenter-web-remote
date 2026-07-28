@@ -53,8 +53,8 @@ export class ChordProPipe implements PipeTransform {
     { name: 'G', value: 11 },
     { name: 'G#', value: 0 }
   ];
-  notesSharpNotation = {};
-  notesFlatNotation = {};
+  notesSharpNotation: Record<string, string[]> = {};
+  notesFlatNotation: Record<string, string[]> = {};
 
   private fillHtml = `<span class="fill"><span class="fill-inner"></span></span>`;
 
@@ -77,16 +77,15 @@ export class ChordProPipe implements PipeTransform {
     try {
       if (song !== undefined && song) {
         return this.sanitizer.bypassSecurityTrustHtml(this.parseToHTML(song, nHalfSteps));
-      } else {
-        return song;
       }
     }
     catch (exception) {
       console.warn('chordpro translation error', exception);
     }
+    return song;
   }
 
-  chordRoot(chord) {
+  chordRoot(chord: string): string {
     let root = '';
     let ch2 = '';
     if (chord && chord.length > 0) {
@@ -101,7 +100,7 @@ export class ChordProPipe implements PipeTransform {
     return root;
   }
 
-  restOfChord(chord) {
+  restOfChord(chord: string): string {
     let rest = '';
     const root = this.chordRoot(chord);
     if (chord.length > root.length) {
@@ -117,7 +116,7 @@ export class ChordProPipe implements PipeTransform {
   * @param {number} nHalfSteps
   * @returns {string}
   */
-  transposeChord(chordRoot, nHalfSteps) {
+  transposeChord(chordRoot: string, nHalfSteps: number): string {
     let pos = -1;
     for (const key of this.keys) {
       if (key.name === chordRoot) {
@@ -168,9 +167,9 @@ export class ChordProPipe implements PipeTransform {
         const rowParts = row.split(this.chordRegex);
         let lastPart;
 
-        for (let i = rowParts.length - 1, r = 0, isFirst = true; i >= -1; i--, r++ ) {
+        for (let i = rowParts.length - 1, r = 0, isFirst = true; i >= 0; i--, r++ ) {
           if (!isFirst) {
-            chordText = this._processChordRow(nHalfSteps, rowParts[i], i, lastPart, r) + chordText;
+            chordText = this._processChordRow(nHalfSteps, rowParts[i], i, lastPart || '', r) + chordText;
           }
 
          lastPart = rowParts[i];
@@ -183,14 +182,14 @@ export class ChordProPipe implements PipeTransform {
     return `<div class="with-chords">${chordText}</div>`;
   }
 
-  protected _processChordRow(nHalfSteps, part, index, lastPart, reverseIndex) {
+  protected _processChordRow(nHalfSteps: number, part: string, index: number, lastPart: string, reverseIndex: number) {
     if (index % 2 !== 0) {
       if (index > 0) {
         // chord
         let chord = part.replace(/[[]]/, '');
         if (nHalfSteps !== 0) {
           chord = chord.split('/').map(
-            chordPart => {
+            (chordPart: string) => {
               const chordRoot = this.chordRoot(chordPart);
               const newRoot = this.transposeChord(chordRoot, nHalfSteps);
               return newRoot + this.restOfChord(chordPart);
@@ -233,7 +232,7 @@ export class ChordProPipe implements PipeTransform {
           chord += ' ';
         }
 
-        return `<span data-chord="${chord}" class="${chordClass}">` +
+        return `<span [attr.data-chord]="${chord}" class="${chordClass}">` +
                `<span class="chord">${chord}</span>` +
                `<span class="text ${fillHtml ? 'with-fill' : ''}">` +
                `<span class="first-letter">${textFirstLetter}</span>` +
@@ -247,7 +246,7 @@ export class ChordProPipe implements PipeTransform {
     return '';
   }
 
-  protected _makeFillHtml(length) {
+  protected _makeFillHtml(length: number): string {
     if (length >= 3) {
       let text = '';
       const middle = Math.floor(length / 2);

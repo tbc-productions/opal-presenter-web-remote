@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   private titleCasePipe: TitleCasePipe = inject(TitleCasePipe);
   private translateService: TranslateService = inject(TranslateService);
 
-  username: string;
-  password: string;
-  loginSucceededMessage: string;
-  loginFailedMessage: string;
+  username: string = '';
+  password: string = '';
+  loginSucceededMessage: string = '';
+  loginFailedMessage: string = '';
 
   ngOnInit(): void {
     const loginSucceededMessageSubscription = this.translateService.stream('LOGIN_SUCCEEDED').subscribe(
@@ -53,10 +53,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       {
         next: result => {
           this.openlpService.isLoggedInChanged$.emit(true);
-          this.snackBar.open(this.loginSucceededMessage, null, { duration: 2000 });
+          this.snackBar.open(this.loginSucceededMessage, undefined, { duration: 2000 });
           this.dialogRef.close(result);
         },
-        error: () => this.snackBar.open(this.loginFailedMessage, null, { duration: 2000 })
+        error: () => this.snackBar.open(this.loginFailedMessage, undefined, { duration: 2000 })
       }
     );
   }

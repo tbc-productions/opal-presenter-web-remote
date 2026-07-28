@@ -8,6 +8,6 @@ import { Slide } from '../../../interfaces/slide.interface';
   standalone: false
 })
 export class StageViewItemComponent {
-  @Input() slide: Slide;
+  @Input() slide: Slide = {} as Slide;
   @Input() active: boolean = false;
 }

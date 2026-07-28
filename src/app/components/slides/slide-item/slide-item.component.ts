@@ -10,7 +10,7 @@ import { Slide } from '../../../interfaces/slide.interface';
 })
 
 export class SlideItemComponent {
-  @Input() slide: Slide;
+  @Input() slide: Slide = {} as Slide;
   @Input() selected = false;
   @Output() selectSlide = new EventEmitter<Slide>();
 

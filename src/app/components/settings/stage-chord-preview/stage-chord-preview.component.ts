@@ -20,12 +20,12 @@ export class StageChordPreviewComponent implements OnInit, AfterViewInit, OnDest
   }
 
   @Input() stageType: 'stage' | 'chords' = 'stage';
-  @ViewChild('stageView', {read: ElementRef}) stageView: ElementRef<HTMLElement>;
-  @ViewChild('chordsView', {read: ElementRef}) chordsView: ElementRef<HTMLElement>;
-  @ViewChild('stageViewContainer') stageViewContainer: ElementRef<HTMLElement>;
-  fontScale: number;
-  protected windowResizeSubscription$: Subscription;
-  protected settingChangedSubscription$: Subscription;
+  @ViewChild('stageView', {read: ElementRef}) stageView: ElementRef<HTMLElement> = {} as ElementRef<HTMLElement>;
+  @ViewChild('chordsView', {read: ElementRef}) chordsView: ElementRef<HTMLElement> = {} as ElementRef<HTMLElement>;
+  @ViewChild('stageViewContainer') stageViewContainer: ElementRef<HTMLElement> = {} as ElementRef<HTMLElement>;
+  fontScale: number = 1;
+  protected windowResizeSubscription$: Subscription = new Subscription();
+  protected settingChangedSubscription$: Subscription = new Subscription();
 
   ngOnInit(): void {
     this.fontScale = this.settingsService.get(

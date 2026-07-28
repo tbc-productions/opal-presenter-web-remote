@@ -25,7 +25,7 @@ export class ShortcutsService implements OnDestroy {
     element: this.document
   };
 
-  private shortcuts: Shortcuts
+  private shortcuts: Shortcuts = new Shortcuts();
   public shortcutsChanged$: EventEmitter<Shortcuts>;
 
   constructor() {

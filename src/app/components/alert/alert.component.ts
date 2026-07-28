@@ -23,8 +23,8 @@ export class AlertComponent implements OnInit, OnDestroy {
   private titleCasePipe: TitleCasePipe = inject(TitleCasePipe);
   private translateService: TranslateService = inject(TranslateService);
 
-  public alert: string;
-  public alertMessage: string;
+  public alert: string = '';
+  public alertMessage: string = '';
 
   ngOnInit(): void {
     const changePageTitleSubscription = this.translateService.stream('ALERTS').subscribe(

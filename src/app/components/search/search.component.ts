@@ -23,13 +23,30 @@ export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
   private translateService: TranslateService = inject(TranslateService);
 
   public searchPlugins: PluginDescription[] = [];
-  public searchText: string = null;
+  public searchText: string = '';
   public searchResults: any = null;
   public isSearchButttonDisabled: boolean = true;
-  public selectedPlugin: string;
-  public currentPlugin: string;
+  public selectedPlugin: string = '';
+  public selectedPluginName: string = '';
+  public currentPlugin: string = '';
   public displaySearchOptions: boolean = false;
-  @ViewChild(SearchOptionsComponent, {static: false}) searchOptions: SearchOptionsComponent;
+  @ViewChild(SearchOptionsComponent, {static: false}) searchOptions: SearchOptionsComponent = {} as SearchOptionsComponent;
+
+  private normalizePluginKey(pluginKey: string | null): string {
+    return (pluginKey || '').trim().toLowerCase();
+  }
+
+  comparePluginKeys = (pluginKeyA: string | null, pluginKeyB: string | null): boolean => {
+    return this.normalizePluginKey(pluginKeyA) === this.normalizePluginKey(pluginKeyB);
+  };
+
+  getSelectedPluginName(): string {
+    const normalizedSelectedPlugin = this.normalizePluginKey(this.selectedPlugin);
+    const selectedPlugin = this.searchPlugins.find(
+      plugin => this.normalizePluginKey(plugin.key) === normalizedSelectedPlugin
+    );
+    return selectedPlugin?.name || this.selectedPluginName || this.selectedPlugin;
+  }
 
   onSearch(): void {
     this.currentPlugin = this.selectedPlugin;
@@ -47,6 +64,19 @@ export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Used to display search-options for certain plugins
   onPluginChange(): void {
+    const normalizedSelectedPluginKey = this.normalizePluginKey(this.selectedPlugin);
+    if (!normalizedSelectedPluginKey) {
+      this.selectedPlugin = 'songs';
+    }
+
+    const selectedPlugin = this.searchPlugins.find(
+      plugin => this.normalizePluginKey(plugin.key) === this.normalizePluginKey(this.selectedPlugin)
+    );
+    if (selectedPlugin?.name) {
+      this.selectedPluginName = selectedPlugin.name;
+      localStorage.setItem('selectedPluginName', this.selectedPluginName);
+    }
+
     if (this.selectedPlugin === 'bibles') {
       this.searchOptions.onPluginChange(this.selectedPlugin);
       this.displaySearchOptions = true;
@@ -56,7 +86,10 @@ export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
         this.displaySearchOptions = false;
       }
     }
-    localStorage.setItem('selectedPlugin', this.selectedPlugin);
+    const normalizedPluginKey = this.normalizePluginKey(this.selectedPlugin);
+    if (normalizedPluginKey) {
+      localStorage.setItem('selectedPlugin', normalizedPluginKey);
+    }
   }
 
   sendLive(id: number): void {
@@ -68,21 +101,55 @@ export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.selectedPluginName = localStorage.getItem('selectedPluginName')?.trim() || this.translateService.instant('SONG');
+
     const changePageTitleSubscription = this.translateService.stream('SEARCH').subscribe(
       (res: string) => {
         this.pageTitleService.changePageTitle(res);
       }
     );
-    const getSearchablePluginsSubscription = this.openlpService.getSearchablePlugins().subscribe(
-      (items: PluginDescription[]) => this.searchPlugins = items
+    const songLabelSubscription = this.translateService.stream('SONG').subscribe(
+      (res: string) => {
+        if (!this.searchPlugins.length && !localStorage.getItem('selectedPluginName')) {
+          this.selectedPluginName = res;
+        }
+      }
     );
-    this.subscriptions.push(changePageTitleSubscription, getSearchablePluginsSubscription);
+    const getSearchablePluginsSubscription = this.openlpService.getSearchablePlugins().subscribe(
+      (items: PluginDescription[]) => {
+        this.searchPlugins = items;
+
+        const availablePlugins = new Map(
+          this.searchPlugins.map(plugin => [this.normalizePluginKey(plugin.key), plugin.key])
+        );
+
+        // Ensure selected plugin is valid, otherwise fallback to songs.
+        const normalizedSelectedPlugin = this.normalizePluginKey(this.selectedPlugin);
+        if (availablePlugins.has(normalizedSelectedPlugin)) {
+          this.selectedPlugin = availablePlugins.get(normalizedSelectedPlugin) || this.selectedPlugin;
+        }
+        else {
+          this.selectedPlugin = availablePlugins.get('songs') || this.searchPlugins[0]?.key || 'songs';
+        }
+        this.selectedPluginName = this.searchPlugins.find(
+          plugin => this.normalizePluginKey(plugin.key) === this.normalizePluginKey(this.selectedPlugin)
+        )?.name || this.selectedPluginName;
+        localStorage.setItem('selectedPlugin', this.selectedPlugin);
+        localStorage.setItem('selectedPluginName', this.selectedPluginName);
+      }
+    );
+    this.subscriptions.push(changePageTitleSubscription, songLabelSubscription, getSearchablePluginsSubscription);
 
     // Retrieve the last selected plugin. Set to 'songs' if it isn't set.
-    if (localStorage.getItem('selectedPlugin') === null) {
+    const storedSelectedPlugin = this.normalizePluginKey(localStorage.getItem('selectedPlugin'));
+    if (!storedSelectedPlugin) {
       localStorage.setItem('selectedPlugin', 'songs');
+      this.selectedPlugin = 'songs';
     }
-    this.selectedPlugin = localStorage.getItem('selectedPlugin');
+    else {
+      this.selectedPlugin = storedSelectedPlugin;
+    }
+    this.selectedPluginName = localStorage.getItem('selectedPluginName')?.trim() || this.selectedPluginName;
   }
 
   ngOnDestroy(): void {

@@ -1,2 +1,8 @@
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
 blockExoticSubdeps: true
 minimumReleaseAge: 1440 # 1 day

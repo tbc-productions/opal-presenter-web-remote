@@ -6,6 +6,7 @@
   [class.first]="!active && slide.first_slide_of_tag">
   @if (slide?.img) {
     <img 
+      alt="Slide Image"
       src="{{slide?.img}}"
       [class.active-slide-img]="active"
       [class.next-slides-img]="!active"/>

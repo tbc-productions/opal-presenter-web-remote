@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ChangeDetectorRef, Component, EventEmitter, inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { finalize, Subscription } from 'rxjs';
 
 import { OpenLPService } from '../../../services/openlp.service';
 import { ServiceItem } from '../../../interfaces/service-item.interface';
@@ -13,6 +13,7 @@ import { ServiceItem } from '../../../interfaces/service-item.interface';
 
 export class ServiceListComponent implements OnInit, OnDestroy {
   private openlpService: OpenLPService = inject(OpenLPService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
   private subscriptions: Subscription[] = [];
 
   items: ServiceItem[] = [];
@@ -38,14 +39,29 @@ export class ServiceListComponent implements OnInit, OnDestroy {
     this.itemSelected.emit(item);
   }
 
+  private normalizeServiceItems(items: ServiceItem[] | { results?: ServiceItem[] } | null | undefined): ServiceItem[] {
+    if (Array.isArray(items)) {
+      return items;
+    }
+    if (Array.isArray(items?.results)) {
+      return items.results;
+    }
+    return [];
+  }
+
   fetchServiceItems(): void  {
     this.loading = true;
-    const getServiceItemsSubscription = this.openlpService.getServiceItems().subscribe(
-      (items: ServiceItem[]) => {
-        this.items = items;
+    const getServiceItemsSubscription = this.openlpService.getServiceItems()
+      .pipe(finalize(() => {
         this.loading = false;
-      }
-    );
+        this.changeDetectorRef.detectChanges();
+      }))
+      .subscribe(
+        (items: ServiceItem[] | { results?: ServiceItem[] } | null | undefined) => {
+          this.items = this.normalizeServiceItems(items);
+          this.changeDetectorRef.detectChanges();
+        }
+      );
     this.subscriptions.push(getServiceItemsSubscription);
   }
 }

@@ -26,6 +26,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.settingsService.set(property, value);
   }
 
+  getFontScale(prefix: 'stage' | 'chords'): number {
+    return prefix === 'stage'
+      ? this.settings.stageFontScale ?? 100
+      : this.settings.chordsFontScale ?? 100;
+  }
+
+  setFontScale(prefix: 'stage' | 'chords', value: number): void {
+    this.setSetting(prefix === 'stage' ? 'stageFontScale' : 'chordsFontScale', value);
+  }
+
   _settingChanged = <SP extends keyof SettingsProperties, SV = SettingsProperties[SP]>(
     value: SettingsPropertiesItem<SP, SV>
   ) => {
