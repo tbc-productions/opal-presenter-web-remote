@@ -43,6 +43,7 @@ test:
 push-i18n-source:
   stage: build
   script: |
+    pnpm install axios
     pnpm install @transifex/api
     pnpm run tx push
   rules:
