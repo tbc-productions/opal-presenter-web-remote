@@ -34,10 +34,10 @@ export class SettingsService {
 
   getAll(): Partial<SettingsProperties> {
     const output: Partial<SettingsProperties> = {};
-    for (const key of Object.keys(this.defaultSettingsPropertiesInstance)) {
-      const value = this.get(key as keyof SettingsProperties);
+    for (const key of Object.keys(this.defaultSettingsPropertiesInstance) as Array<keyof SettingsProperties>) {
+      const value = this.get(key);
       if (value !== undefined) {
-        output[key] = value;
+        this._assignSetting(output, key, value);
       }
     }
     return output;
@@ -82,10 +82,20 @@ export class SettingsService {
   }
 
   protected _handleStorageEvent = (event: StorageEvent): void => {
-    if (event.storageArea === localStorage) {
-      this._emitEvent(event.key.replace(LOCAL_STORAGE_PREFIX, '') as any, JSON.parse(event.newValue));
+    if (event.storageArea === localStorage && event.key?.startsWith(LOCAL_STORAGE_PREFIX)) {
+      const property = event.key.replace(LOCAL_STORAGE_PREFIX, '') as keyof SettingsProperties;
+      const value = event.newValue === null ? undefined : JSON.parse(event.newValue);
+      this._emitEvent(property, value);
     }
   };
+
+  protected _assignSetting<SP extends keyof SettingsProperties>(
+    target: Partial<SettingsProperties>,
+    property: SP,
+    value: SettingsProperties[SP]
+  ): void {
+    target[property] = value;
+  }
 
   protected _emitEvent<SP extends keyof SettingsProperties, SV = SettingsProperties[SP]>(property: SP, value: SV) {
     this.settingChanged$.emit({property, value});

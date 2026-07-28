@@ -50,21 +50,21 @@ export class OpenLPService implements OnDestroy {
   private translateService: TranslateService = inject(TranslateService);
 
   private apiURL: string;
-  public apiVersion: number | null;
-  public apiRevision: number | null;
+  public apiVersion: number | null = null;
+  public apiRevision: number | null = null;
   private host: string;
   public stateChanged$: EventEmitter<State>;
   public messageReceived$: EventEmitter<Message<MessageType>>;
   public webSocketStateChanged$: EventEmitter<WebSocketStatus>;
   public isLoggedInChanged$: EventEmitter<boolean> = new EventEmitter<boolean>();
   private isTwelveHourTime: boolean = true;
-  loginMessage: string;
-  unauthorizedMessage: string;
+  loginMessage: string = '';
+  unauthorizedMessage: string = '';
   
   private webSocketTimeoutHandle: any = 0;
-  private _stateWebSocketSubscription: Subscription;
-  private _messageWebSocketSubscription: Subscription;
-  private _retrieveSystemInformationSubscription: Subscription;
+  private _stateWebSocketSubscription: Subscription = new Subscription();
+  private _messageWebSocketSubscription: Subscription = new Subscription();
+  private _retrieveSystemInformationSubscription: Subscription = new Subscription();
 
   constructor() {
     const protocol = window.location.protocol;
@@ -104,7 +104,7 @@ export class OpenLPService implements OnDestroy {
   }
 
   assertApiVersionMinimum(version: number, revision: number): boolean {
-    return this.apiVersion >= version && this.apiRevision >= revision;
+    return (this.apiVersion ?? 0) >= version && (this.apiRevision ?? 0) >= revision;
   }
 
   setAuthToken(token: string): void {
@@ -120,7 +120,7 @@ export class OpenLPService implements OnDestroy {
       .pipe(tap(systemInfo => {
         if (systemInfo.api_version) {
           this.apiVersion = systemInfo.api_version;
-          this.apiRevision = systemInfo.api_revision;
+          this.apiRevision = systemInfo.api_revision ?? null;
         }
       }));
   }
@@ -201,7 +201,7 @@ export class OpenLPService implements OnDestroy {
     return this.doGet<Theme[]>(`${this.apiURL}/controller/themes`);
   }
 
-  setThemeLevel(level): Observable<any> {
+  setThemeLevel(level: any): Observable<any> {
     return this.doPost(`${this.apiURL}/controller/theme-level`, {level});
   }
 
@@ -229,7 +229,7 @@ export class OpenLPService implements OnDestroy {
     return this.doPost(`${this.apiURL}/core/display`, {display: 'show'});
   }
 
-  showAlert(text): Observable<any> {
+  showAlert(text: string): Observable<any> {
     return this.doPost(`${this.apiURL}/plugins/alerts`, {text});
   }
 
@@ -316,7 +316,7 @@ export class OpenLPService implements OnDestroy {
     this._retrieveSystemInformationSubscription = this.retrieveSystemInformation()
       .pipe(
         shareReplay(1),
-        finalize(() => this._retrieveSystemInformationSubscription = null)
+        finalize(() => this._retrieveSystemInformationSubscription?.unsubscribe())
       )
       .subscribe({
         next: info => {

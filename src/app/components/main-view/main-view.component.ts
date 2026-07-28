@@ -12,7 +12,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
   private openlpService: OpenLPService = inject(OpenLPService);
   private subscriptions: Subscription[] = [];
 
-  img: string;
+  img: string = '';
 
   ngOnInit(): void {
     this.updateImage();

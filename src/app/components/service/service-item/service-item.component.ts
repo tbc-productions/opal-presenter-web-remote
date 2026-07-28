@@ -20,11 +20,11 @@ export class ServiceItemComponent implements OnInit, OnDestroy {
   private openlpService: OpenLPService = inject(OpenLPService);
   private subscriptions: Subscription[] = [];
 
-  @Input() item: ServiceItem;
+  @Input() item: ServiceItem = {} as ServiceItem;
   @Input() selected = false;
   @Output() selectItem = new EventEmitter<ServiceItem>();
 
-  useDeleteServiceItemFromOpenlp: boolean;
+  useDeleteServiceItemFromOpenlp: boolean = false;
 
   ngOnInit(): void {
     this.useDeleteServiceItemFromOpenlp = this.openlpService.assertApiVersionMinimum(2, 6);

@@ -8,7 +8,7 @@ import { Slide } from '../../../interfaces/slide.interface';
   standalone: false
 })
 export class ChordViewItemComponent {
-  @Input() slide: Slide;
+  @Input() slide: Slide = {} as Slide;
   @Input() active = false;
 
   chordproFormatted(slide: Slide): string {

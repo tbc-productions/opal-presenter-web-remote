@@ -1,7 +1,7 @@
 import { DisplayMode } from '../enums/display-mode.enum';
 
 export class Display {
-  bigDisplayButtons: boolean;
-  darkTheme: boolean;
-  displayMode: DisplayMode;
+  bigDisplayButtons: boolean = false;
+  darkTheme: boolean = false;
+  displayMode: DisplayMode = DisplayMode.Desktop;
 }

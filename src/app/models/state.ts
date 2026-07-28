@@ -1,15 +1,15 @@
 import { DisplayMode } from '../enums/display-mode.enum';
 
 export class State {
-  isAuthorized: boolean;
-  version: number;
-  slide: number;
-  display: boolean;
-  isSecure: boolean;
-  blank: boolean;
-  twelve: boolean;
-  theme: boolean;
-  item: string;
+  isAuthorized: boolean = false;
+  version: number = 0;
+  slide: number = 0;
+  display: boolean = false;
+  isSecure: boolean = false;
+  blank: boolean = false;
+  twelve: boolean = false;
+  theme: boolean = false;
+  item: string = '';
 
   live = () => !(this.blank || this.display || this.theme);
 

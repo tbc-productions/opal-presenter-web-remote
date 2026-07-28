@@ -43,7 +43,7 @@ export class ThemesComponent implements OnInit, OnDestroy {
     return this._themeList;
   }
 
-  get themeLevel(): string {
+  get themeLevel(): string | null {
     return this._themeLevel;
   }
 

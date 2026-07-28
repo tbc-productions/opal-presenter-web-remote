@@ -22,7 +22,7 @@ import { ShortcutsService } from './services/shortcuts.service';
 import { ShortcutPipe } from './pipes/shortcut.pipe';
 import { SettingsService } from './services/settings.service';
 
-import * as supportedBrowsers from '../assets/supportedBrowsers';
+import supportedBrowsers from '../assets/supportedBrowsers';
 
 @Component({
     selector: 'app-root',
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
   noSleep: NoSleep = new NoSleep();
   state: State = new State();
-  showLogin: boolean;
+  showLogin: boolean = false;
   pageTitle: string = 'OpenLP Remote';
   appVersion: string = '0.0';
   webSocketOpen: boolean = false;
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.appVersion = this.windowRef.nativeWindow.appVersion || '0.0';
     this.webSocketOpen = this.openlpService.webSocketStatus === WebSocketStatus.Open;
-    if (!(supportedBrowsers.default.test(navigator.userAgent))) {
+    if (!(supportedBrowsers.test(navigator.userAgent))) {
       window.location.replace("/assets/notsupported.html");
     }
     // Try to force websocket reconnection as user is now focused on window and will try to interact soon
@@ -86,12 +86,12 @@ export class AppComponent implements OnInit, OnDestroy {
     const webSocketStateChangedSubscription = this.openlpService.webSocketStateChanged$.subscribe(
       (status: WebSocketStatus) => this.webSocketOpen = status === WebSocketStatus.Open
     );
-    this.fastSwitching = this.settingsService.get('fastSwitching');
+    this.fastSwitching = this.settingsService.get('fastSwitching') || false;
     const fastSwitchingOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('fastSwitching').subscribe(
       (value: boolean) => this.fastSwitching = value
     );
-    this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons');
-    this.darkTheme = this.settingsService.get('darkTheme');
+    this.bigDisplayButtons = this.settingsService.get('bigDisplayButtons') || false;
+    this.darkTheme = this.settingsService.get('darkTheme') || false;
     const bigDisplayButtonsOnPropertyChangedSubscription = this.settingsService.onPropertyChanged('bigDisplayButtons').subscribe(
       (value: boolean) => this.bigDisplayButtons = value
     );

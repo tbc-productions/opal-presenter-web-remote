@@ -23,7 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslatePipe, provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 
 import { AlertComponent } from './components/alert/alert.component';
 import { AppComponent } from './app.component';
@@ -103,17 +103,15 @@ import { TranslationService } from './services/translation.service';
     MatToolbarModule,
     MatTooltipModule,
     RoutingModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: TranslationService
-      }
-    })
+    TranslatePipe
   ],
   providers: [
     SentenceCasePipe,
     Title,
     TitleCasePipe,
+    ...provideTranslateService({
+      loader: provideTranslateLoader(TranslationService)
+    }),
     provideHttpClient(withInterceptorsFromDi()),
     provideZoneChangeDetection(),
   ],

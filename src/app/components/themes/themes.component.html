@@ -19,7 +19,7 @@
             (click)='setTheme(theme.name)'
             [class.selected]="theme.selected">
             <mat-card-content>
-              <img [src]="theme.thumbnail"/>
+              <img alt="Theme Thumbnail" [src]="theme.thumbnail"/>
               <div class="theme-title">{{ theme.name }}</div>
             </mat-card-content>
           </mat-card>

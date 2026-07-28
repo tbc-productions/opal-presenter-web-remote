@@ -4,9 +4,10 @@
     <mat-select
       [(ngModel)]="selectedPlugin"
       (selectionChange)="onPluginChange()"
-      name="selectedPlugin"
-      placeholder="Search for:">
-      @for (plugin of searchPlugins; track plugin.name) {
+      [compareWith]="comparePluginKeys"
+      [placeholder]="getSelectedPluginName() || ('SONG' | translate)"
+      name="selectedPlugin">
+      @for (plugin of searchPlugins; track plugin.key) {
         <mat-option
           name="searchPlugins"
           [value]="plugin.key">
