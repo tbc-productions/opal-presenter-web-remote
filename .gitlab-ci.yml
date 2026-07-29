@@ -79,13 +79,13 @@ deploy:
     cd ../../
     export CHECK_SUM=`sha256sum remote-$CI_COMMIT_TAG.zip | cut -d' ' -f1`
     export FILE_SIZE=`stat -c '%s' remote-$CI_COMMIT_TAG.zip`
-    'echo -e "{\"latest\": {\"version\": \"$CI_COMMIT_TAG\", \"sha256\": \"$CHECK_SUM\", \"filename\": \"remote-$CI_COMMIT_TAG.zip\", \"size\": $FILE_SIZE}}" > version-$CI_COMMIT_TAG.json'
+    echo -e "{\"latest\": {\"version\": \"$CI_COMMIT_TAG\", \"sha256\": \"$CHECK_SUM\", \"filename\": \"remote-$CI_COMMIT_TAG.zip\", \"size\": $FILE_SIZE}}" > version-$CI_COMMIT_TAG.json
     mkdir -p ~/.ssh
     echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
     chmod 600 ~/.ssh/id_rsa
     eval $(ssh-agent -s)
     ssh-add ~/.ssh/id_rsa
-    '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     ssh openlp@$OPENLP_HOST "mkdir -p /home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG"
     scp remote-$CI_COMMIT_TAG.zip openlp@$OPENLP_HOST:/home/openlp/sites/get.openlp.org/www/remote/$CI_COMMIT_TAG/
     scp version-$CI_COMMIT_TAG.json openlp@$OPENLP_HOST:/home/openlp/sites/get.openlp.org/www/remote/
