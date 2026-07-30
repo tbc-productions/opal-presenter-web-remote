@@ -74,6 +74,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
   }
 
   updateCurrentSlides(_serviceItemId: string, currentSlide: number): void {
+    this.serviceItemSubscription$?.unsubscribe();
     this.serviceItemSubscription$ = this.openlpService.getServiceItem().subscribe(
       (currentServiceItem: any) => {
         this.serviceItem = currentServiceItem;
@@ -84,6 +85,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
           this.setNotes(currentServiceItem.notes);
         }
         this.getNextServiceItemTitle();
+        this.changeDetectorRef.detectChanges();
       }
     );
     this.subscriptions.push(this.serviceItemSubscription$);
@@ -105,6 +107,7 @@ export class StageViewComponent implements OnInit, OnDestroy {
               }
             }
         );
+        this.changeDetectorRef.detectChanges();
       }
     );
     this.subscriptions.push(getServiceItemsSubscription);

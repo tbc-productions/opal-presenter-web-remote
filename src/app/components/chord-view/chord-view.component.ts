@@ -37,6 +37,7 @@ export class ChordViewComponent extends StageViewComponent {
               this.setNewSlides(serviceItem.slides, currentSlide);
               this.setNotes(serviceItem.notes);
             }
+            this.changeDetectorRef.detectChanges();
           });
     } else {
       if (this.useNewTransposeEndpoint) {
@@ -110,6 +111,7 @@ export class ChordViewComponent extends StageViewComponent {
           this.currentSlides[i] = {...this.currentSlides[i], chords: transposedLyrics[i].chords};
         }
       }
+      this.changeDetectorRef.detectChanges();
     });
   }
 }
