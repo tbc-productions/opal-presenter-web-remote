@@ -1,3 +1,5 @@
 <div class="overlay">
-  <img alt="Overlay Image" src="{{ img }}">
+  @if (overlayImage) {
+    <img alt="Overlay Image" [src]="overlayImage | safeUrl">
+  }
 </div>

@@ -37,6 +37,7 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 import { Nl2BrPipe } from './pipes/nl2br.pipe';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RoutingModule } from './routing.module';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { SearchComponent } from './components/search/search.component';
 import { SearchOptionsComponent } from './components/search/search-options/search-options.component';
 import { SentenceCasePipe } from './pipes/sentence-case.pipe';
@@ -66,6 +67,7 @@ import { TranslationService } from './services/translation.service';
     MainViewComponent,
     Nl2BrPipe,
     PageNotFoundComponent,
+    SafeUrlPipe,
     SearchComponent,
     SearchOptionsComponent,
     SentenceCasePipe,

@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OpenLPService } from '../../services/openlp.service';
 
@@ -10,9 +10,10 @@ import { OpenLPService } from '../../services/openlp.service';
 })
 export class MainViewComponent implements OnInit, OnDestroy {
   private openlpService: OpenLPService = inject(OpenLPService);
+  private changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
   private subscriptions: Subscription[] = [];
 
-  img: string = '';
+  overlayImage: any = null;
 
   ngOnInit(): void {
     this.updateImage();
@@ -28,7 +29,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
   updateImage(): void {
     const getMainImageSubscription = this.openlpService.getMainImage().subscribe(
-      (view: any) => this.img = view.binary_image
+      (view: any) => { if (view) { this.overlayImage = view.binary_image; this.changeDetectorRef.markForCheck(); } }
     );
     this.subscriptions.push(getMainImageSubscription);
   }
