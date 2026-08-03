@@ -1,5 +1,5 @@
 
-import { DOCUMENT, EventEmitter, inject, Injectable, OnDestroy } from '@angular/core';
+import { DOCUMENT, EventEmitter, inject, OnDestroy, Service } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
 import { Observable, Subscription } from 'rxjs';
 import { OpenLPService } from './openlp.service';
@@ -10,11 +10,7 @@ interface Options {
   keys: string;
 }
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Service()
 export class ShortcutsService implements OnDestroy {
   private document: Document = inject<Document>(DOCUMENT);
   private eventManager: EventManager = inject(EventManager);

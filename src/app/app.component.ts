@@ -13,7 +13,6 @@ import { DisplayMode } from './enums/display-mode.enum';
 import { OpenLPService } from './services/openlp.service';
 import { WebSocketStatus } from './enums/web-socket-status.enum';
 import { WindowRef } from './services/window-ref.service';
-import { PageTitleService } from './services/page-title.service';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DisplayModeSelectorComponent } from './components/display-mode-selector/display-mode-selector.component';
@@ -33,7 +32,6 @@ import supportedBrowsers from '../assets/supportedBrowsers';
 export class AppComponent implements OnInit, OnDestroy {
   private bottomSheet: MatBottomSheet = inject(MatBottomSheet); 
   private openlpService: OpenLPService = inject(OpenLPService);
-  private pageTitleService: PageTitleService = inject(PageTitleService);
   private settingsService: SettingsService = inject(SettingsService);  
   private shortcutsService: ShortcutsService = inject(ShortcutsService);
   private subscriptions: Subscription[] = [];

@@ -56,8 +56,6 @@ export class ChordProPipe implements PipeTransform {
   notesSharpNotation: Record<string, string[]> = {};
   notesFlatNotation: Record<string, string[]> = {};
 
-  private fillHtml = `<span class="fill"><span class="fill-inner"></span></span>`;
-
   decodeHTML(value: string) {
     const tempElement = document.createElement('div');
     tempElement.innerHTML = value;

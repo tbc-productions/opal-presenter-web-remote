@@ -20,7 +20,6 @@ export class ThemesComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   private translateService: TranslateService = inject(TranslateService);
 
-  private _theme: string | null = null;
   private _themeList: Theme[] = [];
   private _themeLevel: string | null = null;
 
@@ -73,7 +72,6 @@ export class ThemesComponent implements OnInit, OnDestroy {
   getTheme(): void {
     this.openlpService.getTheme().subscribe(
       (theme: string) => {
-        this._theme = theme;
         // Modify the theme list with the current theme. We do this instead of getting all the themes again
         // We do this here to ensure that the program is the only source of truth for the current theme
         for (const i of this._themeList) {
