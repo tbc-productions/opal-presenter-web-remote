@@ -1,13 +1,9 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TitleCasePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Service()
 export class PageTitleService {
   private titleService: Title = inject(Title);
   private titleCasePipe: TitleCasePipe = inject(TitleCasePipe);

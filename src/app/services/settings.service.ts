@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Service } from '@angular/core';
 
 // Set here the default value; if there's none, set as undefined and specify key type.
 export class SettingsProperties {
@@ -17,11 +17,7 @@ export interface SettingsPropertiesItem<SP extends keyof SettingsProperties, SV 
 
 const LOCAL_STORAGE_PREFIX = 'OpenLP-';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Service()
 export class SettingsService {
   constructor() {
     window.addEventListener('storage', this._handleStorageEvent);

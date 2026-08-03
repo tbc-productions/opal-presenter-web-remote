@@ -65,6 +65,8 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-private-class-members': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
       'jsdoc/no-types': 'off',
       'prefer-arrow/prefer-arrow-functions': 'off',
       'brace-style': 'off',

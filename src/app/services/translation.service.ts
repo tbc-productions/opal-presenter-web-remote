@@ -1,13 +1,9 @@
-import { TranslateLoader } from '@ngx-translate/core';
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
+import { TranslateLoader } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Service()
 export class TranslationService implements TranslateLoader {
   private http: HttpClient = inject(HttpClient);
 

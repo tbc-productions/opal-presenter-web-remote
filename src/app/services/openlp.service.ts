@@ -1,4 +1,4 @@
-import { EventEmitter, inject, Injectable, OnDestroy } from '@angular/core';
+import { EventEmitter, inject, OnDestroy, Service } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,11 +35,7 @@ const httpOptions = {
 
 const WEBSOCKET_RECONNECT_TIMEOUT = 5 * 1000;
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Service()
 export class OpenLPService implements OnDestroy {
   private http: HttpClient = inject(HttpClient);
   private dialog: MatDialog = inject(MatDialog);

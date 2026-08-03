@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 function _window(): any {
   return window;
 }
 
-@Injectable({providedIn: 'root'})
+@Service()
 export class WindowRef {
   get nativeWindow(): any {
     return _window();
