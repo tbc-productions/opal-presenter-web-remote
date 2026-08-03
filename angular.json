@@ -85,7 +85,8 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "src/tsconfig.spec.json"
+            "tsConfig": "src/tsconfig.spec.json",
+            "runnerConfig": "vitest.config.ts"
           }
         },
         "lint": {

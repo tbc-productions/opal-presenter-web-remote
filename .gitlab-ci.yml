@@ -24,7 +24,7 @@ lint:
 
 test:
   stage: test
-  image: mcr.microsoft.com/playwright:v1.61.0-noble
+  image: mcr.microsoft.com/playwright:v1.61.0-jammy
   script: |
     export NVM_DIR="$HOME/.nvm"
     mkdir -p $NVM_DIR
@@ -36,7 +36,7 @@ test:
     npm install -g pnpm
     pnpm install
     npx playwright install chromium-headless-shell
-    pnpm test --no-progress --no-watch --browsers=chromiumHeadless
+    pnpm test
   rules:
     - when: always
 

@@ -55,12 +55,41 @@ To install the Playwright browsers for testing:
   pnpm playwright install
 
 
-To run unit tests on the web remote using a Chromium browser:
+To run both unit tests and end-to-end Playwright tests on Web Remote:
 
 .. code::
 
-  pnpm test --browsers Chromium
+  pnpm test
 
+To run unit tests on Web Remote:
+
+.. code::
+
+  pnpm test:unit
+
+To run unit tests coverage report on Web Remote:
+
+.. code::
+
+  pnpm test:unit:coverage
+
+To run unit tests in watch mode on Web Remote:
+
+.. code::
+
+  pnpm test:unit:watch
+
+To run end-to-end Playwright tests on Web Remote:
+
+.. code::
+
+  pnpm test:e2e
+
+To run headed end-to-end Playwright tests on Web Remote:
+
+.. code::
+
+  pnpm test:e2e:headed
 
 Deployment
 ----------
