@@ -167,7 +167,8 @@ export class ChordProPipe implements PipeTransform {
 
         for (let i = rowParts.length - 1, r = 0, isFirst = true; i >= 0; i--, r++ ) {
           if (!isFirst) {
-            chordText = this._processChordRow(nHalfSteps, rowParts[i], i, lastPart || '', r) + chordText;
+            const isOpeningChord = (i === 1) && (rowParts[0].length === 0);
+            chordText = this._processChordRow(nHalfSteps, rowParts[i], i, lastPart || '', r, isOpeningChord) + chordText;
           }
 
          lastPart = rowParts[i];
@@ -180,7 +181,8 @@ export class ChordProPipe implements PipeTransform {
     return `<div class="with-chords">${chordText}</div>`;
   }
 
-  protected _processChordRow(nHalfSteps: number, part: string, index: number, lastPart: string, reverseIndex: number) {
+  protected _processChordRow(nHalfSteps: number, part: string, index: number, lastPart: string, reverseIndex: number,
+      isOpeningChord = false) {
     if (index % 2 !== 0) {
       if (index > 0) {
         // chord
@@ -203,7 +205,8 @@ export class ChordProPipe implements PipeTransform {
         const isChordMusicKey = chord.startsWith('=');
         const chordLength = chord.length;
         const isFirstChordAfterRealWord = (lastPart.length && (reverseIndex === 1));
-        const shouldOverlapChord = (!isChordMusicKey) && (isFirstChordAfterRealWord || (lastPart.length > chord.length));
+        const shouldOverlapChord = isOpeningChord || isFirstChordAfterRealWord ||
+          ((!isChordMusicKey) && (lastPart.length > chord.length));
         const isChordOnly = !lastPart.trim().length;
 
         const chordClass = (shouldOverlapChord && 'overlap-chord' || '') + (isChordOnly && ' chord-only' || '');
@@ -230,7 +233,7 @@ export class ChordProPipe implements PipeTransform {
           chord += ' ';
         }
 
-        return `<span [attr.data-chord]="${chord}" class="${chordClass}">` +
+        return `<span data-chord="${chord}" class="${chordClass}">` +
                `<span class="chord">${chord}</span>` +
                `<span class="text ${fillHtml ? 'with-fill' : ''}">` +
                `<span class="first-letter">${textFirstLetter}</span>` +
