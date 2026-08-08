@@ -1,11 +1,17 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.2.12
+--------------
+
+* Fix display of chords in chord view since upgrade to Angular v22.
+* Updated dependencies including Angular.
+
 Version 1.2.11
 --------------
 
 * Fix issue with broken overlay image in main view since upgrade to Angular v22.
-* Fix issue with chord and stage view not updating since upgrade to Angular v22. 
+* Fix issue with chord and stage view not updating since upgrade to Angular v22.
 
 Version 1.2.10
 --------------
