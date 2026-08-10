@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktivér Store Skærmknapper",
   "ENABLE_DARK_THEME": "Aktivér Mørkt Tema",
   "ENABLE_FAST_SWITCHING_PANEL": "Aktivér Hurtig Skiftepanel",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Aktivér side om side-visning af tjeneste og slides",
   "ENABLE_WAKE_LOCK": "Undgå skærmdvale, og aktiver vågnelås i alle Android- og iOS-webbrowsere",
   "FONT_SCALE": "Skriftstørrelse",
   "GLOBAL": "Global",

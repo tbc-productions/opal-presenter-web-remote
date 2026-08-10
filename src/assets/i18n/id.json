@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktifkan Tombol Tampilan Besar",
   "ENABLE_DARK_THEME": "Mengaktifkan Tema Gelap",
   "ENABLE_FAST_SWITCHING_PANEL": "Aktifkan Panel Peralihan Cepat",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Aktifkan tampilan berdampingan layanan dan slide",
   "ENABLE_WAKE_LOCK": "Cegah layar tidur dan aktifkan kunci layar di semua browser web Android dan iOS",
   "FONT_SCALE": "Skala Font",
   "GLOBAL": "Global",

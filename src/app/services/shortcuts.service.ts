@@ -81,7 +81,7 @@ export class ShortcutsService implements OnDestroy {
         const activeElement = this.document.activeElement;
         const notOnInput = activeElement?.tagName !== 'INPUT' && activeElement?.tagName !== 'TEXTAREA';
         if (notOnInput) {
-          if (document.URL.endsWith('/slides')) {
+          if (this.isShortcutContextAllowed()) {
             e.preventDefault();
             observer.next(e);
           }
@@ -96,6 +96,17 @@ export class ShortcutsService implements OnDestroy {
         dispose();
       };
     });
+  }
+
+  private isShortcutContextAllowed(): boolean {
+    const pathname = this.document.location.pathname;
+    const isSlidesRoute = pathname.endsWith('/slides');
+    if (isSlidesRoute) {
+      return true;
+    }
+    const isServiceRoute = pathname.endsWith('/service');
+    const isServiceSplitView = !!this.document.querySelector('openlp-service .service-content.split-view');
+    return isServiceRoute && isServiceSplitView;
   }
 
   protected _handleShortcutsChanged(shortcuts: Shortcuts): void {

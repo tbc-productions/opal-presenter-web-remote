@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Abilita i Grandi Pulsanti di Visualizzazione",
   "ENABLE_DARK_THEME": "Abilita il Tema Scuro",
   "ENABLE_FAST_SWITCHING_PANEL": "Abilita il Pannello di Commutazione Rapida",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Abilita la visualizzazione affiancata di servizio e diapositive",
   "ENABLE_WAKE_LOCK": "Impedisci la sospensione del display e abilita il blocco della riattivazione in tutti i browser Web Android e iOS",
   "FONT_SCALE": "Scala del Carattere",
   "GLOBAL": "Globale",
