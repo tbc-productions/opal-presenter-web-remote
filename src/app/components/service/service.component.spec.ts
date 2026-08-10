@@ -7,6 +7,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ServiceComponent } from './service.component';
 import { OpenLPService } from '../../services/openlp.service';
 import { PageTitleService } from '../../services/page-title.service';
+import { SettingsService } from '../../services/settings.service';
+import { WindowRef } from '../../services/window-ref.service';
 
 describe('ServiceComponent', () => {
   let component: ServiceComponent;
@@ -14,6 +16,8 @@ describe('ServiceComponent', () => {
   let openlpService: OpenLPService;
   let pageTitleService: PageTitleService;
   let translateService: TranslateService;
+  let settingsService: SettingsService;
+  let windowRef: WindowRef;
 
   beforeEach(() => {
     router = {
@@ -28,6 +32,16 @@ describe('ServiceComponent', () => {
     translateService = {
       stream: vi.fn().mockReturnValue(of('SERVICE')),
     } as unknown as TranslateService;
+    settingsService = {
+      get: vi.fn().mockReturnValue(false),
+      set: vi.fn(),
+      onPropertyChanged: vi.fn().mockReturnValue(of(false)),
+    } as unknown as SettingsService;
+    windowRef = {
+      nativeWindow: {
+        innerWidth: 1024,
+      },
+    } as unknown as WindowRef;
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
@@ -35,7 +49,9 @@ describe('ServiceComponent', () => {
         { provide: Router, useValue: router },
         { provide: OpenLPService, useValue: openlpService },
         { provide: PageTitleService, useValue: pageTitleService },
+        { provide: SettingsService, useValue: settingsService },
         { provide: TranslateService, useValue: translateService },
+        { provide: WindowRef, useValue: windowRef },
       ]
     });
     component = TestBed.runInInjectionContext(() => new ServiceComponent());
@@ -51,5 +67,27 @@ describe('ServiceComponent', () => {
 
     expect(openlpService.setServiceItem).toHaveBeenCalledWith('1');
     expect(router.navigate).toHaveBeenCalledWith(['slides']);
+  });
+
+  it('should enable side-by-side option when width is large enough', () => {
+    (windowRef.nativeWindow as { innerWidth: number }).innerWidth = 1300;
+    (settingsService.get as any).mockReturnValue(true);
+    (settingsService.onPropertyChanged as any).mockReturnValue(of(true));
+
+    component.ngOnInit();
+
+    expect(component.canShowSideBySideSlides).toBe(true);
+    expect(component.showSlidesInSidePanel).toBe(true);
+  });
+
+  it('should keep service view open when side panel is enabled', () => {
+    (component as any).canShowSideBySideSlides = true;
+    (component as any).showSlidesInSidePanel = true;
+
+    const item = { id: '1', is_valid: true } as any;
+    component.onItemSelected(item);
+
+    expect(openlpService.setServiceItem).toHaveBeenCalledWith('1');
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 });

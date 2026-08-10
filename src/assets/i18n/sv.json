@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Aktivera Stora Visningsknappar",
   "ENABLE_DARK_THEME": "Aktivera Mörkt Tema",
   "ENABLE_FAST_SWITCHING_PANEL": "Aktivera Sabbväxlingspanel",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Aktivera sida vid sida-visning för tjänst och bilder",
   "ENABLE_WAKE_LOCK": "Förhindra skärmvila och aktivera processlås i alla Android- och iOS-webbläsare",
   "FONT_SCALE": "Teckensnittsskala",
   "GLOBAL": "Global",

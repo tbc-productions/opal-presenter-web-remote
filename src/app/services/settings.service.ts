@@ -8,6 +8,7 @@ export class SettingsProperties {
   bigDisplayButtons = false;
   wakeLock = false;
   darkTheme = false;
+  serviceShowSlidesPanel = false;
 }
 
 export interface SettingsPropertiesItem<SP extends keyof SettingsProperties, SV = SettingsProperties[SP]> {

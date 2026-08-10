@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Ota Käyttöön Suuret Näyttöpainikkeet",
   "ENABLE_DARK_THEME": "Ota tumma Teema Käyttöön",
   "ENABLE_FAST_SWITCHING_PANEL": "Ota Nopea Kytkentäpaneeli Käyttöön",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Ota käyttöön palvelun ja diojen rinnakkaisnäkymä",
   "ENABLE_WAKE_LOCK": "Estä näytön lepotila ja ota herätyslukitus käyttöön kaikissa Android- ja iOS-selaimissa",
   "FONT_SCALE": "Fontin Asteikko",
   "GLOBAL": "Yleinen",

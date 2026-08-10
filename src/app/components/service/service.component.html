@@ -1,3 +1,14 @@
-<openlp-service-list
-  (itemSelected)="this.onItemSelected($event)">
-</openlp-service-list>
+<div class="service-content" [class.split-view]="canShowSideBySideSlides && showSlidesInSidePanel">
+  <section class="service-pane">
+    <openlp-service-list
+      (itemSelected)="onItemSelected($event)">
+    </openlp-service-list>
+  </section>
+
+  @if (canShowSideBySideSlides && showSlidesInSidePanel) {
+    <section class="slides-pane">
+      <openlp-slide-list (slideSelected)="onSlideSelected($event)">
+      </openlp-slide-list>
+    </section>
+  }
+</div>

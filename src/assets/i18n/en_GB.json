@@ -17,6 +17,7 @@
   "ENABLE_BIG_DISPLAY_BUTTONS": "Enable Big Display Buttons",
   "ENABLE_DARK_THEME": "Enable Dark Theme",
   "ENABLE_FAST_SWITCHING_PANEL": "Enable Fast Switching Panel",
+  "ENABLE_SERVICE_SLIDES_SPLIT_VIEW": "Enable Side-by-Side Service and Slides View",
   "ENABLE_WAKE_LOCK": "Prevent display sleep and enable wake lock in all Android and iOS web browsers",
   "FONT_SCALE": "Font Scale",
   "GLOBAL": "Global",
