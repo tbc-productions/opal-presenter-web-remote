@@ -1,6 +1,12 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.3.0
+--------------
+
+* Add setting to display slides in service view when the screen resolution is high enough.
+* Updated dependencies including Angular.
+
 Version 1.2.12
 --------------
 
