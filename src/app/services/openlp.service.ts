@@ -361,7 +361,7 @@ export class OpenLPService implements OnDestroy {
       this._messageWebSocketSubscription.unsubscribe();
     }
 
-    this._stateWebSocketSubscription = createWebSocket(
+    this._messageWebSocketSubscription = createWebSocket(
       this.host,
       websocketPort,
       (input: any) => deserialize(input, Message),
