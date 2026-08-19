@@ -1,6 +1,13 @@
 Changes in OpenLP Web Remote
 ============================
 
+Version 1.3.1
+--------------
+
+* Fix missing text of the lyrics in chord view.
+* Make sure the whole service item is clickable instead of only the text.
+* Updated dependencies including Angular.
+
 Version 1.3.0
 --------------
 
