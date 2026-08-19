@@ -161,6 +161,11 @@ export class ChordProPipe implements PipeTransform {
     // or insert a space in lyrics
     song.split(/\n/).reverse().forEach(
       (row, index) => {
+        if (!row.match(this.chordRegex)) {
+          chordText = `<div class="song-row">${row}</div>${index > 0 ? '<br>' : ''}` + chordText;
+          return;
+        }
+
         chordText = `</div>${index > 0 ? '<br>' : ''}` + chordText;
         const rowParts = row.split(this.chordRegex);
         let lastPart;
