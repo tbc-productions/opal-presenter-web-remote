@@ -1,9 +1,9 @@
 <mat-card
   class="service-item no-select"
+  (click)="onItemSelected(item)"
   [class.selected]="selected">
   <mat-card-content
-    class="card-content"
-    (click)="onItemSelected(item)">
+    class="card-content">
     <mat-icon class="service-item-icon">{{ getIcon(item) }}</mat-icon>&nbsp;{{ item.title }}
   </mat-card-content>
   @if (useDeleteServiceItemFromOpenlp) {
@@ -13,7 +13,7 @@
         class="delete-service-item-button no-select"
         [class.selected]="selected"
         matTooltip="{{ 'DELETE_FROM_SERVICE' | translate | titlecase }}"
-        (click)="deleteFromService(item)">
+        (click)="$event.stopPropagation(); deleteFromService(item)">
         <mat-icon>delete_outline</mat-icon>
       </button>
     </mat-card-actions>
