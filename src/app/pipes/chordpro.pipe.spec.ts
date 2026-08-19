@@ -38,4 +38,34 @@ describe('ChordProPipe', () => {
     expect(html).not.toContain('data-chord="=D" class=""');
     expect(html).not.toContain('</span></span> mazing');
   });
+
+  it('should preserve lyric text before the first chord', () => {
+    vi.spyOn(pipe, 'decodeHTML').mockImplementation(value => value);
+    const html = (pipe as any).parseToHTML('A[C]m');
+
+    expect(html).toContain('A');
+    expect(html).toContain('data-chord="C"');
+    expect(html).toContain('>m<');
+  });
+
+  it('should not render an opening chord or lyric fragment as duplicate text', () => {
+    vi.spyOn(pipe, 'decodeHTML').mockImplementation(value => value);
+    const html = (pipe as any).parseToHTML('[D]Amazing Grace');
+
+    expect(html).toContain('data-chord="D"');
+    expect(html).not.toContain('</span></span>D');
+    const lyricFragment = 'mazing Grace';
+    expect(html).toContain(lyricFragment);
+    expect(html.indexOf(lyricFragment)).toBe(html.lastIndexOf(lyricFragment));
+  });
+
+  it('should not duplicate lyrics after an opening key chord', () => {
+    vi.spyOn(pipe, 'decodeHTML').mockImplementation(value => value);
+    const html = (pipe as any).parseToHTML('[=D]Amazing [D7]grace');
+
+    expect(html).toContain('data-chord="=D"');
+    expect(html).toContain('data-chord="D7"');
+    expect(html.indexOf('Amazing ')).toBe(html.lastIndexOf('Amazing '));
+    expect(html.indexOf('grace')).toBe(html.lastIndexOf('grace'));
+  });
 });

@@ -244,7 +244,10 @@ export class ChordProPipe implements PipeTransform {
         return `${lastPart}`;
       }
     }
-    return '';
+
+    // Preserve only the plain lyric prefix before the first chord. Other even-index
+    // segments are already emitted by the chord immediately before them.
+    return index === 0 ? part : '';
   }
 
   protected _makeFillHtml(length: number): string {
