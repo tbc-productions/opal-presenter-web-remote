@@ -68,4 +68,12 @@ describe('ChordProPipe', () => {
     expect(html.indexOf('Amazing ')).toBe(html.lastIndexOf('Amazing '));
     expect(html.indexOf('grace')).toBe(html.lastIndexOf('grace'));
   });
+
+  it('should preserve plain lyric rows in a chorded song', () => {
+    vi.spyOn(pipe, 'decodeHTML').mockImplementation(value => value);
+    const html = (pipe as any).parseToHTML('Amazing grace\nhow sweet the sound');
+
+    expect(html).toContain('Amazing grace');
+    expect(html).toContain('how sweet the sound');
+  });
 });
