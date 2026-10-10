@@ -13,6 +13,6 @@ export class PageTitleService {
 
   changePageTitle(pageTitle: string): void {
     this.pageTitleSource.next(pageTitle);
-    this.titleService.setTitle(this.titleCasePipe.transform(pageTitle) + ' | OpenLP Remote');
+    this.titleService.setTitle(this.titleCasePipe.transform(pageTitle) + ' | Opal Presenter Remote');
   }
 }

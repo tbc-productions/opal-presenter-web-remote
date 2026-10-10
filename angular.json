@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@openlp/web-remote": {
+    "@opal-presenter/web-remote": {
       "root": "",
       "prefix": "app",
       "sourceRoot": "src",
@@ -64,14 +64,14 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "buildTarget": "@openlp/web-remote:build"
+            "buildTarget": "@opal-presenter/web-remote:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "@openlp/web-remote:build:production"
+              "buildTarget": "@opal-presenter/web-remote:build:production"
             },
             "development": {
-              "buildTarget": "@openlp/web-remote:build:development"
+              "buildTarget": "@opal-presenter/web-remote:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "@openlp/web-remote:build"
+            "buildTarget": "@opal-presenter/web-remote:build"
           }
         },
         "test": {
@@ -100,7 +100,7 @@
         }
       }
     },
-    "@openlp/web-remote-e2e": {
+    "@opal-presenter/web-remote-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {

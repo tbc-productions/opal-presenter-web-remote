@@ -70,7 +70,7 @@ export class ChordProPipe implements PipeTransform {
   * @returns {string}
   */
   transform(song: string/*, nHalfSteps: number*/): string|SafeHtml {
-    // we hardcode nHalfSteps to 0, since the transposing is not used in OpenLP web
+    // we hardcode nHalfSteps to 0, since the transposing is not used in Opal Presenter web
     const nHalfSteps = 0;
     try {
       if (song !== undefined && song) {

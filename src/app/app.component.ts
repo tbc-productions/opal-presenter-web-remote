@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   noSleep: NoSleep = new NoSleep();
   state: State = new State();
   showLogin: boolean = false;
-  pageTitle: string = 'OpenLP Remote';
+  pageTitle: string = 'Opal Presenter Remote';
   appVersion: string = '0.0';
   webSocketOpen: boolean = false;
   fastSwitching: boolean = false;

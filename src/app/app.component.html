@@ -4,7 +4,7 @@
       <button mat-icon-button class="header" (click)="menu.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="page-title">{{ (pageTitle | translate | titlecase).replace('Openlp', 'OpenLP') }}</span>
+      <span class="page-title">{{ (pageTitle | translate | titlecase) }}</span>
       <span class="spacer"></span>
       @if (showLogin) {
         <button 
@@ -18,7 +18,7 @@
           mat-icon-button
           (click)="forceWebSocketReconnection()"
           class="header connection-status"
-          matTooltip="{{ ('CONNECTED_TO_OPENLP' | translate | titlecase).replace('Openlp', 'OpenLP') }}">
+          matTooltip="{{ ('CONNECTED_TO_OPENLP' | translate | titlecase) }}">
           <mat-icon>link</mat-icon>
         </button>
       }
