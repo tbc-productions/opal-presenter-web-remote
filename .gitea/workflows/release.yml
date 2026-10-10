@@ -6,24 +6,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    container:
+      image: node:24-bookworm
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
+      - run: apt-get update && apt-get install -y --no-install-recommends zip jq
       - run: npm install -g pnpm@11.25.0
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint && pnpm test:unit
       - run: pnpm build --configuration production && node scripts/package-remote.mjs
       - run: cd dist/web-remote && zip -r ../../opal-presenter-web-remote.zip .
       - name: Publish release bundle
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         env:
           CI_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
           set -eu
           API="${GITHUB_SERVER_URL}/api/v1/repos/${GITHUB_REPOSITORY}"
-          jq -n --arg tag "$GITHUB_REF_NAME" '{tag_name:$tag,name:$tag,draft:false,prerelease:false}' > /tmp/release.json
+          TAG=$(node -p "require('./package.json').version")
+          jq -n --arg tag "$TAG" '{tag_name:$tag,name:$tag,draft:false,prerelease:false}' > /tmp/release.json
           curl -fsS -H "Authorization: token $CI_TOKEN" -H 'Content-Type: application/json' --data-binary @/tmp/release.json "$API/releases" > /tmp/release-response.json
           ID=$(jq -r .id /tmp/release-response.json)
           curl -fsS -H "Authorization: token $CI_TOKEN" -F attachment=@opal-presenter-web-remote.zip "$API/releases/$ID/assets"
