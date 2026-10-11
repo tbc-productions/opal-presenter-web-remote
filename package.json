@@ -7,13 +7,13 @@
     "Angular",
     "Remote"
   ],
-  "homepage": "https://git.tbcproductions.net/tbcproductions/opal-presenter",
-  "bugs": "https://git.tbcproductions.net/tbcproductions/opal-presenter-web-remote",
+  "homepage": "https://github.com/tchris3/opal-presenter",
+  "bugs": "https://github.com/tchris3/opal-presenter-web-remote",
   "license": "GPL-3.0-or-later",
   "author": "OpenLP Developers",
   "repository": {
     "type": "git",
-    "url": "https://git.tbcproductions.net/tbcproductions/opal-presenter-web-remote.git"
+    "url": "https://github.com/tchris3/opal-presenter-web-remote.git"
   },
   "scripts": {
     "ng": "ng",
