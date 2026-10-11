@@ -1,8 +1,6 @@
-Developer Guide
-===============
+# Developer Guide
 
-Prerequisites
--------------
+## Prerequisites
 
 In order to get started developing the web remote, you'll need to install the following on your computer:
 
@@ -10,91 +8,81 @@ In order to get started developing the web remote, you'll need to install the fo
 - NPM
 - PNPM
 
-Get Started
------------
+## Get Started
 
 Once you have the prerequisites installed, in the root directory, run the following command:
 
-.. code::
-
-  pnpm install
-
+```sh
+pnpm install
+```
 
 To run the web remote, run the following command:
 
-.. code::
-
-  pnpm start
-
+```sh
+pnpm start
+```
 
 To build the web remote manually for deployment:
 
-.. code::
-
-  pnpm build --aot
-
+```sh
+pnpm build --aot
+```
 
 To lint the web remote:
 
-.. code::
-
-  pnpm lint
-
+```sh
+pnpm lint
+```
 
 To audit the web remote:
 
-.. code::
-
-  pnpm audit
-
+```sh
+pnpm audit
+```
 
 To install the Playwright browsers for testing:
 
-.. code::
-
-  pnpm playwright install
-
+```sh
+pnpm playwright install
+```
 
 To run both unit tests and end-to-end Playwright tests on Web Remote:
 
-.. code::
-
-  pnpm test
+```sh
+pnpm test
+```
 
 To run unit tests on Web Remote:
 
-.. code::
-
-  pnpm test:unit
+```sh
+pnpm test:unit
+```
 
 To run unit tests coverage report on Web Remote:
 
-.. code::
-
-  pnpm test:unit:coverage
+```sh
+pnpm test:unit:coverage
+```
 
 To run unit tests in watch mode on Web Remote:
 
-.. code::
-
-  pnpm test:unit:watch
+```sh
+pnpm test:unit:watch
+```
 
 To run end-to-end Playwright tests on Web Remote:
 
-.. code::
-
-  pnpm test:e2e
+```sh
+pnpm test:e2e
+```
 
 To run headed end-to-end Playwright tests on Web Remote:
 
-.. code::
+```sh
+pnpm test:e2e:headed
+```
 
-  pnpm test:e2e:headed
+## Deployment
 
-Deployment
-----------
+For deployment, see the [Deployment](deployment.md) page.
 
-For deployment, see the `Deployment`_ page.
-
-
-.. _Deployment: docs/deployment.rst
